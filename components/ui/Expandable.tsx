@@ -23,7 +23,7 @@ const Expandable = ({ title, description }: ExpandableProps) => {
       {/* Header */}
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center px-4 py-3 text-left"
+        className="w-full flex justify-between items-center px-4 py-3 text-left hover:cursor-pointer"
       >
         <span className="font-medium text-lg">
           <strong>{title}</strong>
