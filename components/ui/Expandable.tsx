@@ -26,7 +26,7 @@ const Expandable = ({ title, description }: ExpandableProps) => {
         className="w-full flex justify-between items-center px-4 py-3 text-left"
       >
         <span className="font-medium text-lg">
-          {title}
+          <strong>{title}</strong>
         </span>
 
         {/* Tres puntos */}
@@ -57,7 +57,7 @@ const Expandable = ({ title, description }: ExpandableProps) => {
           <div className="border-t-3 border-[#6E9B8A] dark:border-[#2F6F63]" />
 
           {/* Texto */}
-          <div className="px-4 py-3 text-sm">
+          <div className="px-4 py-3 text-base">
             {description}
           </div>
 
