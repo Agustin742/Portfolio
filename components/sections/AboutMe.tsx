@@ -21,6 +21,7 @@ import {
 
 import TechItem, { TechItemProps } from "../ui/TechItem"
 import { useLanguage } from "@/hooks";
+import Expandable, { ExpandableProps } from "../ui/Expandable";
 
 const AboutMe = () => {
   const { t } = useLanguage();
@@ -45,9 +46,20 @@ const AboutMe = () => {
     { icon: SiSpringboot, label: "SpringBoot", color: "#6DB33F" },
   ];
 
+  const aboutCards: ExpandableProps[] = [
+    {title: t('about.cards.whoAmI.title'), description: t('about.cards.whoAmI.description')},
+    {title: t('about.cards.formation.title'), description: t('about.cards.formation.description')},
+    {title: t('about.cards.whatILookFor.title'), description: t('about.cards.whatILookFor.description')},
+  ]
+
   return (
     <div 
     id="about"
+    className="
+    flex flex-col md:flex-row
+    "
+    >
+    <div 
     className="
       w-full 
       max-w-6xl 
@@ -56,6 +68,7 @@ const AboutMe = () => {
       flex 
       flex-col
       md:mt-20
+      md:max-w-2/3
       "
     >
       <div>
@@ -119,6 +132,21 @@ const AboutMe = () => {
             <TechItem key={index} icon={notKnowTechnology.icon} label={notKnowTechnology.label} color={notKnowTechnology.color} />
           ))}
         </div>
+      </div>
+
+      
+    </div>
+
+    <div
+      className="
+      my-auto
+      w-full
+      md:max-w-1/3
+      "
+      >
+        {aboutCards.map((aboutCard, index) => (
+          <Expandable key={index} title={aboutCard.title} description={aboutCard.description} />
+        ))}
       </div>
     </div>
   )

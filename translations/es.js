@@ -25,6 +25,24 @@ export const es = {
         description2:
             "Además, continúo incorporando nuevas herramientas y lenguajes para fortalecer mi perfil full stack y ampliar mi capacidad para resolver problemas reales.",
         knowTitle: "Tengo conocimientos en:",
-        learningTitle: "Estoy aprendiendo:"
+        learningTitle: "Estoy aprendiendo:",
+
+        cards: {
+            whoAmI: {
+                title: "Quién soy",
+                description:
+                    "Soy desarrollador Full Stack con formación en programación y desarrollo web, enfocado en construir soluciones prácticas y escalables. Actualmente me encuentro en una etapa de crecimiento profesional, combinando formación técnica, aprendizaje continuo y experiencia en entornos reales de trabajo."
+            },
+            formation: {
+                title: "Mi formación",
+                description:
+                    "Me formé en programación y desarrollo web a través de educación formal y programas intensivos. Participé del programa Fundación Pescar, que incluyó experiencias presenciales en empresas como Corteva y una pasantía formativa con JP Morgan, donde pude conocer de cerca el trabajo en entornos tecnológicos reales."
+            },
+            whatILookFor: {
+                title: "Qué busco",
+                description:
+                    "Busco crecer en entornos profesionales donde pueda aprender, aportar y participar en proyectos reales, aplicando buenas prácticas y trabajo en equipo."
+            }
+        }
     }
 }
