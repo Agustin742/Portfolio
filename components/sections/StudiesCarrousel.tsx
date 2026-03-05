@@ -1,20 +1,14 @@
 "use client";
 
-import { useLanguage } from "@/hooks";
 import Image from "next/image";
+import { useLanguage } from "@/hooks";
+
+import { images } from "@/data/studies/images";
 
 const StudiesCarrousel = () => {
   const { t } = useLanguage()
 
-  const images: string[] = [
-    '/imgs/studies/educacionIt.png',
-    '/imgs/studies/eLearning.png',
-    '/imgs/studies/pescar.png',
-    '/imgs/studies/utn.png'
-  ];
-
   const duplicated = [...images, ...images];
-
 
   return (
     <section className="w-screen overflow-hidden py-10 bg-animated-gradient">

@@ -70,5 +70,32 @@ export const en = {
                 description: "REST API for a developer-oriented social network. Includes JWT authentication, posts, comments, and favorites system. Designed prioritizing best practices, strong validations, and clear separation of concerns."
             }
         }
+    },
+
+    blog: {
+        items: {
+            backendJava: {
+                fecha: "January 23",
+                title: "Learning backend without getting lost: my approach with Java",
+                description:
+                    "Between structured courses and self-taught practice, I found a clear path.",
+                type: "Language"
+            },
+            cleanCodeBackend: {
+                fecha: "February 5",
+                title: "Clean Code applied to backend development",
+                description:
+                    "Small decisions in code can make the difference between maintaining or breaking a system.",
+                type: "Best Practices"
+            },
+            apiDesign: {
+                fecha: "February 18",
+                title: "Designing clear APIs from the start",
+                description:
+                    "Thinking carefully about endpoints, responses, and errors prevents many problems in the future.",
+                type: "Architecture"
+            }
+        }
     }
+
 }

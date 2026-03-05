@@ -1,56 +1,17 @@
 'use client'
-import { 
-  SiExpress, 
-  SiMongodb, 
-  SiNestjs,
-  SiNextdotjs, 
-  SiPostgresql, 
-  SiSpringboot, 
-  SiTailwindcss 
-} from "react-icons/si";
 
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaReact,
-  FaNodeJs,
-  FaGit,
-  FaJsSquare,
-  FaJava
-} from "react-icons/fa";
-
-import TechItem, { TechItemProps } from "../ui/TechItem"
 import { useLanguage } from "@/hooks";
-import Expandable, { ExpandableProps } from "../ui/Expandable";
+
+import Expandable from "../ui/Expandable";
+import TechItem from "../ui/TechItem";
+
+import { knowTechnologies } from "@/data/aboutMe/knowTechnologies";
+import { notKnowTechnologies } from "@/data/aboutMe/notKnowTechnologies";
+import { aboutCards } from "@/data/aboutMe/aboutCards";
+
 
 const AboutMe = () => {
   const { t } = useLanguage();
-
-  const knowTechnologies: TechItemProps[] = [
-    { icon: FaReact, label: "React", color: "#61DAFB" },
-    { icon: SiNextdotjs, label: "Next.js", color: "#000000" },
-    { icon: SiNestjs, label: "NestJS", color: "#E0234E" },
-    { icon: FaNodeJs, label: "Node.js", color: "#339933" },
-    { icon: SiExpress, label: "Express", color: "#000000" },
-    { icon: SiMongodb, label: "MongoDB", color: "#47A248" },
-    { icon: FaJsSquare, label: "JavaScript", color: "#F7DF1E" },
-    { icon: FaHtml5, label: "HTML", color: "#E34F26" },
-    { icon: FaCss3Alt, label: "CSS", color: "#1572B6" },
-    { icon: SiTailwindcss, label: "Tailwind", color: "#06B6D4" },
-    { icon: FaGit, label: "Git", color: "#F05032" },
-  ];
-
-  const notKnowTechnologies: TechItemProps[] = [
-    { icon: FaJava, label: "Java", color: "#007396" },
-    { icon: SiPostgresql, label: "PostgreSQL", color: "#4169E1" },
-    { icon: SiSpringboot, label: "SpringBoot", color: "#6DB33F" },
-  ];
-
-  const aboutCards: ExpandableProps[] = [
-    {title: t('about.cards.whoAmI.title'), description: t('about.cards.whoAmI.description')},
-    {title: t('about.cards.formation.title'), description: t('about.cards.formation.description')},
-    {title: t('about.cards.whatILookFor.title'), description: t('about.cards.whatILookFor.description')},
-  ]
 
   return (
     <div 
@@ -145,7 +106,7 @@ const AboutMe = () => {
       "
       >
         {aboutCards.map((aboutCard, index) => (
-          <Expandable key={index} title={aboutCard.title} description={aboutCard.description} />
+          <Expandable key={index} title={t(aboutCard.title)} description={t(aboutCard.description)} />
         ))}
       </div>
     </div>

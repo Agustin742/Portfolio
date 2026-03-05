@@ -1,6 +1,7 @@
 'use client'
 
 import AboutMe from "@/components/sections/AboutMe"
+import Blog from "@/components/sections/Blog"
 import HeroBanner from "@/components/sections/HeroBanner"
 import Projects from "@/components/sections/Projects"
 import StudiesCarrousel from "@/components/sections/StudiesCarrousel"
@@ -16,6 +17,7 @@ export default function HomePage() {
       <AboutMe />
       <StudiesCarrousel />
       <Projects />
+      <Blog />
     </main>
   )
 }

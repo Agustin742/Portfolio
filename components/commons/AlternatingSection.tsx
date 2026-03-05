@@ -21,6 +21,7 @@ const AlternatingSection = ({ title, description, image, reverse, techStacks, li
   return (
     <div
       className={`
+        md:mb-20
         flex flex-col md:flex-row
         items-center
         gap-10

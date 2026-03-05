@@ -71,5 +71,32 @@ export const es = {
                 description: "API REST para una red social orientada a desarrolladores. Incluye autenticación JWT, sistema de publicaciones, comentarios y favoritos. Diseñada priorizando buenas prácticas, validaciones robustas y separación clara de responsabilidades."
             }
         }
+    },
+
+    blog: {
+        items: {
+            backendJava: {
+                fecha: "23 de Enero",
+                title: "Aprender backend sin perderse: mi enfoque con Java",
+                description:
+                    "Entre cursos estructurados y práctica autodidacta, encontré un camino claro",
+                type: "Lenguaje"
+            },
+            cleanCodeBackend: {
+                fecha: "5 de Febrero",
+                title: "Clean Code aplicado al backend",
+                description:
+                    "Pequeñas decisiones en el código pueden marcar la diferencia entre mantener o romper un sistema.",
+                type: "Buenas prácticas"
+            },
+            apiDesign: {
+                fecha: "18 de Febrero",
+                title: "Diseñar APIs claras desde el inicio",
+                description:
+                    "Pensar bien los endpoints, las respuestas y los errores evita muchos problemas a futuro.",
+                type: "Arquitectura"
+            }
+        }
     }
+
 }
