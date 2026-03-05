@@ -32,7 +32,7 @@ const ProfileCard = () => {
 
         {/* Imagen */}
         <Image
-          src="/imgs/profile.png" // cambia por tu imagen
+          src="/imgs/profile.png" 
           alt="Profile"
           width={305}   // mitad aproximada de 610
           height={251}

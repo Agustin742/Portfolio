@@ -2,6 +2,7 @@
 
 import AboutMe from "@/components/sections/AboutMe"
 import HeroBanner from "@/components/sections/HeroBanner"
+import Projects from "@/components/sections/Projects"
 
 export default function HomePage() {
 
@@ -11,6 +12,7 @@ export default function HomePage() {
     flex-col items-center">
       <HeroBanner />
       <AboutMe />
+      <Projects />
     </main>
   )
 }

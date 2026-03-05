@@ -44,5 +44,28 @@ export const es = {
                     "Busco crecer en entornos profesionales donde pueda aprender, aportar y participar en proyectos reales, aplicando buenas prácticas y trabajo en equipo."
             }
         }
+    },
+
+    projects: {
+        sectionTitle: "Proyectos",
+        sectionSubtitle: "Soluciones reales",
+        buttons: {
+            gitButton: "Ver en Github",
+            webButton: "Ir al sitio web"
+        },
+        items: {
+            wasifix: {
+                title: "Wasifix",
+                description: "Aplicación web orientada a la gestión y contratación de servicios para el hogar, pensada para conectar usuarios con soluciones de manera simple y clara. Desarrollada como una experiencia full stack, con foco en interfaz limpia, organización de datos y escalabilidad."
+            },
+            taskflow: {
+                title: "TaskFlow",
+                description: "Plataforma de gestión de tareas y proyectos enfocada en equipos pequeños. Permite organizar tareas por estados, asignar responsables y mantener seguimiento del progreso. Construida con arquitectura modular y autenticación segura."
+            },
+            devconnect: {
+                title: "DevConnect API",
+                description: "API REST para una red social orientada a desarrolladores. Incluye autenticación JWT, sistema de publicaciones, comentarios y favoritos. Diseñada priorizando buenas prácticas, validaciones robustas y separación clara de responsabilidades."
+            }
+        }
     }
 }

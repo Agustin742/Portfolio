@@ -31,9 +31,10 @@ const Button = ({ variant, icon: Icon, text, onClick }: ButtonProps) => {
         transform transition-all duration-300 ease-in-out 
         hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-[#1E3A33] 
         active:translate-y-0.5 active:shadow-md
+        whitespace-nowrap
         `}
     >
-      {Icon && <Icon size={18} />}
+      {Icon && <Icon size={24} />}
       {text}
     </button>
   )
