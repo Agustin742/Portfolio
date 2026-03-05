@@ -59,7 +59,7 @@ const AlternatingSection = ({ title, description, image, reverse, techStacks, li
               />
             ))}
           </div>
-          <div className="flex gap-4 my-2.5">
+          <div className="flex gap-4 my-2.5 items-center justify-start">
             {links.gitHub &&
               <Button
                 variant="secondary"
