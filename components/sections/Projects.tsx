@@ -71,6 +71,7 @@ const Projects = () => {
 
   return (
     <div
+    id='projects'
       className='
         w-full 
         max-w-6xl 
