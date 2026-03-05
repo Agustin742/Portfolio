@@ -46,6 +46,10 @@ export const es = {
         }
     },
 
+    studies: {
+        certified: 'Conocimientos avalados por:'
+    },
+
     projects: {
         sectionTitle: "Proyectos",
         sectionSubtitle: "Soluciones reales",

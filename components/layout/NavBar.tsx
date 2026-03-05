@@ -19,7 +19,6 @@ export default function Navbar() {
   const menuItems: MenuItem[] = [
     { name: "nav.about", href: "about" },
     { name: "nav.projects", href: "projects" },
-    { name: "nav.expForm", href: "expformation" },
     { name: "nav.blog", href: "blog" },
   ];
 

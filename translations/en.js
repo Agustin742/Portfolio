@@ -45,6 +45,10 @@ export const en = {
         }
     },
 
+    studies: {
+        certified: 'Skills certified by:'
+    },
+
     projects: {
         sectionTitle: "Projects",
         sectionSubtitle: "Real solutions",

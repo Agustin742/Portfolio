@@ -1,3 +1,38 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@keyframes carousel {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-carousel {
+  animation: carousel 30s linear infinite;
+}
+
+@keyframes gradient-slide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(
+    90deg,
+    #68CFC5 0%,
+    #A6E3DD 25%,
+    #F3FAF8 50%,
+    #A6E3DD 75%,
+    #68CFC5 100%
+  );
+  background-size: 200% 100%;
+  animation: gradient-slide 10s linear infinite;
+}
