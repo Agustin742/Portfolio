@@ -6,6 +6,7 @@ import { useLanguage } from "@/hooks";
 import ThemeToggle from "../ui/ThemeToggle";
 import LanguageToggle from "../ui/LanguageToggle";
 import Button from "../ui/Button";
+import { useRouter } from "next/navigation";
 
 type MenuItem = {
   name: string;
@@ -19,7 +20,6 @@ export default function Navbar() {
   const menuItems: MenuItem[] = [
     { name: "nav.about", href: "about" },
     { name: "nav.projects", href: "projects" },
-    { name: "nav.expForm", href: "expformation" },
     { name: "nav.blog", href: "blog" },
   ];
 
@@ -30,11 +30,25 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
+  const router = useRouter()
+
+  const goHome = () => {
+    router.push(`/`);
+  }
+
   return (
     <nav className="flex flex-col">
-      <div className="h-24 flex justify-between items-center px-6 md:px-11 fixed top-0 left-0 w-full z-50">
+      <div className="
+        h-24
+        flex
+        justify-between
+        items-center
+        px-6 md:px-11
+        fixed top-0 left-0 w-full z-50
+        backdrop-blur-sm
+      ">
         <div className="text-2xl">
-          <button onClick={() => scrollTo('hero')}>
+          <button onClick={goHome} className="hover:cursor-pointer">
             <strong>Agustin Tabarcache</strong>
           </button>
         </div>
@@ -42,15 +56,15 @@ export default function Navbar() {
         {/* Lado derecho */}
         <div className="flex items-center gap-4">
           {/* Desktop menu */}
-            <ul className="hidden md:flex gap-6">
-              {menuItems.map((item) => (
-                <li key={item.href}>
-                  <button onClick={() => scrollTo(item.href)}>
-                    {t(item.name)}
-                  </button>
-                </li>
-              ))}
-            </ul>
+          <ul className="hidden md:flex gap-6">
+            {menuItems.map((item) => (
+              <li key={item.href} className="hover:opacity-70 transition-opacity">
+                <button onClick={() => scrollTo(item.href)}>
+                  {t(item.name)}
+                </button>
+              </li>
+            ))}
+          </ul>
 
           <div className="hidden md:flex md:items-center gap-1.5">
             <ThemeToggle />
