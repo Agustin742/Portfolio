@@ -19,8 +19,9 @@ const Blog = () => {
       justify-items-center
       ">
         {blogsInfo.map((blogInfo, index) => (
-          <BlogCard 
-          key={index} 
+          <BlogCard
+          key={index}
+          slug={blogInfo.slug} 
           image={blogInfo.image} 
           fecha={blogInfo.fecha} 
           title={blogInfo.title} 

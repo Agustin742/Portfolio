@@ -16,11 +16,11 @@ const StudiesCarrousel = () => {
         <h2 className=""><strong>{t('studies.certified')}</strong></h2>
       </div>
       <div className="flex w-max animate-carousel gap-20 items-center">
-        {duplicated.map((src, index) => (
-          <div key={`${src}-${index}`} className="flex shrink-0">
+        {duplicated.map((image, index) => (
+          <div key={`${image.image}-${index}`} className="flex shrink-0">
             <Image
-              src={src}
-              alt={`carousel-${index}`}
+              src={image.image}
+              alt={image.alt}
               height={80}
               width={200}
               sizes="200px"

@@ -6,22 +6,22 @@ import { useRouter } from "next/navigation";
 import { useLanguage } from "@/hooks";
 
 export interface BlogCardProps {
-  image: string;
-  fecha: string;
-  title: string;
-  description: string;
+  slug: string
+  image: string
+  fecha: string
+  title: string
+  description: string
   type: string
 }
 
-const BlogCard = ({ image, fecha, title, description, type }: BlogCardProps) => {
+const BlogCard = ({ slug, image, fecha, title, description, type }: BlogCardProps) => {
 
   const router = useRouter();
 
   const { t } = useLanguage();
-
-  const goToPost = (title: string) => {
-    const slug = title.toLowerCase().trim().replace(/ /g, "-");
-    router.push(slug);
+  const goToPost = (slug: string) => {
+    
+    router.push(`/blog/${slug}`);
   }
 
   return (
@@ -53,7 +53,7 @@ const BlogCard = ({ image, fecha, title, description, type }: BlogCardProps) => 
         <div className="flex items-center gap-3 text-sm mb-2">
           <p><strong>{t(type)}</strong></p>
           <span className="flex grow h-0.5 bg-[#6E9B8A] rounded-full"></span>
-          <Button variant="small" text="Leer mas" onClick={() => goToPost(title)} />
+          <Button variant="small" text={t('blog.button')} onClick={() => goToPost(slug)} />
         </div>
       </div>
     </div>

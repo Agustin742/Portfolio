@@ -6,6 +6,7 @@ import { useLanguage } from "@/hooks";
 import ThemeToggle from "../ui/ThemeToggle";
 import LanguageToggle from "../ui/LanguageToggle";
 import Button from "../ui/Button";
+import { useRouter } from "next/navigation";
 
 type MenuItem = {
   name: string;
@@ -29,6 +30,12 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
+  const router = useRouter()
+
+  const goHome = () => {
+    router.push(`/`);
+  }
+
   return (
     <nav className="flex flex-col">
       <div className="
@@ -41,7 +48,7 @@ export default function Navbar() {
         backdrop-blur-sm
       ">
         <div className="text-2xl">
-          <button onClick={() => scrollTo('hero')}>
+          <button onClick={goHome} className="hover:cursor-pointer">
             <strong>Agustin Tabarcache</strong>
           </button>
         </div>
@@ -51,7 +58,7 @@ export default function Navbar() {
           {/* Desktop menu */}
           <ul className="hidden md:flex gap-6">
             {menuItems.map((item) => (
-              <li key={item.href}>
+              <li key={item.href} className="hover:opacity-70 transition-opacity">
                 <button onClick={() => scrollTo(item.href)}>
                   {t(item.name)}
                 </button>
