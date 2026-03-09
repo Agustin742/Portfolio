@@ -6,16 +6,19 @@ import { useLanguage } from "@/hooks";
 import ThemeToggle from "../ui/ThemeToggle";
 import LanguageToggle from "../ui/LanguageToggle";
 import Button from "../ui/Button";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 type MenuItem = {
   name: string;
   href: string;
 };
 
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
+  const pathname = usePathname();
+
 
   const menuItems: MenuItem[] = [
     { name: "nav.about", href: "about" },
@@ -24,9 +27,11 @@ export default function Navbar() {
   ];
 
   const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
+    if (pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push(`/#${id}`);
+    }
     setIsOpen(false);
   };
 
@@ -35,6 +40,8 @@ export default function Navbar() {
   const goHome = () => {
     router.push(`/`);
   }
+
+
 
   return (
     <nav className="flex flex-col">
@@ -48,7 +55,7 @@ export default function Navbar() {
         backdrop-blur-sm
       ">
         <div className="text-2xl">
-          <button onClick={goHome} className="hover:cursor-pointer">
+          <button onClick={() => goHome()} className="hover:cursor-pointer">
             <strong>Agustin Tabarcache</strong>
           </button>
         </div>

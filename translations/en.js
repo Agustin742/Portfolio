@@ -92,6 +92,14 @@ export const en = {
         }
     },
 
+    contact: {
+        title: "Contact me",
+        pHolderSubject: "Subject",
+        pHolderMessage: "Message",
+        loadButton: "Sending...",
+        button: "Send"
+    },
+
     blogContent: {
         backendJava: {
             title: "Learning Backend with Java",
