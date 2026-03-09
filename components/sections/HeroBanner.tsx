@@ -53,7 +53,7 @@ const HeroBanner = () => {
             </span>
           </strong>
         </h1>
-        <div className="text-[40px] font-bold md:hidden">
+        <div className="text-[32px] font-bold md:hidden">
           <Button variant="adapt" text={t('hero.downloadCV')} onClick={handleOpenCV}/>
         </div>
         <p className="

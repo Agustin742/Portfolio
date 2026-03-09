@@ -81,7 +81,7 @@ export default function ContactForm() {
   return (
     <section id="contact" className="w-full">
       <span className="flex grow h-0.5 bg-[#6E9B8A] rounded-full"></span>
-      <h2 className="text-4xl mt-20 mb-10 md:mb-0">
+      <h2 className="text-4xl mt-10 mb-10 md:mb-0">
         <strong>{t('contact.title')}</strong>
       </h2>
 
@@ -89,7 +89,7 @@ export default function ContactForm() {
 
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col gap-4 w-full md:flex-3"
+          className="flex flex-col gap-4 w-full md:flex-3 mb-10"
         >
           <input
             type="email"

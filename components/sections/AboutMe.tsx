@@ -18,7 +18,7 @@ const AboutMe = () => {
     id="about"
     className="
     flex flex-col md:flex-row
-    mt-10
+    mt-10 md:mt-0
     "
     >
     <div 
@@ -83,7 +83,7 @@ const AboutMe = () => {
         <div className="
           w-full max-w-230
           grid 
-          grid-cols-2 
+          grid-cols-2
           sm:grid-cols-4 
           md:grid-cols-5 
           lg:grid-cols-6
@@ -104,6 +104,7 @@ const AboutMe = () => {
       my-auto
       w-full
       md:max-w-1/3
+      
       "
       >
         {aboutCards.map((aboutCard, index) => (
