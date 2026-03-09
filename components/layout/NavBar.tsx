@@ -71,7 +71,7 @@ export default function Navbar() {
             <LanguageToggle />
           </div>
 
-          <div className="h-9 w-41.5 md:h-10 md:w-56">
+          <div className="h-9 w-41.5 md:h-10 md:w-56 hidden md:block">
             <Button variant="adapt" text={t('nav.contact')} onClick={() => scrollTo('contact')} />
           </div>
 
@@ -111,6 +111,11 @@ export default function Navbar() {
         </li>
         <li>
           <LanguageToggle />
+        </li>
+        <li>
+          <div className="h-9 w-41.5 md:h-10 md:w-56">
+            <Button variant="adapt" text={t('nav.contact')} onClick={() => scrollTo('contact')} />
+          </div>
         </li>
       </ul>
     </nav>

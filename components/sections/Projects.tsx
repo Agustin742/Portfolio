@@ -22,7 +22,7 @@ const Projects = () => {
         px-4
         flex 
         flex-col
-        md:mt-20
+        mt-20
       '
     >
       <div>

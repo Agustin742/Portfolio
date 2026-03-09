@@ -28,17 +28,17 @@ const AlternatingSection = ({ title, description, image, reverse, techStacks, li
         ${reverse ? "md:flex-row-reverse" : ""}
       `}
     >
-      <div className="w-full md:w-1/2">
+      <div >
         <Image
           src={image}
           alt={title}
           width={700}
           height={500}
-          className="w-full h-auto object-cover rounded-xl"
+          className="h-auto object-cover rounded-xl"
         />
       </div>
 
-      <div className="w-full md:w-1/2">
+      <div className="w-full">
         <h2 className="text-2xl md:text-3xl font-bold mb-4">
           {title}
         </h2>
@@ -50,7 +50,7 @@ const AlternatingSection = ({ title, description, image, reverse, techStacks, li
         </h3>
         <div className="m-2 ">
           <div
-          className="flex flex-wrap gap-2">
+          className="flex flex-wrap gap-2 w-full">
             {techStacks.map((techStack, index) => (
               <TechStack
                 key={index}
@@ -60,7 +60,7 @@ const AlternatingSection = ({ title, description, image, reverse, techStacks, li
               />
             ))}
           </div>
-          <div className="flex gap-4 my-2.5 items-center justify-start">
+          <div className="flex flex-col md:flex-row gap-4 my-2.5 items-center justify-start w-full">
             {links.gitHub &&
               <Button
                 variant="secondary"

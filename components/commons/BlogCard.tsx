@@ -26,7 +26,7 @@ const BlogCard = ({ slug, image, fecha, title, description, type }: BlogCardProp
 
   return (
     <div
-      className="min-w-90"
+      className="md:min-w-90"
     >
       <div className="aspect-video w-full">
         <Image
