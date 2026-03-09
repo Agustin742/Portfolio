@@ -18,6 +18,7 @@ const AboutMe = () => {
     id="about"
     className="
     flex flex-col md:flex-row
+    mt-10
     "
     >
     <div 

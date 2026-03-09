@@ -19,7 +19,7 @@ const HeroBanner = () => {
 
   return (
     <section
-      id="Hero"
+      id="hero"
       className="
         W-full 
         max-w-6xl 

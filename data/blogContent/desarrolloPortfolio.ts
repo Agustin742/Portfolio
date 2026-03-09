@@ -128,6 +128,7 @@ export const desarrolloPortfolio: Content = {
       id: "botones-magicos",
       value: "blogContent.desarrolloPortfolio.botonesMagicosTitle",
     },
+
     {
       type: "paragraph",
       value: "blogContent.desarrolloPortfolio.botonesMagicosText",
@@ -161,8 +162,97 @@ export const desarrolloPortfolio: Content = {
     },
 
     {
+      type: "image",
+      src: "/imgs/blog/desarrolloPortfolioContent/portfolio.png",
+      alt: "blogContent.desarrolloPortfolio.portfolioAlt",
+    },
+
+    {
       type: "paragraph",
       value: "blogContent.desarrolloPortfolio.cierre",
+    },
+
+    {
+      type: "subtitle",
+      id: "code",
+      value: "blogContent.desarrolloPortfolio.codeTitle",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.codeIntro1",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.codeIntro2",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.codeIntro3",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.codeIntro4",
+    },
+
+    {
+      type: "subtitle",
+      id: "migracion-next",
+      value: "blogContent.desarrolloPortfolio.migracionNextTitle",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.migracionNextText1",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.migracionNextText2",
+    },
+
+    {
+      type: "code",
+      language: "ts",
+      value: `switch(block.type) {
+              case "paragraph":
+                return <p>{block.value}</p>;
+
+              case "subtitle":
+                return <h2 id={block.id}>{block.value}</h2>;
+
+              case "image":
+                return <img src={block.src} alt={block.alt} />;
+
+              default:
+                return null;
+            }`,
+    },
+
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.renderSystemText",
+    },
+
+    {
+      type: "subtitle",
+      id: "reflexion",
+      value: "blogContent.desarrolloPortfolio.reflexionTitle",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.reflexionText1",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.reflexionText2",
+    },
+    {
+      type: "paragraph",
+      value: "blogContent.desarrolloPortfolio.reflexionText3",
+    },
+
+    {
+      type: "image",
+      src: "/imgs/blog/desarrolloPortfolioContent/final.png",
+      alt: "blogContent.desarrolloPortfolio.finalAlt",
     },
   ],
 };
