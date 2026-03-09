@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer"
 import AboutMe from "@/components/sections/AboutMe"
 import Blog from "@/components/sections/Blog"
 import Contact from "@/components/sections/Contact"
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Projects />
       <Blog />
       <Contact />
+      <Footer />
     </main>
   )
 }

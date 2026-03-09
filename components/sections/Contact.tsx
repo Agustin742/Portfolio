@@ -79,7 +79,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="w-full">
+    <section id="contact" className="w-full">
       <span className="flex grow h-0.5 bg-[#6E9B8A] rounded-full"></span>
       <h2 className="text-4xl mt-20 mb-10 md:mb-0">
         <strong>{t('contact.title')}</strong>
@@ -139,6 +139,6 @@ export default function ContactForm() {
         </div>
       </div>
       <span className="flex grow h-0.5 bg-[#6E9B8A] rounded-full"></span>
-    </div>
+    </section>
   );
 }

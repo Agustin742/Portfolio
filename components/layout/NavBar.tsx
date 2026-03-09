@@ -18,6 +18,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
   const pathname = usePathname();
+  const router = useRouter()
 
 
   const menuItems: MenuItem[] = [
@@ -35,14 +36,6 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
-  const router = useRouter()
-
-  const goHome = () => {
-    router.push(`/`);
-  }
-
-
-
   return (
     <nav className="flex flex-col">
       <div className="
@@ -55,7 +48,7 @@ export default function Navbar() {
         backdrop-blur-sm
       ">
         <div className="text-2xl">
-          <button onClick={() => goHome()} className="hover:cursor-pointer">
+          <button onClick={() => scrollTo('hero')} className="hover:cursor-pointer">
             <strong>Agustin Tabarcache</strong>
           </button>
         </div>
