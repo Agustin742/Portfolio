@@ -65,6 +65,10 @@ export const en = {
                 title: "Blog API with NestJS",
                 description: "REST API for a blogging platform built with NestJS and PostgreSQL following the RealWorld specification. It includes JWT authentication, article management, user following system, and social features such as favorites and content filtering."
             },
+            sportz: {
+                title: "Sportz",
+                description: "Real-time REST API for managing sports matches and live commentary. Supports event creation, automatic match status handling (scheduled, live, finished), and real-time updates via WebSockets. Features strict validation with Zod, a type-safe ORM with Drizzle, and advanced security using Arcjet (rate limiting, bot protection, and attack shielding)."
+            }
         }
     },
 

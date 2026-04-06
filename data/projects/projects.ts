@@ -1,16 +1,22 @@
 import {
   SiCloudinary,
+  SiDrizzle,
+  SiExpress,
   SiJsonwebtokens,
   SiMongodb,
   SiNestjs,
   SiNextdotjs,
+  SiNodedotjs,
   SiPostgresql,
+  SiShieldsdotio,
   SiTailwindcss,
   SiTypeorm,
   SiTypescript,
+  SiZod,
 } from "react-icons/si";
 
 import { TechStackProps } from "@/components/ui/TechStack";
+import { IconBase } from "react-icons";
 
 interface AlternatingSectionProps {
   title: string;
@@ -53,6 +59,24 @@ export const projects: AlternatingSectionProps[] = [
       { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
       { label: "TypeORM", icon: SiTypeorm, color: "#FF6C37" },
       { label: "JWT", icon: SiJsonwebtokens, color: "#000000" },
+    ],
+  },
+
+  {
+    title: "projects.items.sportz.title",
+    description: "projects.items.sportz.description",
+    image: "/imgs/projects/sportz.png",
+    links: {
+      gitHub: "https://github.com/Agustin742/sportz-websockets",
+    },
+    techStacks: [
+      { label: "Node.js", icon: SiNodedotjs, color: "#339933" },
+      { label: "Express", icon: SiExpress, color: "#000000" },
+      { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { label: "WebSockets", icon: IconBase, color: "#010101" },
+      { label: "Zod", icon: SiZod, color: "#3E67B1" },
+      { label: "Drizzle ORM", icon: SiDrizzle, color: "#C5F74F" },
+      { label: "Arcjet", icon: SiShieldsdotio, color: "#6B7280" },
     ],
   },
 ];
