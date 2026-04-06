@@ -5,8 +5,8 @@ import Button from "../ui/Button";
 
 
 const CV_PATHS: Record<string, string> = {
-  es: "/cv/cv-es.pdf",
-  en: "/cv/cv-en.pdf",
+  es: "/cv/agustin-tabarcache-cv-es.pdf",
+  en: "/cv/agustin-tabarcache-cv-en.pdf",
 };
 
 const HeroBanner = () => {
