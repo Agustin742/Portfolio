@@ -2,6 +2,43 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  /* Fuentes (resueltas desde next/font vía variables en <html>) */
+  --font-sans:  var(--font-space-grotesk), sans-serif;
+  --font-mono:  var(--font-space-mono), monospace;
+  --font-serif: var(--font-instrument-serif), serif;
+
+  /* Colores — modo oscuro (valores base del template) */
+  --color-bg:        #0A0A0A;
+  --color-bg-card:   #0E0D0C;
+  --color-bg-warm:   #17110A;
+  --color-text:      #EDE8E1;
+  --color-muted:     #9b948b;
+  --color-faint:     #6a635b;
+  --color-border:    #2b2622;
+  --color-accent:    #EE8033;
+  --color-accent-hi: #ff9446;
+
+  /* Colores — modo claro */
+  --color-bg-light:        #FAFAF8;
+  --color-bg-card-light:   #F3F1EE;
+  --color-bg-warm-light:   #FDF6EE;
+  --color-text-light:      #1A1714;
+  --color-muted-light:     #6b6560;
+  --color-faint-light:     #9b948b;
+  --color-border-light:    #E2DDD8;
+
+  /* Animaciones globales */
+  --animate-blink:       blink 1.4s infinite;
+  --animate-marquee:     marquee 26s linear infinite;
+  --animate-scrollpulse: scrollpulse 1.6s infinite;
+}
+
+@keyframes blink       { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+@keyframes marquee     { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@keyframes scrollpulse { 0%{transform:translateY(0);opacity:0} 50%{opacity:1} 100%{transform:translateY(11px);opacity:0} }
+
+/* TODO: eliminar cuando se migre components/sections/StudiesCarrousel.tsx (RFC posterior) */
 @keyframes carousel {
   from {
     transform: translateX(0);
@@ -11,10 +48,12 @@
   }
 }
 
+/* TODO: eliminar cuando se migre components/sections/StudiesCarrousel.tsx (RFC posterior) */
 .animate-carousel {
   animation: carousel 30s linear infinite;
 }
 
+/* TODO: eliminar cuando se migre components/sections/StudiesCarrousel.tsx (RFC posterior) */
 @keyframes gradient-slide {
   0% {
     background-position: 0% 50%;
@@ -24,6 +63,7 @@
   }
 }
 
+/* TODO: eliminar cuando se migre components/sections/StudiesCarrousel.tsx (RFC posterior) */
 .bg-animated-gradient {
   background: linear-gradient(
     90deg,
