@@ -1,6 +1,5 @@
 import Footer from "@/components/layout/Footer"
 import AboutMe from "@/components/sections/AboutMe"
-import Blog from "@/components/sections/Blog"
 import Contact from "@/components/sections/Contact"
 import HeroBanner from "@/components/sections/HeroBanner"
 import Projects from "@/components/sections/Projects"
@@ -16,7 +15,6 @@ export default function HomePage() {
       <AboutMe />
       <StudiesCarrousel />
       <Projects />
-      <Blog />
       <Contact />
       <Footer />
     </main>
