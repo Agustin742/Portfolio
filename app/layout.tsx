@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Space_Grotesk, Space_Mono, Instrument_Serif } from 'next/font/google'
-import { ThemeProvider } from '@/context'
+import { ThemeProvider } from 'next-themes'
 import { LanguageProvider } from '@/context/LanguageProvider'
 import './globals.css'
 import Navbar from '@/components/layout/NavBar'
@@ -42,16 +42,17 @@ export default function RootLayout({
   return (
     <html
       lang="es"
+      suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
     >
-      <LanguageProvider>
-        <ThemeProvider>
-          <body className="font-sans bg-[#0A0A0A] dark:bg-[#0A0A0A] transition-colors pt-24">
+      <body className="font-sans bg-[#0A0A0A] dark:bg-[#0A0A0A] transition-colors pt-24">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <LanguageProvider>
             <Navbar />
             {children}
-          </body>
+          </LanguageProvider>
         </ThemeProvider>
-      </LanguageProvider>
+      </body>
     </html>
   )
 }

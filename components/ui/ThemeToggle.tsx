@@ -1,10 +1,20 @@
 'use client'
 
-import { useTheme } from '../../hooks'
+import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
 import { FiSun, FiMoon } from 'react-icons/fi'
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <div className="w-14 h-8 rounded-full bg-[#1F4A3A]" aria-hidden />
+  }
 
   const isDark = theme === 'dark'
 
