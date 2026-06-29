@@ -1,5 +1,5 @@
 'use client'
-import { useLanguage } from "@/hooks"
+import { useTranslations, useLocale } from "next-intl"
 import ProfileCard from "../commons/ProfileCard"
 import Button from "../ui/Button";
 
@@ -10,10 +10,11 @@ const CV_PATHS: Record<string, string> = {
 };
 
 const HeroBanner = () => {
-  const { t, language } = useLanguage();
+  const t = useTranslations("hero");
+  const locale = useLocale();
 
   const handleOpenCV = () => {
-    const pdfPath = CV_PATHS[language] ?? CV_PATHS["es"];
+    const pdfPath = CV_PATHS[locale] ?? CV_PATHS["es"];
     window.open(pdfPath, "_blank");
   };
 
@@ -44,24 +45,24 @@ const HeroBanner = () => {
           gap-y-1 md:gap-y-0 
         "
       >
-        <p className="text-2xl md:text-4xl">{t('hero.greeting')}</p>
+        <p className="text-2xl md:text-4xl">{t('greeting')}</p>
         <h1 className="text-3xl md:text-5xl">
           <strong>
-            {t("hero.role.prefix")}{" "}
+            {t("role.prefix")}{" "}
             <span className="text-[#2EC4B6]">
-              {t("hero.role.highlight")}
+              {t("role.highlight")}
             </span>
           </strong>
         </h1>
         <div className="text-[32px] font-bold md:hidden">
-          <Button variant="adapt" text={t('hero.downloadCV')} onClick={handleOpenCV}/>
+          <Button variant="adapt" text={t('downloadCV')} onClick={handleOpenCV}/>
         </div>
         <p className="
             hidden md:block
             text-base md:text-lg
             min-h-24
           ">
-          {t('hero.description')}
+          {t('description')}
         </p>
         <div
           className="
@@ -75,9 +76,9 @@ const HeroBanner = () => {
               py-1 px-2
               italic text-[14px]
             ">
-            {t('hero.quote')}
+            {t('quote')}
           </span>
-          <Button variant="small" text={t('hero.downloadCV')} onClick={handleOpenCV} />
+          <Button variant="small" text={t('downloadCV')} onClick={handleOpenCV} />
         </div>
       </div>
     </section>

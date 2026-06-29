@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import Button from "../ui/Button";
 import Image from "next/image";
-import { useLanguage } from "@/hooks";
+import { useTranslations } from "next-intl";
 
 type FormData = {
   asunto: string;
@@ -14,7 +14,7 @@ type FormData = {
 };
 
 export default function ContactForm() {
-  const { t } = useLanguage();
+  const t = useTranslations("contact");
   const [formData, setFormData] = useState<FormData>({
     asunto: "",
     email: "",
@@ -82,7 +82,7 @@ export default function ContactForm() {
     <section id="contact" className="w-full">
       <span className="flex grow h-0.5 bg-[#6E9B8A] rounded-full"></span>
       <h2 className="text-4xl mt-10 mb-10 md:mb-0">
-        <strong>{t('contact.title')}</strong>
+        <strong>{t('title')}</strong>
       </h2>
 
       <div className="flex flex-col md:flex-row md:items-center gap-12 lg:gap-20">
@@ -104,7 +104,7 @@ export default function ContactForm() {
           <input
             type="text"
             name="asunto"
-            placeholder={t('contact.pHolderSubject')}
+            placeholder={t('pHolderSubject')}
             value={formData.asunto}
             onChange={handleChange}
             className="bg-[#D3E9E7] dark:bg-[#244A42] text-black dark:text-white rounded-md px-4 py-2"
@@ -113,7 +113,7 @@ export default function ContactForm() {
 
           <textarea
             name="message"
-            placeholder={t('contact.pHolderMessage')}
+            placeholder={t('pHolderMessage')}
             value={formData.message}
             onChange={handleChange}
             className="bg-[#D3E9E7] dark:bg-[#244A42] text-black dark:text-white rounded-md px-4 py-2"
@@ -121,7 +121,7 @@ export default function ContactForm() {
             required
           />
 
-          <Button onClick={handleSubmit} variant="primary" text={loading ? t('contact.loadButton') : t('contact.button')}
+          <Button onClick={handleSubmit} variant="primary" text={loading ? t('loadButton') : t('button')}
           />
         </form>
 

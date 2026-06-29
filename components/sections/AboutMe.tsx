@@ -1,6 +1,6 @@
 'use client'
 
-import { useLanguage } from "@/hooks";
+import { useTranslations } from "next-intl";
 
 import Expandable from "../ui/Expandable";
 import TechItem from "../ui/TechItem";
@@ -11,7 +11,7 @@ import { aboutCards } from "@/data/aboutMe/aboutCards";
 
 
 const AboutMe = () => {
-  const { t } = useLanguage();
+  const t = useTranslations("about");
 
   return (
     <div 
@@ -38,15 +38,15 @@ const AboutMe = () => {
           className="
           text-3xl md:text-5xl font-bold
         "
-        ><strong>{t('about.title')}</strong></h2>
+        ><strong>{t('title')}</strong></h2>
         <p
           className="
           text-base md:text-xl mt-4
         "
         >
-          {t('about.description1')}
+          {t('description1')}
           <br />
-          {t('about.description2')}
+          {t('description2')}
           </p>
       </div>
 
@@ -56,7 +56,7 @@ const AboutMe = () => {
           mt-8
           text-[24px]
         "
-        ><strong>{t('about.knowTitle')}</strong></h3>
+        ><strong>{t('knowTitle')}</strong></h3>
         <div className="
           w-full max-w-230
           grid 
@@ -79,7 +79,7 @@ const AboutMe = () => {
           mt-8
           text-[24px]
         "
-        ><strong>{t('about.learningTitle')}</strong></h3>
+        ><strong>{t('learningTitle')}</strong></h3>
         <div className="
           w-full max-w-230
           grid 

@@ -1,15 +1,15 @@
 'use client'
 
 
-import { useLanguage } from '@/hooks'
+import { useTranslations } from 'next-intl'
 import AlternatingSection from '../commons/AlternatingSection';
 import { projects } from '@/data/projects/projects';
 
 
 const Projects = () => {
-  const { t } = useLanguage();
+  const t = useTranslations('projects');
 
-  const buttonLabels = [t('projects.buttons.gitButton'), t('projects.buttons.webButton')];
+  const buttonLabels = [t('buttons.gitButton'), t('buttons.webButton')];
 
 
   return (
@@ -30,13 +30,13 @@ const Projects = () => {
           className='
           text-4xl md:text-5xl mb-4
         '
-        ><strong>{t('projects.sectionTitle')}</strong></h2>
+        ><strong>{t('sectionTitle')}</strong></h2>
         <p
           className='
           text-xl md:text-lg mb-2 italic
         '
         >
-          {t('projects.sectionSubtitle')}
+          {t('sectionSubtitle')}
         </p>
       </div>
       {projects.map((project, index) => (

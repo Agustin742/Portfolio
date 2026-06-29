@@ -2,11 +2,11 @@
 
 import { Fade as Hamburger } from "hamburger-react";
 import { useState } from "react";
-import { useLanguage } from "@/hooks";
+import { useTranslations } from "next-intl";
 import ThemeToggle from "../ui/ThemeToggle";
 import LanguageToggle from "../ui/LanguageToggle";
 import Button from "../ui/Button";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 type MenuItem = {
   name: string;
@@ -16,14 +16,14 @@ type MenuItem = {
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { t } = useLanguage();
+  const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter()
 
 
   const menuItems: MenuItem[] = [
-    { name: "nav.about", href: "about" },
-    { name: "nav.projects", href: "projects" },
+    { name: "about", href: "about" },
+    { name: "projects", href: "projects" },
   ];
 
   const scrollTo = (id: string) => {
@@ -71,7 +71,7 @@ export default function Navbar() {
           </div>
 
           <div className="h-9 w-41.5 md:h-10 md:w-56 hidden md:block">
-            <Button variant="adapt" text={t('nav.contact')} onClick={() => scrollTo('contact')} />
+            <Button variant="adapt" text={t('contact')} onClick={() => scrollTo('contact')} />
           </div>
 
           {/* Mobile botones */}
@@ -113,7 +113,7 @@ export default function Navbar() {
         </li>
         <li>
           <div className="h-9 w-41.5 md:h-10 md:w-56">
-            <Button variant="adapt" text={t('nav.contact')} onClick={() => scrollTo('contact')} />
+            <Button variant="adapt" text={t('contact')} onClick={() => scrollTo('contact')} />
           </div>
         </li>
       </ul>

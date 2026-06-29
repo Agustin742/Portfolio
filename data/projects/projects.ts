@@ -29,8 +29,8 @@ interface AlternatingSectionProps {
 
 export const projects: AlternatingSectionProps[] = [
   {
-    title: "projects.items.devEvent.title",
-    description: "projects.items.devEvent.description",
+    title: "items.devEvent.title",
+    description: "items.devEvent.description",
     image: "/imgs/projects/devEvent.png",
     links: {
       gitHub: "https://github.com/Agustin742/Practica-Dev-Event",
@@ -46,8 +46,8 @@ export const projects: AlternatingSectionProps[] = [
   },
 
   {
-    title: "projects.items.blogNest.title",
-    description: "projects.items.blogNest.description",
+    title: "items.blogNest.title",
+    description: "items.blogNest.description",
     image: "/imgs/projects/blog-api.png",
     links: {
       gitHub: "https://github.com/Agustin742/Blog-nest",
@@ -63,8 +63,8 @@ export const projects: AlternatingSectionProps[] = [
   },
 
   {
-    title: "projects.items.sportz.title",
-    description: "projects.items.sportz.description",
+    title: "items.sportz.title",
+    description: "items.sportz.description",
     image: "/imgs/projects/sportz.png",
     links: {
       gitHub: "https://github.com/Agustin742/sportz-websockets",

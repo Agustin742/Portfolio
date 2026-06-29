@@ -1,7 +1,7 @@
 'use client'
 
-import { useLanguage } from "@/hooks";
-import { usePathname, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 
 type MenuItem = {
@@ -11,13 +11,14 @@ type MenuItem = {
 
 
 const Footer = () => {
-  const { t } = useLanguage()
+  const tNav = useTranslations("nav")
+  const t = useTranslations("footer")
   const pathname = usePathname();
   const router = useRouter()
 
   const menuItems: MenuItem[] = [
-    { name: "nav.about", href: "about" },
-    { name: "nav.projects", href: "projects" },
+    { name: "about", href: "about" },
+    { name: "projects", href: "projects" },
   ];
 
   const scrollTo = (id: string) => {
@@ -34,21 +35,21 @@ const Footer = () => {
 
         <div className="w-full md:w-1/2 p-3">
           <p>
-            {t('footer.description.line1')}<br />
-            {t('footer.description.line2')}<br />
-            {t('footer.description.line3')}
+            {t('description.line1')}<br />
+            {t('description.line2')}<br />
+            {t('description.line3')}
           </p>
         </div>
 
         <div className="w-full md:w-1/2 bg-[#D3E9E7] dark:bg-[#244A42] rounded-2xl p-3">
           <p>
             <strong>&copy; {new Date().getFullYear()} - Agustin</strong><br />
-              {t('footer.stack')}<br />
+              {t('stack')}<br />
             <a
               href="https://github.com/Agustin742/Portfolio"
               className="hover:opacity-70 transition-opacity"
             >
-              {t('footer.repo')}
+              {t('repo')}
             </a>
           </p>
         </div>
@@ -62,7 +63,7 @@ const Footer = () => {
             {menuItems.map((item) => (
               <li key={item.href} className="hover:opacity-70 transition-opacity">
                 <button onClick={() => scrollTo(item.href)}>
-                  <strong>{t(item.name)}</strong>
+                  <strong>{tNav(item.name)}</strong>
                 </button>
               </li>
             ))}
