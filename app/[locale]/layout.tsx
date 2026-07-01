@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import '../globals.css'
 import Navbar from '@/components/layout/NavBar'
+import BackgroundCanvas from '@/components/ui/BackgroundCanvas'
 import { routing } from '@/i18n/routing'
 
 const spaceGrotesk = Space_Grotesk({
@@ -66,9 +67,12 @@ export default async function LocaleLayout({
     >
       <body className="font-sans bg-[#0A0A0A] dark:bg-[#0A0A0A] transition-colors pt-24">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <BackgroundCanvas />
           <NextIntlClientProvider messages={messages}>
-            <Navbar />
-            {children}
+            <div className="relative z-1">
+              <Navbar />
+              {children}
+            </div>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
