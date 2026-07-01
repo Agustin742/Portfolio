@@ -8,6 +8,7 @@ import '../globals.css'
 import Navbar from '@/components/layout/NavBar'
 import BackgroundCanvas from '@/components/ui/BackgroundCanvas'
 import CustomCursor from '@/components/ui/CustomCursor'
+import { PageWipeProvider } from '@/components/ui/PageWipe'
 import { routing } from '@/i18n/routing'
 
 const spaceGrotesk = Space_Grotesk({
@@ -66,15 +67,17 @@ export default async function LocaleLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${spaceMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="font-sans bg-[#0A0A0A] dark:bg-[#0A0A0A] transition-colors pt-24">
+      <body className="font-sans bg-bg dark:bg-bg transition-colors pt-24">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <BackgroundCanvas />
           <CustomCursor />
           <NextIntlClientProvider messages={messages}>
-            <div className="relative z-1">
-              <Navbar />
-              {children}
-            </div>
+            <PageWipeProvider>
+              <div className="relative z-1">
+                <Navbar />
+                {children}
+              </div>
+            </PageWipeProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

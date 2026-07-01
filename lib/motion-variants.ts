@@ -1,6 +1,14 @@
 import type { Variants } from 'framer-motion'
 
 /**
+ * Easings de firma tokenizados (source of truth para Framer Motion, RFC-06→16).
+ * Equivalen a los tokens CSS `--ease-signature` / `--ease-wipe` de globals.css.
+ * Framer Motion necesita arrays numéricos, no CSS vars.
+ */
+export const EASE_SIGNATURE = [0.22, 1, 0.36, 1] as const
+export const EASE_WIPE = [0.7, 0, 0.2, 1] as const
+
+/**
  * Detecta si el usuario prefiere movimiento reducido.
  * Resuelve `false` en SSR (no hay `window`). Centralizado acá para que
  * los hooks (useScramble/useGlitch) lo reutilicen sin duplicar la lógica.
@@ -15,7 +23,7 @@ export const fadeUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.7, ease: [...EASE_SIGNATURE] },
   },
 }
 
@@ -23,7 +31,7 @@ export const maskReveal: Variants = {
   hidden: { y: '115%' },
   visible: {
     y: 0,
-    transition: { duration: 1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 1, ease: [...EASE_SIGNATURE] },
   },
 }
 
@@ -32,7 +40,7 @@ export const wordStagger: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.026 },
+    transition: { duration: 0.7, ease: [...EASE_SIGNATURE], delay: i * 0.026 },
   }),
 }
 
@@ -41,7 +49,7 @@ export const slideFromRight: Variants = {
   visible: (i: number) => ({
     opacity: 1,
     x: 0,
-    transition: { duration: 0.34, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 },
+    transition: { duration: 0.34, ease: [...EASE_SIGNATURE], delay: i * 0.04 },
   }),
 }
 
@@ -58,7 +66,7 @@ export function countUp(
     to: target,
     transition: {
       duration: prefersReducedMotion() ? 0 : duration,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [...EASE_SIGNATURE],
     },
   }
 }

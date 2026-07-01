@@ -28,6 +28,10 @@
   --color-faint-light:     #9b948b;
   --color-border-light:    #E2DDD8;
 
+  /* Easings de firma (source of truth compartida RFC-06→16) */
+  --ease-signature: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-wipe:      cubic-bezier(0.7, 0, 0.2, 1);
+
   /* Animaciones globales */
   --animate-blink:       blink 1.4s infinite;
   --animate-marquee:     marquee 26s linear infinite;
