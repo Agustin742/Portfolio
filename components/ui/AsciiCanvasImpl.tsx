@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTheme } from 'next-themes'
 import clsx from 'clsx'
-import { prefersReducedMotion } from '@/lib/motion-variants'
+import { useMounted, useReducedMotion } from '@/hooks'
 
 // =============================================================================
 // Constantes del efecto ASCII (sin literales mágicos inline).
@@ -104,8 +104,8 @@ const AsciiCanvasImpl = ({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { resolvedTheme } = useTheme()
 
-  const [mounted, setMounted] = useState(false)
-  const [reduced, setReduced] = useState(false)
+  const mounted = useMounted()
+  const reduced = useReducedMotion()
 
   // Estado mutable leído/escrito dentro del loop y por el effect de `paused`.
   const pausedRef = useRef(paused)
@@ -114,12 +114,6 @@ const AsciiCanvasImpl = ({
   // Fondo leído por-frame; en un ref para que un cambio de tema no re-inicialice
   // el canvas (recarga de imagen + reveal desde cero), solo repinte un frame.
   const bgFillRef = useRef(BG_FILL_DARK)
-
-  // Guard SSR/CSR + detección de reduced-motion en cliente.
-  useEffect(() => {
-    setMounted(true)
-    setReduced(prefersReducedMotion())
-  }, [])
 
   // Enganche RFC-09: al pasar de pausado → activo, reanudar el loop.
   useEffect(() => {

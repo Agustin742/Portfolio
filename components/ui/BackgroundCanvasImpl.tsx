@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTheme } from 'next-themes'
+import { useMounted } from '@/hooks'
 
 // --- Constantes de la grilla / interacción (sin valores mágicos inline) ---
 const S = 42 // separación de la grilla en px
@@ -37,11 +38,7 @@ const BackgroundCanvasImpl = () => {
   const animationId = useRef<number | null>(null)
 
   const { resolvedTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const mounted = useMounted()
 
   useEffect(() => {
     if (!mounted) return
