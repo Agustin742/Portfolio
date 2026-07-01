@@ -2,8 +2,10 @@
   "nav": {
     "about": "About me",
     "projects": "Projects",
+    "stack": "Stack",
     "expForm": "Exp. and Formation",
-    "contact": "Contact"
+    "contact": "Contact",
+    "skipToContent": "Skip to main content"
   },
   "hero": {
     "greeting": "I'm Agustin Tabarcache",

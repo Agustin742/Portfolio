@@ -7,7 +7,7 @@ import StudiesCarrousel from "@/components/sections/StudiesCarrousel"
 
 export default function HomePage() {
   return (
-    <main className="px-6 md:px-11
+    <main id="main-content" className="px-6 md:px-11
     flex justify-center
     flex-col items-center
     overflow-x-hidden">

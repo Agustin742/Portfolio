@@ -1,9 +1,16 @@
 'use client'
 
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
-
 import { useTransition } from 'react'
+import { useLocale } from 'next-intl'
+import { usePathname, useRouter } from '@/i18n/navigation'
+import clsx from 'clsx'
+
+type Locale = 'es' | 'en'
+
+const LOCALES: ReadonlyArray<{ code: Locale; label: string }> = [
+  { code: 'es', label: 'ES' },
+  { code: 'en', label: 'EN' },
+]
 
 export default function LanguageToggle() {
   const locale = useLocale()
@@ -11,38 +18,41 @@ export default function LanguageToggle() {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
 
-  const isEnglish = locale === 'en'
-
-  const toggle = () => {
-    const next = isEnglish ? 'es' : 'en'
+  const switchTo = (next: Locale) => {
+    if (next === locale) return
     startTransition(() => {
       router.replace(pathname, { locale: next, scroll: false })
     })
   }
 
   return (
-    <button
-      onClick={toggle}
-      disabled={isPending}
-      className={`
-        relative w-24 h-8 overflow-hidden rounded-lg
-        border-2 border-[#1F4A3A] dark:border-[#2EC4B6]
-        text-[#1F4A3A] dark:text-[#2EC4B6]
-        text-sm
-        transition-opacity duration-150
-        ${isPending ? 'opacity-50' : 'opacity-100'}
-      `}
+    <div
+      role="group"
+      aria-label="Cambiar idioma"
+      className="inline-flex border-[1.5px] border-border font-mono text-[12px] leading-none"
     >
-      <div
-        className={`
-          flex w-[200%] h-full
-          transition-transform duration-300 ease-in-out
-          ${isEnglish ? '-translate-x-1/2' : 'translate-x-0'}
-        `}
-      >
-        <span className="w-1/2 flex items-center justify-center">Español</span>
-        <span className="w-1/2 flex items-center justify-center">English</span>
-      </div>
-    </button>
+      {LOCALES.map(({ code, label }, index) => {
+        const active = code === locale
+        return (
+          <button
+            key={code}
+            type="button"
+            onClick={() => switchTo(code)}
+            disabled={isPending}
+            aria-pressed={active}
+            data-cursor
+            className={clsx(
+              'px-2 py-1.5 transition-colors duration-300 ease-signature focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset',
+              index > 0 && 'border-l-[1.5px] border-border',
+              active
+                ? 'bg-accent font-bold text-bg'
+                : 'text-muted hover:text-text',
+            )}
+          >
+            {label}
+          </button>
+        )
+      })}
+    </div>
   )
 }
