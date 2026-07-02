@@ -15,7 +15,17 @@
     },
     "description": "Software developer focused on building functional applications, continuously learning, and solving real-world problems with code.",
     "quote": "\"The only way to go fast is to go well\" - Robert C. Martin",
-    "downloadCV": "Open CV"
+    "downloadCV": "Open CV",
+    "location": "BUENOS AIRES, AR",
+    "stack": "REACT · NEXT · NODE / NEST · SQL · MONGO",
+    "localTime": "LOCAL TIME",
+    "available": "AVAILABLE FOR WORK",
+    "ticker": "BUILDING DIGITAL PRODUCTS ✱ AVAILABLE FOR WORK ✱ REACT · NODE · NEXT · NEST ✱ BUENOS AIRES, AR",
+    "labels": {
+      "role": "ROLE",
+      "location": "LOCATION",
+      "stack": "STACK"
+    }
   },
   "about": {
     "title": "About me",
@@ -23,6 +33,20 @@
     "description2": "Additionally, I continue incorporating new tools and languages to strengthen my full stack profile and expand my ability to solve real-world problems.",
     "knowTitle": "I have experience with:",
     "learningTitle": "Currently learning:",
+    "sectionLabel": "ABOUT ME",
+    "headlineMain": "I build software",
+    "headlineSub": "people actually use.",
+    "rightNowLabel": "RIGHT NOW",
+    "rightNow": [
+      { "prefix": "Building a ", "highlight": "report-generation platform", "suffix": "" },
+      { "prefix": "Building interactive websites with ", "highlight": "Three.js", "suffix": "" },
+      { "prefix": "Reading ", "highlight": "Designing Data-Intensive Applications", "suffix": "", "italic": true }
+    ],
+    "flip": {
+      "toPhoto": "View real photo",
+      "toAscii": "View ASCII"
+    },
+    "photoAlt": "Photo of Agustín Tabarcache",
     "cards": {
       "whoAmI": {
         "title": "Who I Am",

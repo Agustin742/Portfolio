@@ -15,7 +15,17 @@
     },
     "description": "Desarrollador de software enfocado en construir aplicaciones funcionales, aprender constantemente y resolver problemas reales con código.",
     "quote": "La única manera de ir rápido es ir bien - Robert C. Martin",
-    "downloadCV": "Abrir CV"
+    "downloadCV": "Abrir CV",
+    "location": "BUENOS AIRES, AR",
+    "stack": "REACT · NEXT · NODE / NEST · SQL · MONGO",
+    "localTime": "HORA LOCAL",
+    "available": "DISPONIBLE PARA TRABAJAR",
+    "ticker": "CONSTRUYENDO PRODUCTOS DIGITALES ✱ DISPONIBLE PARA TRABAJAR ✱ REACT · NODE · NEXT · NEST ✱ BUENOS AIRES, AR",
+    "labels": {
+      "role": "ROL",
+      "location": "UBICACIÓN",
+      "stack": "STACK"
+    }
   },
   "about": {
     "title": "Sobre mi",
@@ -23,6 +33,20 @@
     "description2": "Además, continúo incorporando nuevas herramientas y lenguajes para fortalecer mi perfil full stack y ampliar mi capacidad para resolver problemas reales.",
     "knowTitle": "Tengo conocimientos en:",
     "learningTitle": "Estoy aprendiendo:",
+    "sectionLabel": "SOBRE MÍ",
+    "headlineMain": "Construyo software",
+    "headlineSub": "que la gente usa de verdad.",
+    "rightNowLabel": "AHORA MISMO",
+    "rightNow": [
+      { "prefix": "Construyendo una ", "highlight": "plataforma de generación de reportes", "suffix": "" },
+      { "prefix": "Desarrollando webs interactivas con ", "highlight": "Three.js", "suffix": "" },
+      { "prefix": "Leyendo ", "highlight": "Designing Data-Intensive Applications", "suffix": "", "italic": true }
+    ],
+    "flip": {
+      "toPhoto": "Ver foto real",
+      "toAscii": "Ver ASCII"
+    },
+    "photoAlt": "Foto de Agustín Tabarcache",
     "cards": {
       "whoAmI": {
         "title": "Quién soy",

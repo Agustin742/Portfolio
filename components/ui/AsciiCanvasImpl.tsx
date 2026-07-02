@@ -159,6 +159,11 @@ const AsciiCanvasImpl = ({
     const img = new Image()
 
     const mouse = { x: 0, y: 0, tx: 0, ty: 0, active: 0 }
+    // RFC-10.4: posición separada para el paralaje. A diferencia de mouse.x/y
+    // (que snapea al puntero en el primer ingreso para que la proximidad/wobble
+    // arranque bajo el cursor), `par` SIEMPRE lerpea hacia mouse.tx/ty y nunca
+    // snapea → el desplazamiento del retrato (ox/oy) entra suave, sin salto.
+    const par = { x: 0, y: 0 }
 
     let rafId: number | null = null
     let visible = true
@@ -229,6 +234,9 @@ const AsciiCanvasImpl = ({
       if (!mouse.active) {
         mouse.x = mouse.tx = w / 2
         mouse.y = mouse.ty = h / 2
+        // Paralaje centrado en reposo (ox/oy = 0), consistente con el idle.
+        par.x = w / 2
+        par.y = h / 2
       }
     }
 
@@ -236,6 +244,14 @@ const AsciiCanvasImpl = ({
       const r = canvas.getBoundingClientRect()
       mouse.tx = e.clientX - r.left
       mouse.ty = e.clientY - r.top
+      // DESVIACIÓN DOCUMENTADA respecto del template (línea 648): al primer
+      // ingreso el hotspot empieza en el puntero, no viaja desde el centro —
+      // desviación pedida por el usuario. Snap x/y = tx/ty antes de activar;
+      // los moves subsiguientes conservan el lerp MOUSE_LERP para suavidad.
+      if (!mouse.active) {
+        mouse.x = mouse.tx
+        mouse.y = mouse.ty
+      }
       mouse.active = 1
       kick()
     }
@@ -263,8 +279,12 @@ const AsciiCanvasImpl = ({
 
       mouse.x += (mouse.tx - mouse.x) * MOUSE_LERP
       mouse.y += (mouse.ty - mouse.y) * MOUSE_LERP
-      const ox = (mouse.x - w / 2) / (w / 2)
-      const oy = (mouse.y - h / 2) / (h / 2)
+      // RFC-10.4: el paralaje lee `par` (lerp sin snap) en vez de mouse.x/y;
+      // la proximidad/wobble sigue leyendo mouse.x/y (snap de RFC-10.2).
+      par.x += (mouse.tx - par.x) * MOUSE_LERP
+      par.y += (mouse.ty - par.y) * MOUSE_LERP
+      const ox = (par.x - w / 2) / (w / 2)
+      const oy = (par.y - h / 2) / (h / 2)
 
       ctx.clearRect(0, 0, w, h)
       ctx.fillStyle = bgFillRef.current
@@ -343,7 +363,12 @@ const AsciiCanvasImpl = ({
       const settledM =
         Math.abs(mouse.tx - mouse.x) < SETTLED_EPS &&
         Math.abs(mouse.ty - mouse.y) < SETTLED_EPS
-      const idle = prog >= 1 && !mouse.active && settledM
+      // RFC-10.4: el rAF tampoco se detiene hasta que el paralaje se asiente
+      // (si no, su lerp quedaría cortado a mitad de camino al salir/entrar).
+      const settledPar =
+        Math.abs(mouse.tx - par.x) < SETTLED_EPS &&
+        Math.abs(mouse.ty - par.y) < SETTLED_EPS
+      const idle = prog >= 1 && !mouse.active && settledM && settledPar
       rafId =
         visible && !pausedRef.current && !idle
           ? requestAnimationFrame(frame)

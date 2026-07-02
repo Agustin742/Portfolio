@@ -3,47 +3,66 @@
 import { useCallback, useEffect, useRef, type RefObject } from 'react'
 import { prefersReducedMotion } from '@/lib/motion-variants'
 
-const GLITCH_DURATION = 460
-const GLITCH_TEXT_SHADOW = '-2px 0 #ff003c, 2px 0 #00e5ff'
-const GLITCH_TRANSFORM = 'translateX(2px)'
+// Colores del burst (template glitchBurst, Portfolio.dc.html:795). El ámbar
+// coincide con --color-accent; el cyan es un color intrínseco del efecto
+// glitch del template — no existe token CSS para él (mismo criterio que las
+// constantes RGB de AsciiCanvasImpl).
+const ORANGE = '#EE8033'
+const CYAN = '#39d6e6'
+
+// Cadencia del jitter: el template re-randomiza sombra y posición cada 42ms.
+const TICK_MS = 42
+// Duración por defecto del burst below-fold del template (línea 1005: 480ms).
+const DEFAULT_DURATION_MS = 480
 
 /**
- * Dispara un burst de glitch sobre el elemento referenciado.
+ * Dispara un burst de glitch animado sobre el elemento referenciado.
  *
- * Vía elegida: manipulación directa de `element.style` (text-shadow + translateX)
- * con un `setTimeout` que revierte a los valores originales tras ~460ms. Se optó
- * por style inline en vez de una clase CSS temporal porque este RFC es solo
- * infraestructura y no introduce estilos globales; el efecto queda autocontenido.
+ * Réplica del `glitchBurst` del template (Portfolio.dc.html:791–804): un loop
+ * con `setInterval` cada 42ms que en cada tick re-randomiza la text-shadow
+ * (ámbar + cyan) y un translateX de ±2px, generando el temblor característico.
+ * Al completar N ticks restaura la sombra y el transform base del elemento.
  *
  * Respeta `prefers-reduced-motion`: si está activo, `trigger()` es no-op.
  */
-export function useGlitch(): { ref: RefObject<HTMLElement | null>; trigger: () => void } {
+export function useGlitch(): {
+  ref: RefObject<HTMLElement | null>
+  trigger: (duration?: number) => void
+} {
   const ref = useRef<HTMLElement>(null)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  // Guarda contra re-entrada mientras un burst está activo (template `el._gl`).
+  const activeRef = useRef(false)
 
   useEffect(() => {
     return () => {
-      if (timeoutRef.current !== null) clearTimeout(timeoutRef.current)
+      if (intervalRef.current !== null) clearInterval(intervalRef.current)
     }
   }, [])
 
-  const trigger = useCallback(() => {
+  const trigger = useCallback((duration: number = DEFAULT_DURATION_MS) => {
     const el = ref.current
-    if (!el || prefersReducedMotion()) return
+    if (!el || prefersReducedMotion() || activeRef.current) return
 
-    if (timeoutRef.current !== null) clearTimeout(timeoutRef.current)
+    activeRef.current = true
 
-    const originalTextShadow = el.style.textShadow
-    const originalTransform = el.style.transform
+    // Preservar el transform previo del elemento y restaurarlo al final.
+    const base = el.style.transform || ''
+    const ticks = Math.max(6, Math.round(duration / TICK_MS))
+    let tick = 0
+    const rnd = (): string => (Math.random() * 6 - 3).toFixed(1)
 
-    el.style.textShadow = GLITCH_TEXT_SHADOW
-    el.style.transform = GLITCH_TRANSFORM
-
-    timeoutRef.current = setTimeout(() => {
-      el.style.textShadow = originalTextShadow
-      el.style.transform = originalTransform
-      timeoutRef.current = null
-    }, GLITCH_DURATION)
+    intervalRef.current = setInterval(() => {
+      el.style.textShadow = `${rnd()}px 0 ${ORANGE}, ${rnd()}px 0 ${CYAN}`
+      el.style.transform = `${base} translateX(${(Math.random() * 4 - 2).toFixed(1)}px)`
+      if (++tick >= ticks) {
+        if (intervalRef.current !== null) clearInterval(intervalRef.current)
+        intervalRef.current = null
+        el.style.textShadow = ''
+        el.style.transform = base
+        activeRef.current = false
+      }
+    }, TICK_MS)
   }, [])
 
   return { ref, trigger }
