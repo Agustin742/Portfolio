@@ -15,7 +15,7 @@ import {
   FaJsSquare,
 } from "react-icons/fa";
 
-import { TechItemProps } from "@/components/ui";
+import { TechItemProps } from "@/types/tech";
 
 export const knowTechnologies: TechItemProps[] = [
     { icon: FaReact, label: "React", color: "#61DAFB" },

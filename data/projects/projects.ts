@@ -15,13 +15,14 @@ import {
   SiZod,
 } from "react-icons/si";
 
-import { TechStackProps } from "@/components/ui/TechStack";
+import { TechStackProps } from "@/types/tech";
 import { IconBase } from "react-icons";
 
 interface AlternatingSectionProps {
   title: string;
   description: string;
   image: string;
+  year: number;
   reverse?: boolean;
   links: { gitHub?: string; web?: string };
   techStacks: TechStackProps[];
@@ -32,6 +33,7 @@ export const projects: AlternatingSectionProps[] = [
     title: "items.devEvent.title",
     description: "items.devEvent.description",
     image: "/imgs/projects/devEvent.png",
+    year: 2025,
     links: {
       gitHub: "https://github.com/Agustin742/Practica-Dev-Event",
       web: "https://practica-dev-event.vercel.app/",
@@ -49,6 +51,7 @@ export const projects: AlternatingSectionProps[] = [
     title: "items.blogNest.title",
     description: "items.blogNest.description",
     image: "/imgs/projects/blog-api.png",
+    year: 2025,
     links: {
       gitHub: "https://github.com/Agustin742/Blog-nest",
       web: "",
@@ -66,6 +69,7 @@ export const projects: AlternatingSectionProps[] = [
     title: "items.sportz.title",
     description: "items.sportz.description",
     image: "/imgs/projects/sportz.png",
+    year: 2025,
     links: {
       gitHub: "https://github.com/Agustin742/sportz-websockets",
     },

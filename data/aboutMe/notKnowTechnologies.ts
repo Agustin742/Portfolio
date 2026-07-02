@@ -1,4 +1,4 @@
-import { TechItemProps } from "@/components/ui";
+import { TechItemProps } from "@/types/tech";
 import { FaJava } from "react-icons/fa";
 import { SiPostgresql, SiSpringboot } from "react-icons/si";
 

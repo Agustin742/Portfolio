@@ -68,6 +68,10 @@
   "projects": {
     "sectionTitle": "Proyectos",
     "sectionSubtitle": "Soluciones reales",
+    "scrollHint": "SCROLL PARA RECORRER",
+    "ariaSection": "Proyectos seleccionados",
+    "ariaList": "Lista de proyectos",
+    "viewProject": "Ver proyecto {title}",
     "buttons": {
       "gitButton": "Ver en Github",
       "webButton": "Ir al sitio web"
@@ -86,6 +90,28 @@
         "description": "API REST en tiempo real para la gestión de partidos y comentarios deportivos. Permite crear eventos, manejar estados automáticos (scheduled, live, finished) y transmitir comentarios en vivo mediante WebSockets. Incluye validación estricta con Zod, ORM tipado con Drizzle y una capa de seguridad avanzada con Arcjet (rate limiting, protección contra bots y ataques)."
       }
     }
+  },
+  "stack": {
+    "sectionLabel": "STACK & HERRAMIENTAS",
+    "title": "LO QUE USO",
+    "hint": "Pasá el cursor por una categoría para aislarla, o por una tecnología para ver su rol.",
+    "ariaSection": "Stack y herramientas",
+    "ariaCategories": "Categorías",
+    "ariaTechnologies": "Tecnologías",
+    "categories": {
+      "frontend": "FRONTEND",
+      "backend": "BACKEND",
+      "datos": "DATOS",
+      "tooling": "TOOLING"
+    },
+    "categoriesAria": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "datos": "Datos",
+      "tooling": "Tooling"
+    },
+    "categoryAria": "{name}, {count} tecnologías",
+    "techAria": "{name} — {category}, {role}"
   },
   "contact": {
     "title": "Contacta conmigo",

@@ -145,7 +145,7 @@ const AboutMe = () => {
       className="w-full scroll-mt-(--header-h) px-[clamp(20px,4vw,48px)] py-[clamp(48px,8vw,110px)]"
     >
       {/* Wrapper centrado del template (línea 140): max-width 1240 + auto margins */}
-      <div className="mx-auto max-w-310">
+      <div className="mx-auto max-w-420">
         {/* Label de sección: todo en accent, counter scrubbeado, doble espacio, sin dash */}
         <motion.div
           ref={labelRef}
@@ -275,7 +275,7 @@ const AboutMe = () => {
             <motion.div
               ref={bioRef}
               style={revealStyle(bio)}
-              className="grid max-w-135 gap-5.5 font-mono text-[15.5px] leading-[1.85] text-muted"
+              className="grid max-w-220 gap-5.5 font-mono text-[15.5px] leading-[1.85] text-muted"
             >
               <p>{t('cards.whoAmI.description')}</p>
               <p>{t('cards.formation.description')}</p>

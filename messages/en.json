@@ -68,6 +68,10 @@
   "projects": {
     "sectionTitle": "Projects",
     "sectionSubtitle": "Real solutions",
+    "scrollHint": "SCROLL TO EXPLORE",
+    "ariaSection": "Selected projects",
+    "ariaList": "Project list",
+    "viewProject": "View project {title}",
     "buttons": {
       "gitButton": "View in Github",
       "webButton": "Go to the website"
@@ -86,6 +90,28 @@
         "description": "Real-time REST API for managing sports matches and live commentary. Supports event creation, automatic match status handling (scheduled, live, finished), and real-time updates via WebSockets. Features strict validation with Zod, a type-safe ORM with Drizzle, and advanced security using Arcjet (rate limiting, bot protection, and attack shielding)."
       }
     }
+  },
+  "stack": {
+    "sectionLabel": "STACK & TOOLS",
+    "title": "WHAT I USE",
+    "hint": "Hover a category to isolate it, or a technology to see its role.",
+    "ariaSection": "Stack and tools",
+    "ariaCategories": "Categories",
+    "ariaTechnologies": "Technologies",
+    "categories": {
+      "frontend": "FRONTEND",
+      "backend": "BACKEND",
+      "datos": "DATA",
+      "tooling": "TOOLING"
+    },
+    "categoriesAria": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "datos": "Data",
+      "tooling": "Tooling"
+    },
+    "categoryAria": "{name}, {count} technologies",
+    "techAria": "{name} — {category}, {role}"
   },
   "contact": {
     "title": "Contact me",
