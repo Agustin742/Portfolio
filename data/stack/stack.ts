@@ -55,7 +55,6 @@ export const techs: Tech[] = [
   { name: 'JavaScript', category: 'frontend', tier: 3, role: 'LANG' },
   { name: 'Claude', category: 'tooling', tier: 2, role: 'AI' },
   { name: 'CSS', category: 'frontend', tier: 3, role: 'STYLES' },
-  { name: 'CSS', category: 'frontend', tier: 3, role: 'STYLES' },
 ]
 
 /** Cantidad real de techs por categoría (para los contadores del rail). */
