@@ -142,7 +142,7 @@ const AboutMe = () => {
     <section
       id="sobre"
       aria-label={t('title')}
-      className="w-full scroll-mt-(--header-h) px-[clamp(20px,4vw,48px)] py-[clamp(48px,8vw,110px)]"
+      className="w-full scroll-mt-(--header-h) px-[clamp(20px,4vw,48px)] py-[clamp(32px,5vw,64px)]"
     >
       {/* Wrapper centrado del template (línea 140): max-width 1240 + auto margins */}
       <div className="mx-auto max-w-420">

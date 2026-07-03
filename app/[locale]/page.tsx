@@ -1,10 +1,10 @@
 import Footer from "@/components/layout/Footer"
 import AboutMe from "@/components/sections/AboutMe"
 import Contact from "@/components/sections/Contact"
+import EducationSection from "@/components/sections/EducationSection"
 import HeroBanner from "@/components/sections/HeroBanner"
 import Projects from "@/components/sections/Projects"
 import StackSection from "@/components/sections/StackSection"
-import StudiesCarrousel from "@/components/sections/StudiesCarrousel"
 
 export default function HomePage() {
   return (
@@ -14,9 +14,9 @@ export default function HomePage() {
     overflow-x-clip">
       <HeroBanner />
       <AboutMe />
-      <StudiesCarrousel />
       <Projects />
       <StackSection />
+      <EducationSection />
       <Contact />
       <Footer />
     </main>

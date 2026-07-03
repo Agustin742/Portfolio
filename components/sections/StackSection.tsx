@@ -81,7 +81,7 @@ const StackSection = () => {
     <section
       id="stack"
       aria-label={t('ariaSection')}
-      className="w-full scroll-mt-(--header-h) border-b-[1.5px] border-border px-[clamp(20px,4vw,48px)] py-[clamp(48px,8vw,110px)]"
+      className="w-full scroll-mt-(--header-h) border-b-[1.5px] border-border px-[clamp(20px,4vw,48px)] py-[clamp(32px,5vw,64px)]"
     >
       <div className="mx-auto max-w-420">
         {/* -------------------------- HEADER -------------------------- */}

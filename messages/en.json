@@ -62,9 +62,6 @@
       }
     }
   },
-  "studies": {
-    "certified": "Skills certified by:"
-  },
   "projects": {
     "sectionTitle": "Projects",
     "sectionSubtitle": "Real solutions",
@@ -112,6 +109,12 @@
     },
     "categoryAria": "{name}, {count} technologies",
     "techAria": "{name} — {category}, {role}"
+  },
+  "education": {
+    "sectionLabel": "EDUCATION & CERTIFICATIONS",
+    "title": "LEARNING",
+    "ariaSection": "Education and certifications",
+    "ariaList": "List of studies and certifications"
   },
   "contact": {
     "title": "Contact me",

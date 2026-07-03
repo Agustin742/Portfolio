@@ -62,9 +62,6 @@
       }
     }
   },
-  "studies": {
-    "certified": "Conocimientos avalados por:"
-  },
   "projects": {
     "sectionTitle": "Proyectos",
     "sectionSubtitle": "Soluciones reales",
@@ -112,6 +109,12 @@
     },
     "categoryAria": "{name}, {count} tecnologías",
     "techAria": "{name} — {category}, {role}"
+  },
+  "education": {
+    "sectionLabel": "FORMACIÓN & CERTIFICACIONES",
+    "title": "APRENDIZAJE",
+    "ariaSection": "Formación y certificaciones",
+    "ariaList": "Lista de estudios y certificaciones"
   },
   "contact": {
     "title": "Contacta conmigo",
