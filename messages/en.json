@@ -117,19 +117,17 @@
     "ariaList": "List of studies and certifications"
   },
   "contact": {
-    "title": "Contact me",
-    "pHolderSubject": "Subject",
-    "pHolderMessage": "Message",
-    "loadButton": "Sending...",
-    "button": "Send"
-  },
-  "footer": {
-    "description": {
-      "line1": "This portfolio brings together different ideas, decisions, and ways of working.",
-      "line2": "Behind each part there are tests, adjustments, and judgment, with a focus on simplicity and functionality.",
-      "line3": "Everything you see here is the result of a deliberate choice."
-    },
-    "stack": "This site was developed using Next.js with TypeScript for the frontend structure, TailwindCSS for styling and design, and the project is deployed on Vercel.",
-    "repo": "View portfolio repository"
+    "sectionLabel": "CONTACT",
+    "titleLead": "LET'S",
+    "titleAccent": "TALK",
+    "writeMe": "WRITE ME",
+    "socials": "SOCIALS",
+    "status": "STATUS",
+    "available": "Available — Buenos Aires",
+    "localTime": "Local time ",
+    "footerTagline": "DESIGNED & BUILT WITH INTENT",
+    "ariaSection": "Contact",
+    "ariaFooter": "Footer",
+    "ariaSocial": "{name} (opens in a new tab)"
   }
 }

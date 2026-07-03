@@ -117,19 +117,17 @@
     "ariaList": "Lista de estudios y certificaciones"
   },
   "contact": {
-    "title": "Contacta conmigo",
-    "pHolderSubject": "Asunto",
-    "pHolderMessage": "Mensaje",
-    "loadButton": "Enviando...",
-    "button": "Enviar"
-  },
-  "footer": {
-    "description": {
-      "line1": "Este portfolio reúne distintas ideas, decisiones y formas de trabajar.",
-      "line2": "Detrás de cada parte hay pruebas, ajustes y criterio, con foco en lo simple y funcional.",
-      "line3": "Todo lo que ves acá responde a una elección."
-    },
-    "stack": "Este sitio fue desarrollado utilizando Next.js con TypeScript para la estructura del frontend, TailwindCSS para el diseño y estilos, y el proyecto se encuentra desplegado en Vercel.",
-    "repo": "Ver repositorio del portfolio"
+    "sectionLabel": "CONTACTO",
+    "titleLead": "HABLE",
+    "titleAccent": "MOS",
+    "writeMe": "ESCRIBIME",
+    "socials": "REDES",
+    "status": "ESTADO",
+    "available": "Disponible — Buenos Aires",
+    "localTime": "Hora local ",
+    "footerTagline": "DISEÑADO & CONSTRUIDO CON CRITERIO",
+    "ariaSection": "Contacto",
+    "ariaFooter": "Pie de página",
+    "ariaSocial": "{name} (abre en una pestaña nueva)"
   }
 }

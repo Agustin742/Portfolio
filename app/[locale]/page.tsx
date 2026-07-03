@@ -1,4 +1,3 @@
-import Footer from "@/components/layout/Footer"
 import AboutMe from "@/components/sections/AboutMe"
 import Contact from "@/components/sections/Contact"
 import EducationSection from "@/components/sections/EducationSection"
@@ -18,7 +17,6 @@ export default function HomePage() {
       <StackSection />
       <EducationSection />
       <Contact />
-      <Footer />
     </main>
   )
 }

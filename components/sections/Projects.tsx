@@ -18,12 +18,15 @@ import {
 } from 'framer-motion'
 import clsx from 'clsx'
 import { projects } from '@/data/projects/projects'
-import { useGlitch, usePageNavigate, useReducedMotion } from '@/hooks'
+import {
+  useGlitch,
+  usePageNavigate,
+  useReducedMotion,
+  useSectionCounter,
+} from '@/hooks'
 import { kebabCase } from '@/lib/kebab-case'
 import { maskReveal, withReducedMotion } from '@/lib/motion-variants'
 
-// Índice de la sección en el layout de la página (hero = 01, sobre mí = 02).
-const SECTION_LABEL = '[ 03 ]'
 const PROJECT_COUNT = projects.length
 // Total del contador grande: "NN / 03".
 const COUNTER_TOTAL = String(PROJECT_COUNT).padStart(2, '0')
@@ -76,6 +79,9 @@ const Projects = () => {
   const { ref: titleGlitchRef, trigger: triggerTitleGlitch } = useGlitch()
   const { ref: counterGlitchRef, trigger: triggerCounterGlitch } = useGlitch()
 
+  // Contador [ 00 ] → [ 03 ] al entrar el label en viewport (índice de sección).
+  const { ref: labelCounterRef, text: labelCounterText } = useSectionCounter(3)
+
   // Progreso 0→1 a lo largo del track de 330vh (sticky de 100vh adentro).
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -125,7 +131,7 @@ const Projects = () => {
               aria-hidden="true"
               className="mb-[clamp(20px,3vw,36px)] font-mono text-[12px] uppercase tracking-[0.14em] text-accent"
             >
-              {SECTION_LABEL}
+              <motion.span ref={labelCounterRef}>{labelCounterText}</motion.span>
               {/* Doble espacio del template (el HTML colapsa espacios normales) */}
               {'  '}
               <span>{t('sectionTitle')}</span>
@@ -139,17 +145,19 @@ const Projects = () => {
               ref={titleGlitchRef as RefObject<HTMLHeadingElement | null>}
               className="font-sans text-[clamp(34px,4vw,54px)] font-semibold uppercase leading-[0.95] tracking-[-0.03em] text-text"
             >
-              <span className="block overflow-hidden pb-[0.1em]">
+              <motion.span
+                className="block overflow-hidden pb-[0.1em]"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.8 }}
+              >
                 <motion.span
                   variants={reduced ? withReducedMotion(maskReveal) : maskReveal}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.8 }}
                   className="block"
                 >
                   {t('sectionTitle')}
                 </motion.span>
-              </span>
+              </motion.span>
             </h2>
 
             <p className="mt-4 max-w-70 font-mono text-[13px] leading-[1.7] text-muted">

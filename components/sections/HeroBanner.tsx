@@ -1,26 +1,13 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
-import {
-  animate,
-  motion,
-  useInView,
-  useMotionValue,
-  useScroll,
-  useTransform,
-} from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import clsx from 'clsx'
-import { useMounted } from '@/hooks'
+import { useMounted, useSectionCounter } from '@/hooks'
 import { useScramble } from '@/hooks/useScramble'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import {
-  countUp,
-  EASE_SIGNATURE,
-  maskReveal,
-  withReducedMotion,
-  wordStagger,
-} from '@/lib/motion-variants'
+import { maskReveal, withReducedMotion, wordStagger } from '@/lib/motion-variants'
 
 const TIME_ZONE = 'America/Argentina/Buenos_Aires'
 const TIME_PLACEHOLDER = '--:--:--'
@@ -93,24 +80,7 @@ const HeroBanner = () => {
   const parallaxY = useTransform(scrollY, (value) => value * PARALLAX_FACTOR)
 
   // --- Counter [00] -> [01] al entrar en viewport ---
-  const counterRef = useRef<HTMLSpanElement>(null)
-  const counterInView = useInView(counterRef, { once: true, amount: 'all' })
-  const count = useMotionValue(0)
-  const counterText = useTransform(
-    count,
-    (value) => `[ ${String(Math.round(value)).padStart(2, '0')} ]`,
-  )
-
-  useEffect(() => {
-    if (!counterInView) return
-    const { to, transition } = countUp(1)
-    const controls = animate(count, to, {
-      duration: transition.duration,
-      // countUp tipa `ease` como number[]; Framer espera la tupla bezier.
-      ease: [...EASE_SIGNATURE] as [number, number, number, number],
-    })
-    return () => controls.stop()
-  }, [counterInView, count])
+  const { ref: counterRef, text: counterText } = useSectionCounter(1)
 
   // --- Reloj en vivo (hydration-safe: placeholder hasta montar) ---
   const [time, setTime] = useState(TIME_PLACEHOLDER)
