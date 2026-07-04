@@ -1,16 +1,25 @@
 'use client'
 
-import { useEffect, useRef, type RefObject } from 'react'
+import { useRef, type RefObject } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { motion, useInView, useScroll, useTransform } from 'framer-motion'
+import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import { education, type Education } from '@/data/education/education'
 import { useGlitch, useReducedMotion, useSectionCounter } from '@/hooks'
-import { maskReveal, withReducedMotion } from '@/lib/motion-variants'
 
 // Offset lateral (px) desde el que entra cada fila: par → izquierda (−), impar
 // → derecha (+). Efecto, no color/spacing → constante nombrada.
 const ROW_OFFSET = 64
+
+// Umbrales del glitch del título (mismo patrón que About/Contact): burst al
+// completar el reveal (p ≥ 0.99), rearmado al retroceder (p < 0.6).
+const GLITCH_FIRE_AT = 0.99
+const GLITCH_REARM_AT = 0.6
+// Desplazamiento de la máscara del reveal del título (translateY 115% → 0).
+const MASK_SHIFT_PCT = 115
+
+/** Easing cubic-out del template aplicado sobre el progreso lineal del scroll. */
+const easeCubicOut = (p: number) => 1 - Math.pow(1 - p, 3)
 
 interface EducationRowProps {
   item: Education
@@ -31,11 +40,16 @@ const EducationRow = ({ item, index, reduced }: EducationRowProps) => {
   const number = String(index + 1).padStart(2, '0')
   const fromX = index % 2 === 0 ? -ROW_OFFSET : ROW_OFFSET
 
-  // 0 cuando el borde superior de la fila toca el fondo del viewport;
-  // 1 cuando el centro de la fila llega al centro del viewport.
+  // 0 cuando el borde superior de la fila toca el fondo del viewport; 1 cuando
+  // ese borde superior apenas entra por abajo del viewport (offset `start
+  // 0.85`). Con el header de la sección empujando las filas, las visibles
+  // arrancan con su borde superior en ~42.7 / 60.2 / 77.7% del viewport: todas
+  // por encima del 85%, así que quedan asentadas en reposo. Un umbral más alto
+  // (p. ej. 0.45) las dejaba congeladas a medio revelar al aterrizar; la fila
+  // bajo el fold sigue revelándose al scrollear.
   const { scrollYProgress } = useScroll({
     target: rowRef,
-    offset: ['start end', 'center center'],
+    offset: ['start end', 'start 0.85'],
   })
   const opacity = useTransform(scrollYProgress, [0, 0.8], [0, 1])
   const x = useTransform(scrollYProgress, [0, 1], [fromX, 0])
@@ -84,12 +98,28 @@ const EducationSection = () => {
   const t = useTranslations('education')
   const reduced = useReducedMotion()
 
-  // Glitch del <h2> al entrar en viewport (mismo mecanismo que About/Stack).
+  // Título ligado al scroll (idéntico a About/Contact): el MISMO ref es target
+  // del scroll y del glitch. El mask-reveal se scrubbea con el progreso
+  // (cubic-out) y el burst de glitch dispara al completar el reveal (p ≥ 0.99),
+  // rearmándose al retroceder (p < 0.6) — en vez del useInView one-shot anterior,
+  // que con el salto del nav se armaba en reposo con el título ya arriba.
   const { ref: titleGlitchRef, trigger: triggerTitleGlitch } = useGlitch()
-  const titleInView = useInView(titleGlitchRef, { once: true, amount: 0.8 })
-  useEffect(() => {
-    if (titleInView) triggerTitleGlitch()
-  }, [titleInView, triggerTitleGlitch])
+  const { scrollYProgress: titleProgress } = useScroll({
+    target: titleGlitchRef,
+    offset: ['start 0.82', 'start 0.42'],
+  })
+  const titleEased = useTransform(titleProgress, easeCubicOut)
+  const titleMaskY = useTransform(titleEased, (e) => `${(1 - e) * MASK_SHIFT_PCT}%`)
+
+  const titleGlitchDone = useRef(false)
+  useMotionValueEvent(titleProgress, 'change', (p) => {
+    if (p >= GLITCH_FIRE_AT && !titleGlitchDone.current) {
+      titleGlitchDone.current = true
+      triggerTitleGlitch() // no-op interno con prefers-reduced-motion
+    } else if (p < GLITCH_REARM_AT) {
+      titleGlitchDone.current = false
+    }
+  })
 
   // Contador [ 00 ] → [ 05 ] al entrar el label en viewport (índice de sección).
   const { ref: counterRef, text: counterText } = useSectionCounter(5)
@@ -114,24 +144,20 @@ const EducationSection = () => {
             <span>{t('sectionLabel')}</span>
           </div>
 
-          {/* Título con mask-reveal + glitch, mismo tratamiento que los demás. */}
+          {/* Título con mask-reveal ligado al scroll + glitch, mismo tratamiento
+              que About/Contact (scrub, no one-shot). */}
           <h2
             ref={titleGlitchRef as RefObject<HTMLHeadingElement | null>}
             className="m-0 font-sans text-[clamp(34px,5vw,64px)] font-bold uppercase tracking-[-0.03em] text-text"
           >
-            <motion.span
-              className="block overflow-hidden pb-[0.1em]"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.8 }}
-            >
+            <span className="block overflow-hidden pb-[0.1em]">
               <motion.span
-                variants={reduced ? withReducedMotion(maskReveal) : maskReveal}
+                style={{ y: reduced ? '0%' : titleMaskY }}
                 className="block"
               >
                 {t('title')}
               </motion.span>
-            </motion.span>
+            </span>
           </h2>
         </div>
 
