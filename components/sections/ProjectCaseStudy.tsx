@@ -112,7 +112,7 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
         {t('detail.backShort')}
       </a>
 
-      <div className="mx-auto max-w-[1200px]">
+      <div className="mx-auto max-w-300">
         {/* -------------------------- Topbar -------------------------- */}
         <div
           className={clsx(
@@ -211,7 +211,7 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
               {/* Cuadrado decorativo ámbar, esquina inferior izquierda */}
               <span
                 aria-hidden="true"
-                className="absolute bottom-0 left-0 h-[54px] w-[54px] bg-accent"
+                className="absolute bottom-0 left-0 h-13.5 w-13.5 bg-accent"
               />
               <span
                 aria-hidden="true"
@@ -270,7 +270,7 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h3 className="font-sans text-[clamp(16px,1.6vw,20px)] font-semibold leading-[1.25] text-text">
+                    <h3 className="font-sans text-[clamp(16px,1.6vw,20px)] font-semibold leading-tight text-text">
                       {block.title}
                     </h3>
                     <p className="mt-2 font-mono text-[13px] leading-[1.75] text-muted">
@@ -300,7 +300,7 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
                     <dd className="font-sans text-[clamp(32px,4vw,56px)] font-semibold leading-none tracking-[-0.03em] text-accent">
                       {result.value}
                     </dd>
-                    <dt className="mt-3 font-mono text-[12px] uppercase tracking-[0.1em] text-muted">
+                    <dt className="mt-3 font-mono text-[12px] uppercase tracking-widest text-muted">
                       {result.label}
                     </dt>
                   </div>
@@ -365,7 +365,7 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
               <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-muted">
                 {t('detail.nextProject')}
               </span>
-              <span className="flex items-center gap-4 font-sans font-semibold uppercase leading-[1] tracking-[-0.02em] text-text text-[clamp(28px,5vw,64px)]">
+              <span className="flex items-center gap-4 font-sans font-semibold uppercase leading-none tracking-[-0.02em] text-text text-[clamp(28px,5vw,64px)]">
                 {nextTitle}
                 <span
                   aria-hidden="true"
