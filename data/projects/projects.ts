@@ -66,7 +66,7 @@ export interface Project {
   titleKey: string; // key i18n del título (igual a `title`)
   description: string; // key i18n (compat: `items.<slug>.description`)
   lede: string; // key i18n del subtítulo corto del case study
-  category: string; // key i18n compartida (`category`)
+  category: string; // key i18n propia por proyecto (`items.<slug>.category`)
   year: number;
   role: string; // key i18n (`items.<slug>.role`)
   client: string; // key i18n (`items.<slug>.client`)
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     titleKey: "items.devEvent.title",
     description: "items.devEvent.description",
     lede: "items.devEvent.lede",
-    category: "category",
+    category: "items.devEvent.category",
     year: 2025,
     role: "items.devEvent.role",
     client: "items.devEvent.client",
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     titleKey: "items.blogNest.title",
     description: "items.blogNest.description",
     lede: "items.blogNest.lede",
-    category: "category",
+    category: "items.blogNest.category",
     year: 2025,
     role: "items.blogNest.role",
     client: "items.blogNest.client",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     titleKey: "items.sportz.title",
     description: "items.sportz.description",
     lede: "items.sportz.lede",
-    category: "category",
+    category: "items.sportz.category",
     year: 2025,
     role: "items.sportz.role",
     client: "items.sportz.client",

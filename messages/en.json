@@ -70,7 +70,6 @@
     "ariaSection": "Selected projects",
     "ariaList": "Project list",
     "viewProject": "View project {title}",
-    "category": "CASE STUDY — WEB PRODUCT",
     "detail": {
       "backHome": "BACK TO HOME",
       "backShort": "BACK",
@@ -104,6 +103,7 @@
     "items": {
       "devEvent": {
         "title": "DevEvent",
+        "category": "FULL-STACK WEB PRODUCT",
         "description": "Full-stack web application for discovering, creating, and booking developer events such as hackathons, meetups, and conferences. The project includes API routes, MongoDB data persistence, image uploads with Cloudinary, and caching optimizations in Next.js for improved performance.",
         "lede": "COMPLETAR",
         "year": "2025",
@@ -117,6 +117,7 @@
       },
       "blogNest": {
         "title": "Blog API with NestJS",
+        "category": "REST API",
         "description": "REST API for a blogging platform built with NestJS and PostgreSQL following the RealWorld specification. It includes JWT authentication, article management, user following system, and social features such as favorites and content filtering.",
         "lede": "COMPLETAR",
         "year": "2025",
@@ -130,6 +131,7 @@
       },
       "sportz": {
         "title": "Sportz",
+        "category": "REALTIME API",
         "description": "Real-time REST API for managing sports matches and live commentary. Supports event creation, automatic match status handling (scheduled, live, finished), and real-time updates via WebSockets. Features strict validation with Zod, a type-safe ORM with Drizzle, and advanced security using Arcjet (rate limiting, bot protection, and attack shielding).",
         "lede": "COMPLETAR",
         "year": "2025",
