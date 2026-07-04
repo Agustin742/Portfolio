@@ -5,6 +5,7 @@
     "stack": "Stack",
     "expForm": "Exp. y Formación",
     "contact": "Contacto",
+    "education": "Educación",
     "skipToContent": "Saltar al contenido principal"
   },
   "hero": {
@@ -17,7 +18,7 @@
     "quote": "La única manera de ir rápido es ir bien - Robert C. Martin",
     "downloadCV": "Abrir CV",
     "location": "BUENOS AIRES, AR",
-    "stack": "REACT · NEXT · NODE / NEST · SQL · MONGO",
+    "stack": "REACT · NEXT · NODE · NEST · SQL · MONGO",
     "localTime": "HORA LOCAL",
     "available": "DISPONIBLE PARA TRABAJAR",
     "ticker": "CONSTRUYENDO PRODUCTOS DIGITALES ✱ DISPONIBLE PARA TRABAJAR ✱ REACT · NODE · NEXT · NEST ✱ BUENOS AIRES, AR",
@@ -69,6 +70,33 @@
     "ariaSection": "Proyectos seleccionados",
     "ariaList": "Lista de proyectos",
     "viewProject": "Ver proyecto {title}",
+    "category": "CASO DE ESTUDIO — PRODUCTO WEB",
+    "detail": {
+      "backHome": "VOLVER AL INICIO",
+      "backShort": "VOLVER",
+      "ariaBackHome": "Volver al inicio",
+      "projectLabel": "PROYECTO",
+      "ariaCv": "Descargar CV",
+      "figOverview": "FIG. 01 — VISTA GENERAL",
+      "challengeLabel": "EL DESAFÍO",
+      "builtLabel": "LO QUE CONSTRUÍ",
+      "architecture": "ARQUITECTURA",
+      "resultsLabel": "RESULTADOS",
+      "galleryLabel": "GALERÍA",
+      "comingSoon": "// PRÓXIMAMENTE",
+      "nextProject": "SIGUIENTE PROYECTO",
+      "metaRole": "ROL",
+      "metaYear": "AÑO",
+      "metaClient": "CLIENTE",
+      "metaStack": "STACK",
+      "ariaArticle": "Caso de estudio: {title}",
+      "ariaChallenge": "El desafío",
+      "ariaBuilt": "Lo que construí",
+      "ariaResults": "Resultados",
+      "ariaGallery": "Galería",
+      "ariaNext": "Siguiente proyecto",
+      "ariaViewNext": "Ver proyecto {title}"
+    },
     "buttons": {
       "gitButton": "Ver en Github",
       "webButton": "Ir al sitio web"
@@ -76,15 +104,42 @@
     "items": {
       "devEvent": {
         "title": "DevEvent",
-        "description": "Full-stack web application for discovering, creating, and booking developer events such as hackathons, meetups, and conferences. The project includes API routes, MongoDB data persistence, image uploads with Cloudinary, and caching optimizations in Next.js for improved performance."
+        "description": "Aplicación full stack para descubrir, crear y reservar eventos orientados a desarrolladores como hackathons, meetups y conferencias. El proyecto implementa un backend con API Routes, persistencia en MongoDB, subida de imágenes con Cloudinary y optimizaciones de caching en Next.js para mejorar el rendimiento.",
+        "lede": "COMPLETAR",
+        "year": "2025",
+        "role": "Full Stack Developer",
+        "client": "Proyecto propio",
+        "challengeBody": "COMPLETAR",
+        "built": [
+          { "title": "COMPLETAR", "description": "COMPLETAR" },
+          { "title": "COMPLETAR", "description": "COMPLETAR" }
+        ]
       },
       "blogNest": {
         "title": "Blog API con NestJS",
-        "description": "API REST para una plataforma de blogging desarrollada con NestJS y PostgreSQL siguiendo la especificación RealWorld. Incluye autenticación con JWT, gestión de artículos, sistema de seguidores entre usuarios y funcionalidades sociales como favoritos y filtrado de contenido."
+        "description": "API REST para una plataforma de blogging desarrollada con NestJS y PostgreSQL siguiendo la especificación RealWorld. Incluye autenticación con JWT, gestión de artículos, sistema de seguidores entre usuarios y funcionalidades sociales como favoritos y filtrado de contenido.",
+        "lede": "COMPLETAR",
+        "year": "2025",
+        "role": "Full Stack Developer",
+        "client": "Proyecto propio",
+        "challengeBody": "COMPLETAR",
+        "built": [
+          { "title": "COMPLETAR", "description": "COMPLETAR" },
+          { "title": "COMPLETAR", "description": "COMPLETAR" }
+        ]
       },
       "sportz": {
         "title": "Sportz",
-        "description": "API REST en tiempo real para la gestión de partidos y comentarios deportivos. Permite crear eventos, manejar estados automáticos (scheduled, live, finished) y transmitir comentarios en vivo mediante WebSockets. Incluye validación estricta con Zod, ORM tipado con Drizzle y una capa de seguridad avanzada con Arcjet (rate limiting, protección contra bots y ataques)."
+        "description": "API REST en tiempo real para la gestión de partidos y comentarios deportivos. Permite crear eventos, manejar estados automáticos (scheduled, live, finished) y transmitir comentarios en vivo mediante WebSockets. Incluye validación estricta con Zod, ORM tipado con Drizzle y una capa de seguridad avanzada con Arcjet (rate limiting, protección contra bots y ataques).",
+        "lede": "COMPLETAR",
+        "year": "2025",
+        "role": "Full Stack Developer",
+        "client": "Proyecto propio",
+        "challengeBody": "COMPLETAR",
+        "built": [
+          { "title": "COMPLETAR", "description": "COMPLETAR" },
+          { "title": "COMPLETAR", "description": "COMPLETAR" }
+        ]
       }
     }
   },

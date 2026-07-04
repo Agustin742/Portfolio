@@ -8,7 +8,7 @@ import ThemeToggle from '../ui/ThemeToggle'
 import LanguageToggle from '../ui/LanguageToggle'
 import { useScramble } from '@/hooks/useScramble'
 
-type NavLabelKey = 'about' | 'projects' | 'stack' | 'contact'
+type NavLabelKey = 'about' | 'projects' | 'stack' | 'contact' | 'education'
 
 type NavItem = { href: string; labelKey: NavLabelKey }
 
@@ -16,6 +16,7 @@ const NAV_ITEMS: readonly NavItem[] = [
   { href: '#sobre', labelKey: 'about' },
   { href: '#proyectos', labelKey: 'projects' },
   { href: '#stack', labelKey: 'stack' },
+  { href: '#formacion', labelKey: 'education' },
   { href: '#contacto', labelKey: 'contact' },
 ] as const
 

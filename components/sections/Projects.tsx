@@ -24,7 +24,6 @@ import {
   useReducedMotion,
   useSectionCounter,
 } from '@/hooks'
-import { kebabCase } from '@/lib/kebab-case'
 import { maskReveal, withReducedMotion } from '@/lib/motion-variants'
 
 const PROJECT_COUNT = projects.length
@@ -214,7 +213,11 @@ const Projects = () => {
               const stack = project.techStacks
                 .map((tech) => tech.label)
                 .join(STACK_SEPARATOR)
-              const href = `/proyectos/${kebabCase(title)}`
+              // Ruta real del case study (RFC-16): construida con el `slug`
+              // canónico del proyecto, no con el título traducido (que daría un
+              // slug distinto por idioma y no matchea la ruta). `navigate`
+              // (next-intl) antepone el locale actual al hacer push.
+              const href = `/proyectos/${project.slug}`
               const isActive = index === activeIndex
 
               return (
