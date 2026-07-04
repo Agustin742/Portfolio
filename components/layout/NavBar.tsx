@@ -124,7 +124,7 @@ export default function NavBar() {
         <div className="flex items-center justify-between gap-6">
           {/* Logo */}
           <a
-            href="#hero"
+            href={`/${locale}#hero`}
             data-cursor
             className="font-mono text-[13px] font-bold tracking-tight text-text transition-colors duration-300 ease-signature hover:text-accent focus-visible:text-accent focus-visible:outline-none"
           >
@@ -135,7 +135,7 @@ export default function NavBar() {
           <ul className="hidden items-center gap-6 md:flex">
             {NAV_ITEMS.map((item) => (
               <li key={item.href}>
-                <NavLink href={item.href} label={t(item.labelKey)} />
+                <NavLink href={`/${locale}${item.href}`} label={t(item.labelKey)} />
               </li>
             ))}
           </ul>
@@ -168,7 +168,7 @@ export default function NavBar() {
                 <li key={item.href}>
                   <NavLink
                     ref={index === 0 ? firstLinkRef : undefined}
-                    href={item.href}
+                    href={`/${locale}${item.href}`}
                     label={t(item.labelKey)}
                     onNavigate={closeMenu}
                   />

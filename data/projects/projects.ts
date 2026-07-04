@@ -1,22 +1,23 @@
 import {
   SiCloudinary,
-  SiDrizzle,
-  SiExpress,
+  SiCss,
+  SiHtml5,
+  SiJavascript,
   SiJsonwebtokens,
   SiMongodb,
   SiNestjs,
   SiNextdotjs,
-  SiNodedotjs,
   SiPostgresql,
-  SiShieldsdotio,
+  SiPrisma,
+  SiReact,
   SiTailwindcss,
   SiTypeorm,
   SiTypescript,
+  SiVite,
   SiZod,
 } from "react-icons/si";
 
 import { TechStackProps } from "@/types/tech";
-import { IconBase } from "react-icons";
 
 /**
  * Desafío del case study. Ambos campos son KEYS i18n (namespace `projects`),
@@ -84,6 +85,102 @@ export type AlternatingSectionProps = Project;
 
 export const projects: Project[] = [
   {
+    slug: "bugnet",
+    title: "items.bugnet.title",
+    titleKey: "items.bugnet.title",
+    description: "items.bugnet.description",
+    lede: "items.bugnet.lede",
+    category: "items.bugnet.category",
+    year: 2025,
+    role: "items.bugnet.role",
+    client: "items.bugnet.client",
+    stack: ["React", "TypeScript", "Vite", "Zod", "Zustand", "Tailwind"],
+    image: "/imgs/projects/bugnet.png",
+    gallery: [],
+    links: {
+      gitHub:
+        "https://github.com/Agustin742/proyecto-2-Generador-de-Reportes-de-bugs",
+      web: "https://bugnet-report-generator.vercel.app/",
+    },
+    techStacks: [
+      { label: "React", icon: SiReact, color: "#61DAFB" },
+      { label: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+      { label: "Vite", icon: SiVite, color: "#646CFF" },
+      { label: "Zod", icon: SiZod, color: "#3E67B1" },
+      { label: "Tailwind", icon: SiTailwindcss, color: "#38BDF8" },
+    ],
+    caseStudy: {
+      challenge: {
+        headline: "items.bugnet.description",
+        body: "items.bugnet.challengeBody",
+      },
+      built: "items.bugnet.built",
+    },
+  },
+
+  {
+    slug: "catalog-store",
+    title: "items.catalogStore.title",
+    titleKey: "items.catalogStore.title",
+    description: "items.catalogStore.description",
+    lede: "items.catalogStore.lede",
+    category: "items.catalogStore.category",
+    year: 2025,
+    role: "items.catalogStore.role",
+    client: "items.catalogStore.client",
+    stack: ["NestJS", "Prisma", "PostgreSQL", "JWT", "Cloudinary", "Resend"],
+    image: "/imgs/projects/catalog-store.png",
+    gallery: [],
+    links: {},
+    techStacks: [
+      { label: "NestJS", icon: SiNestjs, color: "#E0234E" },
+      { label: "Prisma", icon: SiPrisma, color: "#2D3748" },
+      { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
+      { label: "JWT", icon: SiJsonwebtokens, color: "#000000" },
+      { label: "Cloudinary", icon: SiCloudinary, color: "#3448C5" },
+    ],
+    caseStudy: {
+      challenge: {
+        headline: "items.catalogStore.description",
+        body: "items.catalogStore.challengeBody",
+      },
+      built: "items.catalogStore.built",
+    },
+  },
+
+  {
+    slug: "quest",
+    title: "items.quest.title",
+    titleKey: "items.quest.title",
+    description: "items.quest.description",
+    lede: "items.quest.lede",
+    category: "items.quest.category",
+    year: 2025,
+    role: "items.quest.role",
+    client: "items.quest.client",
+    stack: ["HTML5", "CSS3", "JavaScript", "localStorage"],
+    image: "/imgs/projects/quest.png",
+    gallery: [],
+    links: {
+      gitHub:
+        "https://github.com/MatucoRobles/PROY_1-ANTIPROCASTINATION-QUEST",
+      web: "https://antiprocastinationquest.netlify.app/",
+    },
+    techStacks: [
+      { label: "HTML5", icon: SiHtml5, color: "#E34F26" },
+      { label: "CSS3", icon: SiCss, color: "#1572B6" },
+      { label: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+    ],
+    caseStudy: {
+      challenge: {
+        headline: "items.quest.description",
+        body: "items.quest.challengeBody",
+      },
+      built: "items.quest.built",
+    },
+  },
+
+  {
     slug: "dev-event",
     title: "items.devEvent.title",
     titleKey: "items.devEvent.title",
@@ -146,48 +243,6 @@ export const projects: Project[] = [
         body: "items.blogNest.challengeBody",
       },
       built: "items.blogNest.built",
-    },
-  },
-
-  {
-    slug: "sportz",
-    title: "items.sportz.title",
-    titleKey: "items.sportz.title",
-    description: "items.sportz.description",
-    lede: "items.sportz.lede",
-    category: "items.sportz.category",
-    year: 2025,
-    role: "items.sportz.role",
-    client: "items.sportz.client",
-    stack: [
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "WebSockets",
-      "Zod",
-      "Drizzle ORM",
-      "Arcjet",
-    ],
-    image: "/imgs/projects/sportz.png",
-    gallery: [],
-    links: {
-      gitHub: "https://github.com/Agustin742/sportz-websockets",
-    },
-    techStacks: [
-      { label: "Node.js", icon: SiNodedotjs, color: "#339933" },
-      { label: "Express", icon: SiExpress, color: "#000000" },
-      { label: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
-      { label: "WebSockets", icon: IconBase, color: "#010101" },
-      { label: "Zod", icon: SiZod, color: "#3E67B1" },
-      { label: "Drizzle ORM", icon: SiDrizzle, color: "#C5F74F" },
-      { label: "Arcjet", icon: SiShieldsdotio, color: "#6B7280" },
-    ],
-    caseStudy: {
-      challenge: {
-        headline: "items.sportz.description",
-        body: "items.sportz.challengeBody",
-      },
-      built: "items.sportz.built",
     },
   },
 ];

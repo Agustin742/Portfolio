@@ -71,11 +71,7 @@
     "ariaList": "Project list",
     "viewProject": "View project {title}",
     "detail": {
-      "backHome": "BACK TO HOME",
-      "backShort": "BACK",
-      "ariaBackHome": "Back to home",
       "projectLabel": "PROJECT",
-      "ariaCv": "Download CV",
       "figOverview": "FIG. 01 — OVERVIEW",
       "challengeLabel": "THE CHALLENGE",
       "builtLabel": "WHAT I BUILT",
@@ -101,46 +97,84 @@
       "webButton": "Go to the website"
     },
     "items": {
+      "bugnet": {
+        "title": "BugNet",
+        "category": "FRONTEND WEB TOOL",
+        "description": "Web app to create clear, structured bug reports. It guides the user through a validated form and generates a ready-to-use Markdown report to review, save or copy. 100% client-side, no backend.",
+        "lede": "Turns informal bug reports into ready-to-use technical documentation in Markdown.",
+        "year": "2025",
+        "role": "Frontend Developer",
+        "client": "Capstone project · IntegraTEC",
+        "challengeBody": "Bug reports often arrive incomplete or informal, which slows QA and development teams down. The challenge was to design a guided flow that guarantees the key information —what happened, how to reproduce it, what was expected, environment and severity— and always produces a consistent output.",
+        "built": [
+          { "title": "Guided, validated form", "description": "Section-based form with React Hook Form and Zod; types are derived from the schema with z.infer and the limits live in a single shared module." },
+          { "title": "Markdown generation", "description": "A pure function takes the form values and builds the structured Markdown report, with a real-time preview and a toggle between raw and rendered." },
+          { "title": "Quality and accessibility", "description": "Quality checklist and suggestions before copying, character counters, aria-live/aria-required attributes and non-blocking feedback instead of alert()/confirm()." },
+          { "title": "Local persistence", "description": "Reports are stored in the browser with Zustand + localStorage, with no backend or authentication." }
+        ]
+      },
+      "catalogStore": {
+        "title": "Catalog Store",
+        "category": "BACKEND API — E-COMMERCE",
+        "description": "REST API for a store built with NestJS, Prisma and PostgreSQL. It includes authentication with email verification, product and category management (with a recursive tree), image uploads and WhatsApp order generation.",
+        "lede": "E-commerce backend with email verification, a nested-category catalog and WhatsApp order generation.",
+        "year": "2025",
+        "role": "Backend Developer",
+        "client": "Personal project",
+        "challengeBody": "A store needs more than CRUD: verified accounts, a catalog with nested categories, managed images and a simple way to close orders. The challenge was integrating all of it into a secure, maintainable API, with admin roles and automatic data cleanup.",
+        "built": [
+          { "title": "Auth with email verification", "description": "Sign-up with a 6-digit code (valid for 10 min) sent via Resend, login with JWT + Passport and a scheduled job that deletes unverified accounts every hour." },
+          { "title": "Nested-category catalog", "description": "Self-referencing categories with a recursive tree, and products with filters, pagination, sorting and name search (including a category's descendants)." },
+          { "title": "Images and orders", "description": "Image uploads to Cloudinary (with automatic deletion on replace or remove) and generation of a pre-filled WhatsApp message with a wa.me link from the cart." },
+          { "title": "Security and validation", "description": "Admin roles, a global ValidationPipe with whitelist/forbidNonWhitelisted and bcrypt-hashed passwords." }
+        ]
+      },
+      "quest": {
+        "title": "Anti-Procrastination Quest",
+        "category": "WEB APP — GAME",
+        "description": "RPG-themed productivity web app: manage tasks as quests, customize a pixel-art cat companion and battle rivals in an arena. Built with vanilla HTML, CSS and JavaScript — no frameworks, no build.",
+        "lede": "A gamified task manager with quests, rewards and turn-based battles, in vanilla JS.",
+        "year": "2025",
+        "role": "Frontend Developer",
+        "client": "Team project",
+        "challengeBody": "Turning task management into something fun without reaching for frameworks. The challenge was building RPG mechanics —rewards, inventory, customization and combat— with plain HTML, CSS and JavaScript, taking care of state, persistence and a layered CSS architecture.",
+        "built": [
+          { "title": "Quest board", "description": "Create, complete, filter and delete tasks, with a global progress bar that unlocks a chest every 5 completed quests." },
+          { "title": "Pixel-art cat", "description": "Companion rendered with CSS box-shadow, with color customization and an equipment system (weapon, armor, hat) drawn over the cat." },
+          { "title": "Battle arena", "description": "Export the cat's state as a hash to share it, paste a rival's hash and run a turn-based battle simulation with animations." },
+          { "title": "Vanilla and persistence", "description": "ES modules with no bundler, global state persisted in localStorage and a layered CSS architecture (@layer, tokens, components)." }
+        ]
+      },
       "devEvent": {
         "title": "DevEvent",
         "category": "FULL-STACK WEB PRODUCT",
         "description": "Full-stack web application for discovering, creating, and booking developer events such as hackathons, meetups, and conferences. The project includes API routes, MongoDB data persistence, image uploads with Cloudinary, and caching optimizations in Next.js for improved performance.",
-        "lede": "COMPLETAR",
+        "lede": "Discover, create and book developer events —hackathons, meetups and conferences— all in one place.",
         "year": "2025",
         "role": "Full Stack Developer",
         "client": "Personal project",
-        "challengeBody": "COMPLETAR",
+        "challengeBody": "Centralizing the full lifecycle of an event —discover, view details, create and book— in a single fast full-stack app. The challenge was combining an API Routes + MongoDB backend, image uploads, efficient caching and a polished visual layer.",
         "built": [
-          { "title": "COMPLETAR", "description": "COMPLETAR" },
-          { "title": "COMPLETAR", "description": "COMPLETAR" }
+          { "title": "Discover and view events", "description": "A list of upcoming events with image, location, date and time, and a detail page with agenda, organizer, tags and similar events." },
+          { "title": "Create and book", "description": "Creation form with dynamic tags and agenda and image upload via Cloudinary; spot booking with one sign-up per email per event and confirmation feedback." },
+          { "title": "Next.js caching", "description": "Use of 'use cache' + cacheTag for efficient data fetching over the API Routes." },
+          { "title": "WebGL background and analytics", "description": "Interactive light-rays background powered by OGL (WebGL) and tracking of key interactions with PostHog." }
         ]
       },
       "blogNest": {
         "title": "Blog API with NestJS",
         "category": "REST API",
         "description": "REST API for a blogging platform built with NestJS and PostgreSQL following the RealWorld specification. It includes JWT authentication, article management, user following system, and social features such as favorites and content filtering.",
-        "lede": "COMPLETAR",
+        "lede": "RealWorld-spec blogging REST API: JWT auth, articles, follows and favorites.",
         "year": "2025",
         "role": "Full Stack Developer",
         "client": "Personal project",
-        "challengeBody": "COMPLETAR",
+        "challengeBody": "Implementing the RealWorld spec in a clean, typed way: JWT authentication, article CRUD with slugs and the social features (follows, favorites, filters). The challenge was structuring the domain with NestJS and TypeORM while keeping access rules clear.",
         "built": [
-          { "title": "COMPLETAR", "description": "COMPLETAR" },
-          { "title": "COMPLETAR", "description": "COMPLETAR" }
-        ]
-      },
-      "sportz": {
-        "title": "Sportz",
-        "category": "REALTIME API",
-        "description": "Real-time REST API for managing sports matches and live commentary. Supports event creation, automatic match status handling (scheduled, live, finished), and real-time updates via WebSockets. Features strict validation with Zod, a type-safe ORM with Drizzle, and advanced security using Arcjet (rate limiting, bot protection, and attack shielding).",
-        "lede": "COMPLETAR",
-        "year": "2025",
-        "role": "Full Stack Developer",
-        "client": "Personal project",
-        "challengeBody": "COMPLETAR",
-        "built": [
-          { "title": "COMPLETAR", "description": "COMPLETAR" },
-          { "title": "COMPLETAR", "description": "COMPLETAR" }
+          { "title": "Auth and users", "description": "Sign-up and login with JWT, auth middleware and guards; current user via protected endpoints." },
+          { "title": "Articles with slugs", "description": "Article CRUD with auto-generated slug, filters by tag/author/favorited and pagination (limit/offset)." },
+          { "title": "Social features", "description": "Follow/unfollow between users, article favorites and public profiles, following the RealWorld spec." },
+          { "title": "Typed domain", "description": "Module structure (article, profile, tag, user) with TypeORM, validation with class-validator and migrations." }
         ]
       }
     }

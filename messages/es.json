@@ -71,11 +71,7 @@
     "ariaList": "Lista de proyectos",
     "viewProject": "Ver proyecto {title}",
     "detail": {
-      "backHome": "VOLVER AL INICIO",
-      "backShort": "VOLVER",
-      "ariaBackHome": "Volver al inicio",
       "projectLabel": "PROYECTO",
-      "ariaCv": "Descargar CV",
       "figOverview": "FIG. 01 — VISTA GENERAL",
       "challengeLabel": "EL DESAFÍO",
       "builtLabel": "LO QUE CONSTRUÍ",
@@ -101,46 +97,84 @@
       "webButton": "Ir al sitio web"
     },
     "items": {
+      "bugnet": {
+        "title": "BugNet",
+        "category": "HERRAMIENTA WEB — FRONTEND",
+        "description": "Aplicación web para crear reportes de bugs claros y estructurados. Guía al usuario por un formulario validado y genera un reporte listo en Markdown para revisar, guardar o copiar. 100% client-side, sin backend.",
+        "lede": "Convierte reportes de bugs informales en documentación técnica lista en Markdown.",
+        "year": "2025",
+        "role": "Frontend Developer",
+        "client": "Proyecto integrador · IntegraTEC",
+        "challengeBody": "Los reportes de error suelen llegar incompletos o informales, y eso frena a los equipos de QA y desarrollo. El desafío fue diseñar un flujo guiado que asegure la información clave —qué pasó, cómo reproducirlo, qué se esperaba, entorno y severidad— y produzca siempre una salida consistente.",
+        "built": [
+          { "title": "Formulario guiado y validado", "description": "Formulario por secciones con React Hook Form y Zod; los tipos se derivan del schema con z.infer y los límites viven en un único módulo compartido." },
+          { "title": "Generación de Markdown", "description": "Una función pura toma los valores del formulario y arma el reporte estructurado en Markdown, con preview en tiempo real y toggle entre crudo y renderizado." },
+          { "title": "Calidad y accesibilidad", "description": "Checklist de calidad y sugerencias antes de copiar, contadores de caracteres, atributos aria-live/aria-required y feedback no bloqueante en lugar de alert()/confirm()." },
+          { "title": "Persistencia local", "description": "Los reportes se guardan en el navegador con Zustand + localStorage, sin backend ni autenticación." }
+        ]
+      },
+      "catalogStore": {
+        "title": "Catalog Store",
+        "category": "API BACKEND — E-COMMERCE",
+        "description": "API REST para una tienda construida con NestJS, Prisma y PostgreSQL. Incluye autenticación con verificación por email, gestión de productos y categorías (con árbol recursivo), subida de imágenes y generación de órdenes por WhatsApp.",
+        "lede": "Backend de e-commerce con verificación por email, catálogo de categorías anidadas y órdenes por WhatsApp.",
+        "year": "2025",
+        "role": "Backend Developer",
+        "client": "Proyecto propio",
+        "challengeBody": "Una tienda necesita más que un CRUD: cuentas verificadas, un catálogo con categorías anidadas, imágenes gestionadas y una forma simple de concretar pedidos. El desafío fue integrar todo en una API segura y mantenible, con roles de administrador y limpieza automática de datos.",
+        "built": [
+          { "title": "Auth con verificación por email", "description": "Registro con código de 6 dígitos (válido 10 min) enviado con Resend, login con JWT + Passport y un job programado que borra las cuentas sin verificar cada hora." },
+          { "title": "Catálogo con categorías anidadas", "description": "Categorías auto-referenciadas con árbol recursivo, y productos con filtros, paginación, orden y búsqueda por nombre (incluyendo los descendientes de una categoría)." },
+          { "title": "Imágenes y órdenes", "description": "Subida de imágenes a Cloudinary (con borrado automático al reemplazar o eliminar) y generación de un mensaje de WhatsApp pre-armado con link wa.me a partir del carrito." },
+          { "title": "Seguridad y validación", "description": "Roles de admin, ValidationPipe global con whitelist/forbidNonWhitelisted y contraseñas hasheadas con bcrypt." }
+        ]
+      },
+      "quest": {
+        "title": "Anti-Procrastination Quest",
+        "category": "APP WEB — JUEGO",
+        "description": "App web de productividad con temática RPG: gestionás tareas como misiones, personalizás un gato en pixel art y peleás contra rivales en una arena. Hecha con HTML, CSS y JavaScript vanilla, sin frameworks ni build.",
+        "lede": "Un gestor de tareas gamificado con misiones, recompensas y batallas por turnos, en vanilla JS.",
+        "year": "2025",
+        "role": "Frontend Developer",
+        "client": "Proyecto en equipo",
+        "challengeBody": "Convertir la gestión de tareas en algo divertido sin recurrir a frameworks. El desafío fue construir mecánicas de RPG —recompensas, inventario, personalización y combate— con HTML, CSS y JavaScript puro, cuidando el estado, la persistencia y una arquitectura de CSS por capas.",
+        "built": [
+          { "title": "Tablero de misiones", "description": "Crear, completar, filtrar y borrar tareas, con una barra de progreso global que desbloquea un cofre cada 5 misiones completadas." },
+          { "title": "Gato en pixel art", "description": "Compañero renderizado con box-shadow de CSS, con personalización de colores y un sistema de equipamiento (arma, armadura, sombrero) que se dibuja sobre el gato." },
+          { "title": "Arena de combate", "description": "Exportás el estado del gato como hash para compartirlo, pegás el de un rival y se corre una simulación de batalla por turnos con animaciones." },
+          { "title": "Vanilla y persistencia", "description": "Módulos ES sin bundler, estado global con persistencia en localStorage y una arquitectura de CSS por capas (@layer, tokens, componentes)." }
+        ]
+      },
       "devEvent": {
         "title": "DevEvent",
         "category": "PRODUCTO WEB FULL-STACK",
         "description": "Aplicación full stack para descubrir, crear y reservar eventos orientados a desarrolladores como hackathons, meetups y conferencias. El proyecto implementa un backend con API Routes, persistencia en MongoDB, subida de imágenes con Cloudinary y optimizaciones de caching en Next.js para mejorar el rendimiento.",
-        "lede": "COMPLETAR",
+        "lede": "Descubrí, creá y reservá eventos para devs —hackathons, meetups y conferencias— en un solo lugar.",
         "year": "2025",
         "role": "Full Stack Developer",
         "client": "Proyecto propio",
-        "challengeBody": "COMPLETAR",
+        "challengeBody": "Centralizar el ciclo completo de un evento —descubrir, ver el detalle, crear y reservar— en una sola app full-stack rápida. El desafío fue combinar un backend con API Routes y MongoDB, subida de imágenes, caching eficiente y una capa visual cuidada.",
         "built": [
-          { "title": "COMPLETAR", "description": "COMPLETAR" },
-          { "title": "COMPLETAR", "description": "COMPLETAR" }
+          { "title": "Descubrir y ver eventos", "description": "Listado de próximos eventos con imagen, ubicación, fecha y hora, y una página de detalle con agenda, organizador, tags y eventos similares." },
+          { "title": "Crear y reservar", "description": "Formulario de creación con tags y agenda dinámicos y subida de imagen a Cloudinary; reserva de lugar con una inscripción por email por evento y feedback de confirmación." },
+          { "title": "Caching en Next.js", "description": "Uso de 'use cache' + cacheTag para un fetching de datos eficiente sobre las API Routes." },
+          { "title": "Fondo WebGL y analytics", "description": "Fondo interactivo de light rays con OGL (WebGL) y tracking de interacciones clave con PostHog." }
         ]
       },
       "blogNest": {
         "title": "Blog API con NestJS",
         "category": "API REST",
         "description": "API REST para una plataforma de blogging desarrollada con NestJS y PostgreSQL siguiendo la especificación RealWorld. Incluye autenticación con JWT, gestión de artículos, sistema de seguidores entre usuarios y funcionalidades sociales como favoritos y filtrado de contenido.",
-        "lede": "COMPLETAR",
+        "lede": "API REST de blogging siguiendo la spec RealWorld: auth con JWT, artículos, follows y favoritos.",
         "year": "2025",
         "role": "Full Stack Developer",
         "client": "Proyecto propio",
-        "challengeBody": "COMPLETAR",
+        "challengeBody": "Implementar la especificación RealWorld de forma limpia y tipada: autenticación con JWT, CRUD de artículos con slugs y las funcionalidades sociales (follows, favoritos, filtros). El desafío fue estructurar el dominio con NestJS y TypeORM manteniendo reglas de acceso claras.",
         "built": [
-          { "title": "COMPLETAR", "description": "COMPLETAR" },
-          { "title": "COMPLETAR", "description": "COMPLETAR" }
-        ]
-      },
-      "sportz": {
-        "title": "Sportz",
-        "category": "API EN TIEMPO REAL",
-        "description": "API REST en tiempo real para la gestión de partidos y comentarios deportivos. Permite crear eventos, manejar estados automáticos (scheduled, live, finished) y transmitir comentarios en vivo mediante WebSockets. Incluye validación estricta con Zod, ORM tipado con Drizzle y una capa de seguridad avanzada con Arcjet (rate limiting, protección contra bots y ataques).",
-        "lede": "COMPLETAR",
-        "year": "2025",
-        "role": "Full Stack Developer",
-        "client": "Proyecto propio",
-        "challengeBody": "COMPLETAR",
-        "built": [
-          { "title": "COMPLETAR", "description": "COMPLETAR" },
-          { "title": "COMPLETAR", "description": "COMPLETAR" }
+          { "title": "Auth y usuarios", "description": "Registro y login con JWT, middleware de autenticación y guards; usuario actual con endpoints protegidos." },
+          { "title": "Artículos con slugs", "description": "CRUD de artículos con slug auto-generado, filtros por tag/autor/favoritos y paginación (limit/offset)." },
+          { "title": "Funcionalidades sociales", "description": "Follow/unfollow entre usuarios, favoritos de artículos y perfiles públicos, siguiendo la spec RealWorld." },
+          { "title": "Dominio tipado", "description": "Estructura por módulos (article, profile, tag, user) con TypeORM, validación con class-validator y migraciones." }
         ]
       }
     }

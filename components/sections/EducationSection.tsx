@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, type RefObject } from 'react'
-import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { motion, useMotionValueEvent, useScroll, useTransform } from 'framer-motion'
 import { education, type Education } from '@/data/education/education'
@@ -66,22 +65,12 @@ const EducationRow = ({ item, index, reduced }: EducationRowProps) => {
         {number}
       </span>
 
-      {/* Columna 2 — título + institución (+ logo opcional). */}
+      {/* Columna 2 — título + institución. */}
       <div>
         <div className="font-sans text-[clamp(19px,2.4vw,26px)] font-semibold tracking-[-0.01em] text-text">
           {item.title}
         </div>
-        <div className="mt-1.5 flex items-center gap-2.5 font-mono text-[12px] text-muted">
-          {item.logoSrc && (
-            <Image
-              src={item.logoSrc}
-              alt=""
-              aria-hidden="true"
-              width={72}
-              height={18}
-              className="h-4.5 w-auto object-contain"
-            />
-          )}
+        <div className="mt-1.5 font-mono text-[12px] text-muted">
           <span>{item.institution}</span>
         </div>
       </div>

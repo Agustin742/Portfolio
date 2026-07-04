@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState, type MouseEvent } from 'react'
+import { type MouseEvent } from 'react'
 import Image from 'next/image'
 import { useLocale, useTranslations } from 'next-intl'
 import clsx from 'clsx'
-import { FiArrowDown } from 'react-icons/fi'
 import { projects, getProjectBySlug } from '@/data/projects/projects'
 import { usePageNavigate } from '@/hooks'
 
@@ -27,32 +26,16 @@ const FOCUS_RING =
 
 /**
  * Case study individual de un proyecto (RFC-16). Es client component porque usa
- * `usePageNavigate` (cortina wipe), `useTranslations` y un `IntersectionObserver`
- * para el botón sticky. Recibe solo el `slug` (serializable) y resuelve el resto
- * de `data/projects` internamente, evitando pasar los `techStacks` (que llevan
- * componentes de icono no serializables) a través del boundary server→client.
+ * `usePageNavigate` (cortina wipe) y `useTranslations`. Recibe solo el `slug`
+ * (serializable) y resuelve el resto de `data/projects` internamente, evitando
+ * pasar los `techStacks` (que llevan componentes de icono no serializables) a
+ * través del boundary server→client. La navegación de vuelta/al inicio la
+ * resuelve el navbar global, que funciona desde cualquier página.
  */
 export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
   const t = useTranslations('projects')
   const locale = useLocale()
   const navigate = usePageNavigate()
-
-  // Sentinel bajo el topbar + observer: el botón sticky aparece cuando el
-  // topbar sale del viewport. Estado inicial `false` (sentinel visible al
-  // cargar) para no mostrar un flash del botón antes de scrollear.
-  const sentinelRef = useRef<HTMLDivElement>(null)
-  const [showSticky, setShowSticky] = useState(false)
-
-  useEffect(() => {
-    const node = sentinelRef.current
-    if (!node) return
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowSticky(!entry.isIntersecting),
-      { rootMargin: '0px' },
-    )
-    observer.observe(node)
-    return () => observer.disconnect()
-  }, [])
 
   const project = getProjectBySlug(slug)
   // La page ya llamó `notFound()`; este guard es defensivo (y estrecha el tipo).
@@ -77,16 +60,10 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
 
   const nextTitle = t(nextProject.title)
 
-  const homeHref = `/${locale}`
-  const cvHref = `/cv/agustin-tabarcache-cv-${locale}.pdf`
   const nextHref = `/${locale}/proyectos/${nextProject.slug}`
 
   // `navigate` (next-intl) antepone el locale actual, por eso recibe rutas sin
   // prefijo. El `href` del ancla queda con prefijo para el fallback (nueva pestaña).
-  const goHome = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    navigate('/')
-  }
   const goNext = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
     navigate(`/proyectos/${nextProject.slug}`)
@@ -94,79 +71,19 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
 
   return (
     <main id="main-content" className="relative overflow-x-clip">
-      {/* Botón sticky VOLVER: fuera del flujo, aparece al salir el topbar. */}
-      <a
-        href={homeHref}
-        onClick={goHome}
-        aria-label={t('detail.ariaBackHome')}
-        data-cursor
-        className={clsx(
-          'fixed left-4 top-4 z-70 inline-flex items-center gap-2 border-[1.5px] border-border bg-bg/80 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-text backdrop-blur-sm transition-all duration-300 ease-signature hover:border-accent hover:text-accent min-[820px]:px-4 min-[820px]:text-[12px]',
-          FOCUS_RING,
-          showSticky
-            ? 'translate-y-0 opacity-100'
-            : 'pointer-events-none -translate-y-4 opacity-0',
-        )}
-      >
-        <span aria-hidden="true">←</span>
-        {t('detail.backShort')}
-      </a>
-
       <div className="mx-auto max-w-300">
         {/* -------------------------- Topbar -------------------------- */}
         <div
           className={clsx(
-            'flex items-center justify-between gap-4 py-[clamp(20px,3vw,32px)]',
+            'flex items-center py-[clamp(20px,3vw,32px)]',
             CONTENT_PADDING,
           )}
         >
-          <a
-            href={homeHref}
-            onClick={goHome}
-            aria-label={t('detail.ariaBackHome')}
-            data-cursor
-            className={clsx(
-              'group inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-muted transition-colors duration-300 ease-signature hover:text-text',
-              FOCUS_RING,
-            )}
-          >
-            <span
-              aria-hidden="true"
-              className="inline-block transition-transform duration-300 ease-signature group-hover:-translate-x-0.5"
-            >
-              ←
-            </span>
-            <span className="hidden min-[520px]:inline">
-              {t('detail.backHome')}
-            </span>
-            <span className="min-[520px]:hidden">{t('detail.backShort')}</span>
-          </a>
-
           <span className="font-mono text-[12px] uppercase tracking-[0.12em] text-faint">
             {t('detail.projectLabel')} {currentNumber}{' '}
             <span className="text-accent">/</span> {total}
           </span>
-
-          <a
-            href={cvHref}
-            download
-            data-cursor
-            aria-label={t('detail.ariaCv')}
-            className={clsx(
-              'group inline-flex items-center gap-1.5 border-[1.5px] border-accent bg-accent px-3 py-1.5 font-mono text-[12px] font-bold text-bg transition duration-300 ease-signature hover:-translate-y-0.5 hover:border-accent-hi hover:bg-accent-hi',
-              FOCUS_RING,
-            )}
-          >
-            CV
-            <FiArrowDown
-              aria-hidden="true"
-              className="transition-transform duration-300 ease-signature group-hover:translate-y-0.5"
-            />
-          </a>
         </div>
-
-        {/* Sentinel del observer: al salir del viewport aparece el sticky. */}
-        <div ref={sentinelRef} aria-hidden="true" className="h-px w-full" />
 
         <article aria-label={t('detail.ariaArticle', { title })}>
           {/* --------------------------- Hero --------------------------- */}

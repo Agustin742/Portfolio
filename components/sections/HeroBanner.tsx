@@ -120,7 +120,7 @@ const HeroBanner = () => {
     <section
       id="hero"
       aria-label="Hero — Presentación"
-      className="relative flex min-h-[calc(100dvh-var(--header-h))] w-full flex-col overflow-hidden md:w-screen"
+      className="relative flex min-h-[calc(100dvh-var(--header-h))] w-full scroll-mt-(--header-h) flex-col overflow-hidden md:w-screen"
     >
       <div className="flex flex-1 flex-col gap-10 py-16 md:flex-row md:gap-0 md:py-0">
         {/* Columna izquierda: eyebrow + título + descripción */}
