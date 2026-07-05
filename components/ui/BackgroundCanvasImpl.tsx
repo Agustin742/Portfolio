@@ -137,6 +137,14 @@ const BackgroundCanvasImpl = () => {
       kick()
     }
 
+    const handleTouch = (e: TouchEvent) => {
+      const touch = e.touches[0]
+      if (!touch) return
+      tmx.current = touch.clientX
+      tmy.current = touch.clientY
+      kick()
+    }
+
     const handleResize = () => {
       buildGrid()
       kick()
@@ -157,6 +165,8 @@ const BackgroundCanvasImpl = () => {
 
     buildGrid()
     window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('touchstart', handleTouch, { passive: true })
+    window.addEventListener('touchmove', handleTouch, { passive: true })
     window.addEventListener('resize', handleResize)
     observer.observe(canvas)
 
@@ -169,6 +179,8 @@ const BackgroundCanvasImpl = () => {
         animationId.current = null
       }
       window.removeEventListener('mousemove', handleMouseMove)
+      window.removeEventListener('touchstart', handleTouch)
+      window.removeEventListener('touchmove', handleTouch)
       window.removeEventListener('resize', handleResize)
       observer.disconnect()
     }

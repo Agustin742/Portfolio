@@ -35,6 +35,14 @@ const PROX_RADIUS_FACTOR = 0.155 // radio de influencia = max(w,h) * factor
 const PROX_THRESHOLD = 0.04 // por debajo de esta proximidad no hay wobble
 const SETTLED_EPS = 0.3 // umbral para considerar el mouse "asentado"
 
+// Auto-barrido en dispositivos táctiles (hover: none): sin mouse real, el
+// hotspot se anima solo, cruzando el canvas de un lado al otro a alturas
+// aleatorias, en loop. Solo activo cuando matchMedia('(hover: none)') matchea.
+const AUTO_SWEEP_DUR_MIN = 2.2 // segundos por pasada (mínimo)
+const AUTO_SWEEP_DUR_MAX = 3.4 // segundos por pasada (máximo)
+const AUTO_SWEEP_Y_MIN = 0.12 // altura mínima de la pasada (fracción de h)
+const AUTO_SWEEP_Y_MAX = 0.88 // altura máxima de la pasada (fracción de h)
+
 // Wobble (mutación de caracteres cerca del mouse).
 const WOBBLE_FREQ_1 = 11
 const WOBBLE_FREQ_2 = 7
@@ -132,6 +140,12 @@ const AsciiCanvasImpl = ({
   useEffect(() => {
     if (!mounted || reduced) return
 
+    // Dispositivos táctiles (sin hover): el hotspot se auto-anima en loop en
+    // vez de seguir un puntero real. En desktop (con hover) autoMode es false y
+    // el comportamiento queda idéntico al de siempre. No necesita reactividad a
+    // cambios de media query: se resuelve una vez al montar.
+    const autoMode = window.matchMedia('(hover: none)').matches
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -170,6 +184,34 @@ const AsciiCanvasImpl = ({
     let started = 0 // 0: aún no revelado, 1: revelando/revelado
     let t0 = 0
     let t = 0
+
+    // Estado del auto-barrido (solo se usa cuando autoMode === true).
+    let sweepDir = 1 // +1: izq→der, -1: der→izq; alterna cada pasada
+    let sweepStartX = 0
+    let sweepEndX = 0
+    let sweepY = 0
+    let sweepT0 = 0
+    let sweepDur = 0
+    let sweepStarted = false // false hasta la primerísima pasada
+
+    // Programa una nueva pasada: lado según sweepDir (que luego se invierte para
+    // la siguiente), altura aleatoria y duración aleatoria dentro de los rangos.
+    const startSweep = (now: number) => {
+      const pad = Math.max(w, h) * PROX_RADIUS_FACTOR
+      if (sweepDir > 0) {
+        sweepStartX = -pad
+        sweepEndX = w + pad
+      } else {
+        sweepStartX = w + pad
+        sweepEndX = -pad
+      }
+      sweepDir = -sweepDir
+      sweepY =
+        h * (AUTO_SWEEP_Y_MIN + Math.random() * (AUTO_SWEEP_Y_MAX - AUTO_SWEEP_Y_MIN))
+      sweepDur =
+        AUTO_SWEEP_DUR_MIN + Math.random() * (AUTO_SWEEP_DUR_MAX - AUTO_SWEEP_DUR_MIN)
+      sweepT0 = now
+    }
 
     const sample = () => {
       if (!imgReady || !w || !octx) return
@@ -276,6 +318,31 @@ const AsciiCanvasImpl = ({
         }
       }
       const prog = started === 1 ? Math.min(1, (t - t0) / REVEAL) : 0
+
+      // Auto-barrido (dispositivos táctiles): alimenta mouse.tx/ty/active de
+      // forma sintética. Va ANTES del lerp para que mouse.x/y trailee el
+      // hotspot igual que con un puntero real.
+      if (autoMode) {
+        if (!sweepStarted || t - sweepT0 >= sweepDur) {
+          const first = !sweepStarted
+          startSweep(t)
+          sweepStarted = true
+          // Primerísima pasada: snapea el hotspot al inicio para evitar un
+          // salto visual desde el centro del canvas (mismo criterio que el
+          // snap del puntero real en `move`).
+          if (first) {
+            mouse.x = sweepStartX
+            mouse.y = sweepY
+          }
+        }
+        const p = Math.min(1, Math.max(0, (t - sweepT0) / sweepDur))
+        // easeInOutSine: desacelera suave en los bordes de cada pasada, para
+        // que el hotspot no entre/salga con velocidad constante abrupta.
+        const pe = 0.5 - 0.5 * Math.cos(Math.PI * p)
+        mouse.tx = sweepStartX + (sweepEndX - sweepStartX) * pe
+        mouse.ty = sweepY
+        mouse.active = 1
+      }
 
       mouse.x += (mouse.tx - mouse.x) * MOUSE_LERP
       mouse.y += (mouse.ty - mouse.y) * MOUSE_LERP
@@ -400,8 +467,13 @@ const AsciiCanvasImpl = ({
     )
     io.observe(canvas)
 
-    canvas.addEventListener('pointermove', move)
-    canvas.addEventListener('pointerleave', leave)
+    // En autoMode el barrido maneja todo el estado del hotspot y el toque real
+    // se ignora: no registramos listeners de puntero (y por ende no hay que
+    // removerlos en el cleanup).
+    if (!autoMode) {
+      canvas.addEventListener('pointermove', move)
+      canvas.addEventListener('pointerleave', leave)
+    }
 
     rafId = requestAnimationFrame(frame)
 
@@ -409,8 +481,10 @@ const AsciiCanvasImpl = ({
       if (rafId !== null) cancelAnimationFrame(rafId)
       ro.disconnect()
       io.disconnect()
-      canvas.removeEventListener('pointermove', move)
-      canvas.removeEventListener('pointerleave', leave)
+      if (!autoMode) {
+        canvas.removeEventListener('pointermove', move)
+        canvas.removeEventListener('pointerleave', leave)
+      }
       kickRef.current = null
     }
   }, [mounted, reduced, imageUrl])

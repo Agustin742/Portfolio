@@ -117,7 +117,7 @@ const Projects = () => {
       // exactos (-mx-6 mobile / -mx-11 md) y compensa el ancho (calc(100%+3rem/
       // 5.5rem)), en vez de left-1/2 + w-screen. Seguro porque <main> es
       // overflow-x-clip. Los paneles LEFT/RIGHT ponen el padding interno.
-      className="w-[calc(100%+3rem)] -mx-6 md:w-[calc(100%+5.5rem)] pl-12 md:-mx-11 scroll-mt-(--header-h) min-[860px]:h-[550vh]"
+      className="w-[calc(100%+3rem)] -mx-6 md:w-[calc(100%+5.5rem)] md:pl-12 md:-mx-11 scroll-mt-(--header-h) min-[860px]:h-[550vh]"
     >
       {/* Contenedor pinneado: sticky bajo el navbar (top = --header-h) y alto
           = viewport menos el header, para que el panel entre completo. */}
