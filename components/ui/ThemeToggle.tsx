@@ -5,7 +5,7 @@ import { FiSun, FiMoon } from 'react-icons/fi'
 import { useMounted } from '@/hooks'
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const mounted = useMounted()
 
   // Placeholder del mismo tamaño que el ícono para evitar layout shift en SSR.
@@ -13,7 +13,10 @@ const ThemeToggle = () => {
     return <div className="h-4.5 w-4.5" aria-hidden />
   }
 
-  const isDark = theme === 'dark'
+  // `resolvedTheme` (no `theme`): con `enableSystem`, `theme` puede ser 'system'
+  // en la primera visita y el ícono/estado no reflejarían el tema realmente
+  // aplicado. `resolvedTheme` siempre es 'light' | 'dark'.
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <button

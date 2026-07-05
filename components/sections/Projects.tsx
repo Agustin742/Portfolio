@@ -18,6 +18,7 @@ import {
 } from 'framer-motion'
 import clsx from 'clsx'
 import { projects } from '@/data/projects/projects'
+import ProjectLinks from '@/components/commons/ProjectLinks'
 import {
   useGlitch,
   usePageNavigate,
@@ -229,6 +230,10 @@ const Projects = () => {
                   // (isDesktop=false) las 3 cards quedan apiladas e interactivas.
                   inert={!isActive && isDesktop}
                   className={clsx(
+                    // `relative group`: ancla el stretched-link (overlay que hace
+                    // clickeable toda la card) y habilita el group-hover de la
+                    // imagen/flecha aunque el ancla sea un hermano del contenido.
+                    'relative group',
                     // Desktop: stack absoluto con crossfade (solo opacity+transform,
                     // sin visibility). z + pointer-events controlan el apilado.
                     // El z va condicionado por estado (no en base + override) para
@@ -243,16 +248,9 @@ const Projects = () => {
                       'min-[860px]:pointer-events-none min-[860px]:z-1 min-[860px]:opacity-0 min-[860px]:motion-safe:translate-y-6.5',
                   )}
                 >
-                  <a
-                    href={href}
-                    onClick={(event) => {
-                      event.preventDefault()
-                      navigate(href) // cortina wipe + router.push (RFC-06)
-                    }}
-                    aria-label={t('viewProject', { title })}
-                    data-cursor
-                    className="group flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-                  >
+                  {/* Contenido (no interactivo salvo los botones): la navegación
+                      al case study la resuelve el stretched-link de abajo. */}
+                  <div className="flex h-full flex-col">
                     {/* Imagen: aspect fijo en mobile, flex-1 dentro del sticky */}
                     <div className="relative aspect-video w-full overflow-hidden border-[1.5px] border-border bg-bg-card min-[860px]:aspect-auto min-[860px]:min-h-0 min-[860px]:flex-1">
                       <Image
@@ -261,6 +259,15 @@ const Projects = () => {
                         fill
                         sizes={IMAGE_SIZES}
                         className="object-cover transition-transform duration-700 ease-signature group-hover:scale-103 motion-reduce:transition-none"
+                      />
+                      {/* Enlaces externos en la esquina inferior izquierda de la
+                          imagen: no alteran la altura del footer (que en el layout
+                          sticky es sensible al recorte) y quedan por encima del
+                          overlay vía `relative z-2` dentro de ProjectLinks. */}
+                      <ProjectLinks
+                        links={project.links}
+                        title={title}
+                        className="absolute bottom-3 left-3"
                       />
                     </div>
 
@@ -282,7 +289,21 @@ const Projects = () => {
                         </span>
                       </p>
                     </div>
-                  </a>
+                  </div>
+
+                  {/* Stretched-link: cubre toda la card (z-1, debajo de los
+                      botones z-2) para que el clic general navegue al case study
+                      sin anidar un <a> dentro de otro. */}
+                  <a
+                    href={href}
+                    onClick={(event) => {
+                      event.preventDefault()
+                      navigate(href) // cortina wipe + router.push (RFC-06)
+                    }}
+                    aria-label={t('viewProject', { title })}
+                    data-cursor
+                    className="absolute inset-0 z-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  />
                 </li>
               )
             })}

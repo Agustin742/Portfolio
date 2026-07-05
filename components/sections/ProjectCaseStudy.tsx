@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import clsx from 'clsx'
 import { projects, getProjectBySlug } from '@/data/projects/projects'
 import { usePageNavigate } from '@/hooks'
+import ProjectLinks from '@/components/commons/ProjectLinks'
 
 /** Bloque técnico de "Lo que construí" (resuelto vía `t.raw`, ver projects.ts). */
 interface BuiltBlock {
@@ -112,6 +113,13 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
               <MetaItem label={t('detail.metaClient')} value={client} />
               <MetaItem label={t('detail.metaStack')} value={stack} />
             </dl>
+
+            {/* Enlaces externos (GitHub / sitio en producción), condicionales. */}
+            <ProjectLinks
+              links={project.links}
+              variant="full"
+              className="mt-[clamp(24px,3vw,40px)] flex-wrap"
+            />
           </header>
 
           {/* --------------------- Imagen hero full-bleed --------------------- */}

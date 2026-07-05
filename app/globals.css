@@ -26,10 +26,13 @@
   --color-bg-card-light:   #F3F1EE;
   --color-bg-warm-light:   #FDF6EE;
   --color-bg-warm-hover-light: #FEF0E0;
+  --color-bg-projects-light: #F1EAE0;
   --color-text-light:      #1A1714;
   --color-muted-light:     #6b6560;
-  --color-faint-light:     #9b948b;
+  --color-faint-light:     #6f685e;
   --color-border-light:    #E2DDD8;
+  --color-accent-light:    #9C4E0A;
+  --color-accent-hi-light: #A5540D;
 
   /* Easings de firma (source of truth compartida RFC-06→16) */
   --ease-signature: cubic-bezier(0.22, 1, 0.36, 1);
@@ -39,6 +42,24 @@
   --animate-blink:       blink 1.4s infinite;
   --animate-marquee:     marquee 26s linear infinite;
   --animate-scrollpulse: scrollpulse 1.6s infinite;
+}
+
+/* Modo claro: se aplica siempre que el <html> NO tenga la clase `.dark`.
+   `:root:not(.dark)` (0,2,0) gana sobre el `:root` que emite @theme (0,1,0),
+   así los tokens semánticos apuntan a sus variantes -light. En modo oscuro
+   (.dark presente) esta regla no matchea y quedan los valores oscuros de @theme. */
+:root:not(.dark) {
+  --color-bg:            var(--color-bg-light);
+  --color-bg-card:       var(--color-bg-card-light);
+  --color-bg-warm:       var(--color-bg-warm-light);
+  --color-bg-warm-hover: var(--color-bg-warm-hover-light);
+  --color-bg-projects:   var(--color-bg-projects-light);
+  --color-text:          var(--color-text-light);
+  --color-muted:         var(--color-muted-light);
+  --color-faint:         var(--color-faint-light);
+  --color-border:        var(--color-border-light);
+  --color-accent:        var(--color-accent-light);
+  --color-accent-hi:     var(--color-accent-hi-light);
 }
 
 /* Altura real del navbar fijo — única fuente de verdad (RFC-08/09 fix-pass).
