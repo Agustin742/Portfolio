@@ -95,8 +95,11 @@ export const projects: Project[] = [
     role: "items.bugnet.role",
     client: "items.bugnet.client",
     stack: ["React", "TypeScript", "Vite", "Zod", "Zustand", "Tailwind"],
-    image: "/imgs/projects/bugnet.png",
-    gallery: [],
+    image: "/imgs/projects/bugnet/hero.png",
+    gallery: [
+      "/imgs/projects/bugnet/gallery1.png",
+      "/imgs/projects/bugnet/gallery2.png"
+    ],
     links: {
       gitHub:
         "https://github.com/Agustin742/proyecto-2-Generador-de-Reportes-de-bugs",
@@ -129,9 +132,12 @@ export const projects: Project[] = [
     role: "items.catalogStore.role",
     client: "items.catalogStore.client",
     stack: ["NestJS", "Prisma", "PostgreSQL", "JWT", "Cloudinary", "Resend"],
-    image: "/imgs/projects/catalog-store.png",
-    gallery: [],
-    links: {},
+    image: "/imgs/projects/catalog/hero.png",
+    gallery: [
+      "/imgs/projects/catalog/gallery1.png",
+      "/imgs/projects/catalog/gallery2.png",
+    ],
+    links: {gitHub: "https://github.com/Agustin742/Catalog-Store"},
     techStacks: [
       { label: "NestJS", icon: SiNestjs, color: "#E0234E" },
       { label: "Prisma", icon: SiPrisma, color: "#2D3748" },
@@ -159,8 +165,11 @@ export const projects: Project[] = [
     role: "items.quest.role",
     client: "items.quest.client",
     stack: ["HTML5", "CSS3", "JavaScript", "localStorage"],
-    image: "/imgs/projects/quest.png",
-    gallery: [],
+    image: "/imgs/projects/quest/hero.png",
+    gallery: [
+      "/imgs/projects/quest/gallery1.png",
+      "/imgs/projects/quest/gallery2.png"
+    ],
     links: {
       gitHub:
         "https://github.com/MatucoRobles/PROY_1-ANTIPROCASTINATION-QUEST",
@@ -191,8 +200,10 @@ export const projects: Project[] = [
     role: "items.devEvent.role",
     client: "items.devEvent.client",
     stack: ["Next.js", "TypeScript", "MongoDB", "Tailwind", "Cloudinary"],
-    image: "/imgs/projects/devEvent.png",
-    gallery: [],
+    image: "/imgs/projects/devEvent/hero.png",
+    gallery: [
+      "/imgs/projects/devEvent/gallery1.png",
+      ],
     links: {
       gitHub: "https://github.com/Agustin742/Practica-Dev-Event",
       web: "https://practica-dev-event.vercel.app/",

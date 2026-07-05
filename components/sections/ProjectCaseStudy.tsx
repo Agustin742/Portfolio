@@ -231,35 +231,36 @@ export default function ProjectCaseStudy({ slug }: ProjectCaseStudyProps) {
             aria-label={t('detail.ariaGallery')}
             className={clsx('py-[clamp(48px,7vw,96px)]', CONTENT_PADDING)}
           >
-            <p aria-hidden="true" className={clsx('mb-[clamp(24px,4vw,40px)]', SECTION_LABEL)}>
-              [ 03 ]{'  '}{t('detail.galleryLabel')}
-            </p>
-
+            {project.gallery && project.gallery.length > 0 &&
+              <p aria-hidden="true" className={clsx('mb-[clamp(24px,4vw,40px)]', SECTION_LABEL)}>
+                [ 03 ]{'  '}{t('detail.galleryLabel')}
+              </p>
+            }
+            
             <div className="grid grid-cols-1 gap-4 min-[820px]:grid-cols-2">
-              {/* Galería vacía por ahora (RFC-16): placeholder tenue.
-                  Cuando `project.gallery` se llene, cada imagen sería una card:
 
-                  {project.gallery?.map((src, i) => (
-                    <div
-                      key={src}
-                      className={clsx(
-                        'gcard group relative aspect-video overflow-hidden border-[1.5px] border-border transition-transform duration-300 ease-signature hover:-translate-y-1.5',
-                        i === 0 && 'min-[820px]:col-span-2',
-                      )}
-                    >
-                      <Image src={src} alt="" fill className="object-cover" />
-                      <span
-                        aria-hidden="true"
-                        className="absolute bottom-0 left-0 h-[38px] w-[38px] bg-accent transition-all duration-300 ease-signature group-hover:h-[54px] group-hover:w-[54px]"
-                      />
-                    </div>
-                  ))}
-              */}
-              <div className="col-span-full flex min-h-[clamp(160px,24vw,280px)] items-center justify-center border-[1.5px] border-dashed border-border">
-                <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-faint">
-                  {t('detail.comingSoon')}
-                </span>
-              </div>
+              {project.gallery ? project.gallery.map((src, i) => (
+                <div
+                  key={src}
+                  className={clsx(
+                    'gcard group relative aspect-video overflow-hidden border-[1.5px] border-border transition-transform duration-300 ease-signature hover:-translate-y-1.5',
+                    i === 0 && 'min-[820px]:col-span-2',
+                  )}
+                >
+                  <Image src={src} alt="" fill className="object-cover" />
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0 left-0 h-9.5 w-9.5 bg-accent transition-all duration-300 ease-signature group-hover:h-13.5 group-hover:w-13.5"
+                  />
+                </div>
+              )) :
+                <div className="col-span-full flex min-h-[clamp(160px,24vw,280px)] items-center justify-center border-[1.5px] border-dashed border-border">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.14em] text-faint">
+                    {t('detail.comingSoon')}
+                  </span>
+                </div>
+              }
+
             </div>
           </section>
 
