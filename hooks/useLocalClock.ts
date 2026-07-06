@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 /** Zona horaria del reloj (Buenos Aires). Única fuente de verdad del hook. */
 const TIME_ZONE = 'America/Argentina/Buenos_Aires'
@@ -17,19 +17,27 @@ const TIME_PLACEHOLDER = '--:--:--'
 export function useLocalClock(locale: string): string {
   const [time, setTime] = useState(TIME_PLACEHOLDER)
 
+  // Memoizado por `locale`: reconstruir el formatter en cada tick es caro y no
+  // hace falta (el patrón cambia solo con el idioma). No se puede hoistear a
+  // scope de módulo porque `locale` es un parámetro variable del hook.
+  const formatter = useMemo(
+    () =>
+      new Intl.DateTimeFormat(locale, {
+        timeZone: TIME_ZONE,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false,
+      }),
+    [locale],
+  )
+
   useEffect(() => {
-    const formatter = new Intl.DateTimeFormat(locale, {
-      timeZone: TIME_ZONE,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    })
     const update = () => setTime(formatter.format(new Date()))
     update()
     const id = setInterval(update, 1000)
     return () => clearInterval(id)
-  }, [locale])
+  }, [formatter])
 
   return time
 }

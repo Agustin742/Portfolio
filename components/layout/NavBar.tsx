@@ -1,7 +1,7 @@
 'use client'
 
 import { Fade as Hamburger } from 'hamburger-react'
-import { forwardRef, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { FiArrowDown } from 'react-icons/fi'
 import ThemeToggle from '../ui/ThemeToggle'
@@ -24,16 +24,15 @@ interface NavLinkProps {
   href: string
   label: string
   onNavigate?: () => void
+  ref?: React.Ref<HTMLAnchorElement>
 }
 
 /**
  * Link de navegación con scramble al hover + underline animado. `useScramble`
  * es un hook, por eso vive acá (un componente por link) y no dentro del `.map`.
+ * En React 19 `ref` es un prop normal, sin necesidad de `forwardRef`.
  */
-const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink(
-  { href, label, onNavigate },
-  ref,
-) {
+function NavLink({ href, label, onNavigate, ref }: NavLinkProps) {
   const { text, trigger } = useScramble(label.toUpperCase().replace(/\s+/g, '_'))
 
   return (
@@ -58,7 +57,7 @@ const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(function NavLink(
       />
     </a>
   )
-})
+}
 
 interface CvButtonProps {
   href: string
@@ -146,7 +145,6 @@ export default function NavBar() {
   return (
     <header
       ref={headerRef}
-      role="banner"
       className="fixed left-0 top-0 z-50 w-full border-b-[1.5px] border-border bg-bg/70 py-5 px-[clamp(20px,4vw,48px)] backdrop-blur-sm"
     >
       <a

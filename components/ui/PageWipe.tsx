@@ -1,31 +1,15 @@
 'use client'
 
-import {
-  createContext,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import type { Transition } from 'framer-motion'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import { EASE_WIPE, prefersReducedMotion } from '@/lib/motion-variants'
+import { PageWipeContext } from './PageWipeContext'
+import type { PageWipeContextValue } from './PageWipeContext'
 
 type Phase = 'idle' | 'entering' | 'exiting'
-
-interface PageWipeContextValue {
-  navigate: (href: string) => void
-}
-
-/**
- * Context de la cortina de transición. El hook `usePageNavigate` lo consume.
- * Se exporta el context (no un componente suelto) para evitar montar el
- * panel por duplicado: solo `PageWipeProvider` lo renderiza.
- */
-export const PageWipeContext = createContext<PageWipeContextValue | null>(null)
 
 const ENTER_DURATION = 0.55
 const EXIT_DURATION = 0.68
@@ -40,6 +24,15 @@ export function PageWipeProvider({ children }: { children: ReactNode }) {
   const router = useRouter()
 
   const timers = useRef<ReturnType<typeof setTimeout>[]>([])
+
+  // Espejo de `phase` para leer su valor actual dentro del efecto de cambio de
+  // ruta sin agregar `phase` a sus dependencias (el efecto solo debe reaccionar
+  // a `pathname`, no re-dispararse en cada transición de fase). Se sincroniza en
+  // un efecto (no en render) para no violar `react-hooks/refs`.
+  const phaseRef = useRef(phase)
+  useEffect(() => {
+    phaseRef.current = phase
+  }, [phase])
 
   // Poda el timer del array una vez disparado, para que no se acumulen en
   // navegaciones repetidas (el cleanup de unmount igual limpia lo que quede).
@@ -68,7 +61,7 @@ export function PageWipeProvider({ children }: { children: ReactNode }) {
   // disparamos la salida. Si la navegación no pasó por `navigate()`, phase
   // sigue 'idle' y no se anima nada.
   useEffect(() => {
-    setPhase((current) => (current === 'entering' ? 'exiting' : current))
+    if (phaseRef.current === 'entering') setPhase('exiting')
   }, [pathname])
 
   // Fallback de cierre de la salida por si el evento de animación no llega.

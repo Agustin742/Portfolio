@@ -190,6 +190,7 @@ const BackgroundCanvasImpl = () => {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
+      tabIndex={-1}
       className="fixed inset-0 z-0 pointer-events-none"
     />
   )

@@ -10,6 +10,10 @@ import { useCallback, useSyncExternalStore } from 'react'
  * hidratación). Hook compartido para gatear lógica JS por breakpoint sin
  * duplicar la implementación.
  */
+// No depende de `query` ni de estado local (siempre `false` en SSR), así que
+// vive en scope de módulo para no recrearla en cada render.
+const getServerSnapshot = () => false
+
 export function useMediaQuery(query: string): boolean {
   const subscribe = useCallback(
     (callback: () => void) => {
@@ -21,6 +25,5 @@ export function useMediaQuery(query: string): boolean {
     [query],
   )
   const getSnapshot = () => window.matchMedia(query).matches
-  const getServerSnapshot = () => false
   return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 }

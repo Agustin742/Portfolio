@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { PageWipeContext } from '@/components/ui/PageWipe'
+import { PageWipeContext } from '@/components/ui/PageWipeContext'
 
 /**
  * Fachada liviana sobre `PageWipeContext`: devuelve `navigate(href)` que
