@@ -5,7 +5,7 @@ import type { Variants } from 'framer-motion'
  * Equivalen a los tokens CSS `--ease-signature` / `--ease-wipe` de globals.css.
  * Framer Motion necesita arrays numéricos, no CSS vars.
  */
-export const EASE_SIGNATURE = [0.22, 1, 0.36, 1] as const
+const EASE_SIGNATURE = [0.22, 1, 0.36, 1] as const
 export const EASE_WIPE = [0.7, 0, 0.2, 1] as const
 
 /**
@@ -16,15 +16,6 @@ export const EASE_WIPE = [0.7, 0, 0.2, 1] as const
 export function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
-}
-
-export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [...EASE_SIGNATURE] },
-  },
 }
 
 export const maskReveal: Variants = {
@@ -41,15 +32,6 @@ export const wordStagger: Variants = {
     opacity: 1,
     y: 0,
     transition: { duration: 0.7, ease: [...EASE_SIGNATURE], delay: i * 0.026 },
-  }),
-}
-
-export const slideFromRight: Variants = {
-  hidden: { opacity: 0, x: '100vw' },
-  visible: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.34, ease: [...EASE_SIGNATURE], delay: i * 0.04 },
   }),
 }
 
@@ -88,8 +70,8 @@ function reduceTransition(state: VariantState): VariantState {
 
 /**
  * Fuerza `duration: 0` (y `delay: 0`) en cada estado de un set de variantes.
- * Soporta estados objeto (fadeUp, maskReveal) y estados función/custom
- * (wordStagger, slideFromRight). Los componentes lo combinan con el
+ * Soporta estados objeto (maskReveal) y estados función/custom
+ * (wordStagger). Los componentes lo combinan con el
  * `useReducedMotion()` nativo de framer-motion.
  */
 export function withReducedMotion<T extends Record<string, unknown>>(variants: T): T {

@@ -80,9 +80,6 @@ export interface Project {
   caseStudy: CaseStudy;
 }
 
-/** Alias histórico del tipo (mismo shape) por si algún módulo lo referenciaba. */
-export type AlternatingSectionProps = Project;
-
 export const projects: Project[] = [
   {
     slug: "bugnet",

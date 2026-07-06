@@ -13,6 +13,3 @@ export interface TechStackProps {
   icon: IconType
   color: string
 }
-
-/** Alias histórico (mismo shape) usado por `data/aboutMe/*`. */
-export type TechItemProps = TechStackProps
