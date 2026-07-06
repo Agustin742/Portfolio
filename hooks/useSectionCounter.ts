@@ -8,7 +8,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion'
-import { countUp, EASE_SIGNATURE } from '@/lib/motion-variants'
+import { countUp } from '@/lib/motion-variants'
 
 /**
  * Contador one-shot `[ NN ]` que arranca en `[ 00 ]` y cuenta hasta `target`
@@ -36,8 +36,7 @@ export function useSectionCounter(target: number): {
     const { to, transition } = countUp(target)
     const controls = animate(count, to, {
       duration: transition.duration,
-      // countUp tipa `ease` como number[]; Framer espera la tupla bezier.
-      ease: [...EASE_SIGNATURE] as [number, number, number, number],
+      ease: transition.ease,
     })
     return () => controls.stop()
   }, [inView, count, target])

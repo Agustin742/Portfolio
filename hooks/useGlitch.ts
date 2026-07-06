@@ -52,17 +52,18 @@ export function useGlitch(): {
     let tick = 0
     const rnd = (): string => (Math.random() * 6 - 3).toFixed(1)
 
-    intervalRef.current = setInterval(() => {
+    const id = setInterval(() => {
       el.style.textShadow = `${rnd()}px 0 ${ORANGE}, ${rnd()}px 0 ${CYAN}`
       el.style.transform = `${base} translateX(${(Math.random() * 4 - 2).toFixed(1)}px)`
       if (++tick >= ticks) {
-        if (intervalRef.current !== null) clearInterval(intervalRef.current)
+        clearInterval(id)
         intervalRef.current = null
         el.style.textShadow = ''
         el.style.transform = base
         activeRef.current = false
       }
     }, TICK_MS)
+    intervalRef.current = id
   }, [])
 
   return { ref, trigger }

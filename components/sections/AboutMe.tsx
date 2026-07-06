@@ -176,19 +176,19 @@ const AboutMe = () => {
                 )}
               >
                 {/* Cara frontal: retrato ASCII (pausa su rAF mientras está oculta) */}
-                <div className="absolute inset-0 overflow-hidden border-[1.5px] border-border bg-bg-card backface-hidden">
+                <div className="absolute inset-0 overflow-hidden bg-bg-card backface-hidden">
                   <AsciiCanvas imageUrl={ASCII_SOURCE} paused={isFlipped} />
                   <FaceTag variant="ascii">{'// ASCII'}</FaceTag>
                 </div>
 
                 {/* Cara trasera: foto real */}
-                <div className="absolute inset-0 overflow-hidden border-[1.5px] border-border bg-bg-card backface-hidden transform-[rotateY(180deg)]">
+                <div className="absolute inset-0 overflow-hidden bg-bg-card backface-hidden transform-[rotateY(180deg)]">
                   <Image
                     src={PHOTO_SOURCE}
                     alt={t('photoAlt')}
                     fill
                     sizes={PHOTO_SIZES}
-                    className="object-cover"
+                    className="object-cover object-top"
                   />
                   <FaceTag variant="photo">{'// FOTO'}</FaceTag>
                 </div>

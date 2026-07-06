@@ -7,10 +7,7 @@ import StackSection from "@/components/sections/StackSection"
 
 export default function HomePage() {
   return (
-    <main id="main-content" className="px-6 md:px-0
-    flex justify-center
-    flex-col items-center
-    overflow-x-clip">
+    <main id="main-content" className="px-6 md:px-0 flex justify-center flex-col items-center overflow-x-clip">
       <HeroBanner />
       <AboutMe />
       <Projects />

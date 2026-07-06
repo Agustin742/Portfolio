@@ -353,8 +353,6 @@ const AsciiCanvasImpl = ({
       // la proximidad/wobble sigue leyendo mouse.x/y (snap de RFC-10.2).
       par.x += (mouse.tx - par.x) * MOUSE_LERP
       par.y += (mouse.ty - par.y) * MOUSE_LERP
-      const ox = (par.x - w / 2) / (w / 2)
-      const oy = (par.y - h / 2) / (h / 2)
 
       ctx.clearRect(0, 0, w, h)
       ctx.fillStyle = bgFillRef.current
@@ -364,6 +362,9 @@ const AsciiCanvasImpl = ({
         rafId = visible && !pausedRef.current ? requestAnimationFrame(frame) : null
         return
       }
+
+      const ox = (par.x - w / 2) / (w / 2)
+      const oy = (par.y - h / 2) / (h / 2)
 
       ctx.font = `${FONT_WEIGHT} ${fs.toFixed(1)}px ${fontFamily}`
       ctx.textBaseline = 'top'

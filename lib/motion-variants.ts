@@ -60,7 +60,11 @@ export const slideFromRight: Variants = {
 export function countUp(
   target: number,
   duration = 0.75,
-): { from: number; to: number; transition: { duration: number; ease: number[] } } {
+): {
+  from: number
+  to: number
+  transition: { duration: number; ease: readonly [number, number, number, number] }
+} {
   return {
     from: 0,
     to: target,
