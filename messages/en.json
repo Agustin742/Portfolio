@@ -1,0 +1,225 @@
+{
+  "nav": {
+    "about": "About me",
+    "projects": "Projects",
+    "stack": "Stack",
+    "expForm": "Exp. and Formation",
+    "education": "Education",
+    "contact": "Contact",
+    "skipToContent": "Skip to main content"
+  },
+  "hero": {
+    "greeting": "I'm Agustin Tabarcache",
+    "role": {
+      "prefix": "FullStack",
+      "highlight": "Developer"
+    },
+    "description": "Software developer focused on building functional applications, continuously learning, and solving real-world problems with code.",
+    "quote": "\"The only way to go fast is to go well\" - Robert C. Martin",
+    "downloadCV": "Open CV",
+    "location": "BUENOS AIRES, AR",
+    "stack": "REACT · NEXT · NODE · NEST · SQL · MONGO",
+    "localTime": "LOCAL TIME",
+    "available": "AVAILABLE FOR WORK",
+    "ticker": "BUILDING DIGITAL PRODUCTS ✱ AVAILABLE FOR WORK ✱ REACT · NODE · NEXT · NEST ✱ BUENOS AIRES, AR",
+    "labels": {
+      "role": "ROLE",
+      "location": "LOCATION",
+      "stack": "STACK"
+    }
+  },
+  "about": {
+    "title": "About me",
+    "description1": "I work with these technologies in real projects and hands-on practice, applying best practices and a solid development foundation.",
+    "description2": "Additionally, I continue incorporating new tools and languages to strengthen my full stack profile and expand my ability to solve real-world problems.",
+    "knowTitle": "I have experience with:",
+    "learningTitle": "Currently learning:",
+    "sectionLabel": "ABOUT ME",
+    "headlineMain": "I build software",
+    "headlineSub": "people actually use.",
+    "rightNowLabel": "RIGHT NOW",
+    "rightNow": [
+      { "prefix": "Building a ", "highlight": "report-generation platform", "suffix": "" },
+      { "prefix": "Building interactive websites with ", "highlight": "Three.js", "suffix": "" },
+      { "prefix": "Reading ", "highlight": "Designing Data-Intensive Applications", "suffix": "", "italic": true }
+    ],
+    "flip": {
+      "toPhoto": "View real photo",
+      "toAscii": "View ASCII"
+    },
+    "photoAlt": "Photo of Agustín Tabarcache",
+    "asciiAlt": "Portrait of Agustín Tabarcache rendered in ASCII characters that react to mouse movement",
+    "cards": {
+      "whoAmI": {
+        "title": "Who I Am",
+        "description": "I am a Full Stack developer with training in programming and web development, focused on building practical and scalable solutions. I am currently in a stage of professional growth, combining technical education, continuous learning, and experience in real work environments."
+      },
+      "formation": {
+        "title": "My Education",
+        "description": "I trained in programming and web development through formal education and intensive programs. I participated in the Fundación Pescar program, which included in-person experiences at companies such as Corteva and a formative internship with JP Morgan, where I gained first-hand exposure to real-world technological environments."
+      },
+      "whatILookFor": {
+        "title": "What I’m Looking For",
+        "description": "I aim to grow in professional environments where I can learn, contribute, and participate in real projects while applying best practices and teamwork."
+      }
+    }
+  },
+  "projects": {
+    "sectionTitle": "Projects",
+    "sectionSubtitle": "Real solutions",
+    "scrollHint": "SCROLL TO EXPLORE",
+    "ariaSection": "Selected projects",
+    "ariaList": "Project list",
+    "viewProject": "View project {title}",
+    "detail": {
+      "projectLabel": "PROJECT",
+      "figOverview": "FIG. 01 — OVERVIEW",
+      "challengeLabel": "THE CHALLENGE",
+      "builtLabel": "WHAT I BUILT",
+      "architecture": "ARCHITECTURE",
+      "resultsLabel": "RESULTS",
+      "galleryLabel": "GALLERY",
+      "comingSoon": "// COMING SOON",
+      "nextProject": "NEXT PROJECT",
+      "metaRole": "ROLE",
+      "metaYear": "YEAR",
+      "metaClient": "CLIENT",
+      "metaStack": "STACK",
+      "ariaArticle": "Case study: {title}",
+      "ariaChallenge": "The challenge",
+      "ariaBuilt": "What I built",
+      "ariaResults": "Results",
+      "ariaGallery": "Gallery",
+      "ariaNext": "Next project",
+      "ariaViewNext": "View project {title}"
+    },
+    "buttons": {
+      "gitButton": "View in Github",
+      "webButton": "Go to the website"
+    },
+    "items": {
+      "bugnet": {
+        "title": "BugNet",
+        "category": "FRONTEND WEB TOOL",
+        "description": "Web app to create clear, structured bug reports. It guides the user through a validated form and generates a ready-to-use Markdown report to review, save or copy. 100% client-side, no backend.",
+        "lede": "Turns informal bug reports into ready-to-use technical documentation in Markdown.",
+        "year": "2025",
+        "role": "Frontend Developer",
+        "client": "Capstone project · IntegraTEC",
+        "challengeBody": "Bug reports often arrive incomplete or informal, which slows QA and development teams down. The challenge was to design a guided flow that guarantees the key information —what happened, how to reproduce it, what was expected, environment and severity— and always produces a consistent output.",
+        "built": [
+          { "title": "Guided, validated form", "description": "Section-based form with React Hook Form and Zod; types are derived from the schema with z.infer and the limits live in a single shared module." },
+          { "title": "Markdown generation", "description": "A pure function takes the form values and builds the structured Markdown report, with a real-time preview and a toggle between raw and rendered." },
+          { "title": "Quality and accessibility", "description": "Quality checklist and suggestions before copying, character counters, aria-live/aria-required attributes and non-blocking feedback instead of alert()/confirm()." },
+          { "title": "Local persistence", "description": "Reports are stored in the browser with Zustand + localStorage, with no backend or authentication." }
+        ]
+      },
+      "catalogStore": {
+        "title": "Catalog Store",
+        "category": "BACKEND API — E-COMMERCE",
+        "description": "REST API for a store built with NestJS, Prisma and PostgreSQL. It includes authentication with email verification, product and category management (with a recursive tree), image uploads and WhatsApp order generation.",
+        "lede": "E-commerce backend with email verification, a nested-category catalog and WhatsApp order generation.",
+        "year": "2025",
+        "role": "Backend Developer",
+        "client": "Personal project",
+        "challengeBody": "A store needs more than CRUD: verified accounts, a catalog with nested categories, managed images and a simple way to close orders. The challenge was integrating all of it into a secure, maintainable API, with admin roles and automatic data cleanup.",
+        "built": [
+          { "title": "Auth with email verification", "description": "Sign-up with a 6-digit code (valid for 10 min) sent via Resend, login with JWT + Passport and a scheduled job that deletes unverified accounts every hour." },
+          { "title": "Nested-category catalog", "description": "Self-referencing categories with a recursive tree, and products with filters, pagination, sorting and name search (including a category's descendants)." },
+          { "title": "Images and orders", "description": "Image uploads to Cloudinary (with automatic deletion on replace or remove) and generation of a pre-filled WhatsApp message with a wa.me link from the cart." },
+          { "title": "Security and validation", "description": "Admin roles, a global ValidationPipe with whitelist/forbidNonWhitelisted and bcrypt-hashed passwords." }
+        ]
+      },
+      "quest": {
+        "title": "Anti-Procrastination Quest",
+        "category": "WEB APP — GAME",
+        "description": "RPG-themed productivity web app: manage tasks as quests, customize a pixel-art cat companion and battle rivals in an arena. Built with vanilla HTML, CSS and JavaScript — no frameworks, no build.",
+        "lede": "A gamified task manager with quests, rewards and turn-based battles, in vanilla JS.",
+        "year": "2025",
+        "role": "Frontend Developer",
+        "client": "Team project",
+        "challengeBody": "Turning task management into something fun without reaching for frameworks. The challenge was building RPG mechanics —rewards, inventory, customization and combat— with plain HTML, CSS and JavaScript, taking care of state, persistence and a layered CSS architecture.",
+        "built": [
+          { "title": "Quest board", "description": "Create, complete, filter and delete tasks, with a global progress bar that unlocks a chest every 5 completed quests." },
+          { "title": "Pixel-art cat", "description": "Companion rendered with CSS box-shadow, with color customization and an equipment system (weapon, armor, hat) drawn over the cat." },
+          { "title": "Battle arena", "description": "Export the cat's state as a hash to share it, paste a rival's hash and run a turn-based battle simulation with animations." },
+          { "title": "Vanilla and persistence", "description": "ES modules with no bundler, global state persisted in localStorage and a layered CSS architecture (@layer, tokens, components)." }
+        ]
+      },
+      "devEvent": {
+        "title": "DevEvent",
+        "category": "FULL-STACK WEB PRODUCT",
+        "description": "Full-stack web application for discovering, creating, and booking developer events such as hackathons, meetups, and conferences. The project includes API routes, MongoDB data persistence, image uploads with Cloudinary, and caching optimizations in Next.js for improved performance.",
+        "lede": "Discover, create and book developer events —hackathons, meetups and conferences— all in one place.",
+        "year": "2025",
+        "role": "Full Stack Developer",
+        "client": "Personal project",
+        "challengeBody": "Centralizing the full lifecycle of an event —discover, view details, create and book— in a single fast full-stack app. The challenge was combining an API Routes + MongoDB backend, image uploads, efficient caching and a polished visual layer.",
+        "built": [
+          { "title": "Discover and view events", "description": "A list of upcoming events with image, location, date and time, and a detail page with agenda, organizer, tags and similar events." },
+          { "title": "Create and book", "description": "Creation form with dynamic tags and agenda and image upload via Cloudinary; spot booking with one sign-up per email per event and confirmation feedback." },
+          { "title": "Next.js caching", "description": "Use of 'use cache' + cacheTag for efficient data fetching over the API Routes." },
+          { "title": "WebGL background and analytics", "description": "Interactive light-rays background powered by OGL (WebGL) and tracking of key interactions with PostHog." }
+        ]
+      },
+      "blogNest": {
+        "title": "Blog API with NestJS",
+        "category": "REST API",
+        "description": "REST API for a blogging platform built with NestJS and PostgreSQL following the RealWorld specification. It includes JWT authentication, article management, user following system, and social features such as favorites and content filtering.",
+        "lede": "RealWorld-spec blogging REST API: JWT auth, articles, follows and favorites.",
+        "year": "2025",
+        "role": "Full Stack Developer",
+        "client": "Personal project",
+        "challengeBody": "Implementing the RealWorld spec in a clean, typed way: JWT authentication, article CRUD with slugs and the social features (follows, favorites, filters). The challenge was structuring the domain with NestJS and TypeORM while keeping access rules clear.",
+        "built": [
+          { "title": "Auth and users", "description": "Sign-up and login with JWT, auth middleware and guards; current user via protected endpoints." },
+          { "title": "Articles with slugs", "description": "Article CRUD with auto-generated slug, filters by tag/author/favorited and pagination (limit/offset)." },
+          { "title": "Social features", "description": "Follow/unfollow between users, article favorites and public profiles, following the RealWorld spec." },
+          { "title": "Typed domain", "description": "Module structure (article, profile, tag, user) with TypeORM, validation with class-validator and migrations." }
+        ]
+      }
+    }
+  },
+  "stack": {
+    "sectionLabel": "STACK & TOOLS",
+    "title": "WHAT I USE",
+    "hint": "Hover a category to isolate it, or a technology to see its role.",
+    "ariaSection": "Stack and tools",
+    "ariaCategories": "Categories",
+    "ariaTechnologies": "Technologies",
+    "categories": {
+      "frontend": "FRONTEND",
+      "backend": "BACKEND",
+      "datos": "DATA",
+      "tooling": "TOOLING"
+    },
+    "categoriesAria": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "datos": "Data",
+      "tooling": "Tooling"
+    },
+    "categoryAria": "{name}, {count} technologies",
+    "techAria": "{name} — {category}, {role}"
+  },
+  "education": {
+    "sectionLabel": "EDUCATION & CERTIFICATIONS",
+    "title": "LEARNING",
+    "ariaSection": "Education and certifications",
+    "ariaList": "List of studies and certifications"
+  },
+  "contact": {
+    "sectionLabel": "CONTACT",
+    "titleLead": "LET'S",
+    "titleAccent": "TALK",
+    "writeMe": "WRITE ME",
+    "socials": "SOCIALS",
+    "status": "STATUS",
+    "available": "Available — Buenos Aires",
+    "localTime": "Local time ",
+    "footerTagline": "DESIGNED & BUILT WITH INTENT",
+    "ariaSection": "Contact",
+    "ariaFooter": "Footer",
+    "ariaSocial": "{name} (opens in a new tab)"
+  }
+}

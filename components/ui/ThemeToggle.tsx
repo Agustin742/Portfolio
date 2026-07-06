@@ -1,46 +1,33 @@
 'use client'
 
-import { useTheme } from '../../hooks'
+import { useTheme } from 'next-themes'
 import { FiSun, FiMoon } from 'react-icons/fi'
+import { useMounted } from '@/hooks'
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
+  const mounted = useMounted()
 
-  const isDark = theme === 'dark'
+  // Placeholder del mismo tamaño que el ícono para evitar layout shift en SSR.
+  if (!mounted) {
+    return <div className="h-4.5 w-4.5" aria-hidden />
+  }
+
+  // `resolvedTheme` (no `theme`): con `enableSystem`, `theme` puede ser 'system'
+  // en la primera visita y el ícono/estado no reflejarían el tema realmente
+  // aplicado. `resolvedTheme` siempre es 'light' | 'dark'.
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <button
+      type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className={`
-        relative
-        w-14 h-8
-        flex items-center
-        rounded-full
-        transition-colors duration-300
-        ${isDark ? 'bg-[#1F4A3A]' : 'bg-[#2EC4B6]'}
-      `}
+      aria-pressed={isDark}
+      aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+      data-cursor
+      className="flex items-center justify-center text-muted transition-colors duration-300 ease-signature hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
     >
-      {/* Circle */}
-      <div
-        className={`
-          absolute
-          w-6 h-6
-          bg-[#F3FAF8]
-          rounded-full
-          shadow-md
-          flex items-center justify-center
-          transition-all duration-300 ease-in-out
-          ${isDark ? 'translate-x-7' : 'translate-x-1'}
-        `}
-      >
-        <span className="transition-opacity duration-200">
-          {isDark ? (
-            <FiMoon size={14} color="#1F4A3A" />
-          ) : (
-            <FiSun size={14} color="#2EC4B6" />
-          )}
-        </span>
-      </div>
+      {isDark ? <FiMoon size={18} aria-hidden /> : <FiSun size={18} aria-hidden />}
     </button>
   )
 }
