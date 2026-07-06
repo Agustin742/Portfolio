@@ -243,7 +243,7 @@ const AboutMe = () => {
               style={revealStyle(rightNow)}
               className="mb-[clamp(30px,4vw,44px)] border-b-[1.5px] border-border pb-[clamp(26px,3vw,34px)]"
             >
-              <p className="mb-5.5 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
+              <p className="mb-5.5 font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                 <span aria-hidden>{'// '}</span>
                 {t('rightNowLabel')}
               </p>

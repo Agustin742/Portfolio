@@ -48,6 +48,7 @@
       "toAscii": "View ASCII"
     },
     "photoAlt": "Photo of Agustín Tabarcache",
+    "asciiAlt": "Portrait of Agustín Tabarcache rendered in ASCII characters that react to mouse movement",
     "cards": {
       "whoAmI": {
         "title": "Who I Am",

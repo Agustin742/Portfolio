@@ -88,14 +88,27 @@ export default function NavBar() {
   const t = useTranslations('nav')
   const locale = useLocale()
   const [isOpen, setIsOpen] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
   const firstLinkRef = useRef<HTMLAnchorElement>(null)
   const hamburgerWrapRef = useRef<HTMLDivElement>(null)
 
   const cvHref = `/cv/agustin-tabarcache-cv-${locale}.pdf`
 
-  // Mover el foco al primer link cuando se abre el menú mobile.
+  // Al abrir el menú mobile: mover el foco al primer link y, mientras esté
+  // abierto, cerrar con Escape devolviendo el foco al botón hamburger.
   useEffect(() => {
-    if (isOpen) firstLinkRef.current?.focus()
+    if (!isOpen) return
+    firstLinkRef.current?.focus()
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false)
+        hamburgerWrapRef.current
+          ?.querySelector<HTMLElement>('.hamburger-react')
+          ?.focus()
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
   }, [isOpen])
 
   // hamburger-react renderiza su propio <div role="button"> con aria-expanded y
@@ -106,10 +119,33 @@ export default function NavBar() {
       ?.setAttribute('aria-controls', 'nav-menu')
   }, [])
 
+  // Mide el alto real del header y lo publica en `--header-h` (única fuente de
+  // verdad del offset de layout). Los valores de globals.css son solo el
+  // fallback SSR/no-JS; acá los reemplazamos con la medición runtime apenas está
+  // disponible, así el offset sigue el alto real en cualquier breakpoint o si
+  // cambia el contenido (idioma, wrap de links) sin hardcodear valores. Usamos
+  // `offsetHeight` porque incluye el borde inferior (`border-b-[1.5px]`), a
+  // diferencia de `contentRect.height`.
+  useEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+    const setHeaderHeight = () => {
+      document.documentElement.style.setProperty(
+        '--header-h',
+        `${header.offsetHeight}px`,
+      )
+    }
+    const resizeObserver = new ResizeObserver(setHeaderHeight)
+    resizeObserver.observe(header)
+    setHeaderHeight()
+    return () => resizeObserver.disconnect()
+  }, [])
+
   const closeMenu = () => setIsOpen(false)
 
   return (
     <header
+      ref={headerRef}
       role="banner"
       className="fixed left-0 top-0 z-50 w-full border-b-[1.5px] border-border bg-bg/70 py-5 px-[clamp(20px,4vw,48px)] backdrop-blur-sm"
     >

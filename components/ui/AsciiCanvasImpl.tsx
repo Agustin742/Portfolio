@@ -1,7 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+// Aliased porque el efecto ASCII usa el constructor global `new Image()` (línea
+// del rAF loop) para precargar el bitmap del retrato; sin alias, el import de
+// next/image lo sombrearía.
+import NextImage from 'next/image'
 import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
 import clsx from 'clsx'
 import { useMounted, useReducedMotion } from '@/hooks'
 
@@ -87,9 +92,6 @@ const PROX_COLOR_MIX = 0.9 // k = prox * PROX_COLOR_MIX
 const BG_FILL_DARK = '#0E0D0C'
 const BG_FILL_LIGHT = '#F3F1EE'
 
-const ARIA_LABEL =
-  'Retrato de Agustín Tabarcache renderizado en caracteres ASCII que reaccionan al movimiento del mouse'
-
 interface AsciiCanvasProps {
   className?: string
   /** Fuente de sampling del retrato (ej. '/perfil_cut.png'). */
@@ -109,6 +111,7 @@ const AsciiCanvasImpl = ({
   fallbackImageUrl = '/perfil.png',
   paused = false,
 }: AsciiCanvasProps) => {
+  const t = useTranslations('about')
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const { resolvedTheme } = useTheme()
 
@@ -495,11 +498,12 @@ const AsciiCanvasImpl = ({
   // Movimiento reducido: foto real, sin canvas ni rAF.
   if (reduced) {
     return (
-      // eslint-disable-next-line @next/next/no-img-element
-      <img
+      <NextImage
         src={fallbackImageUrl}
-        alt="Agustín Tabarcache"
-        className={clsx('absolute inset-0 block h-full w-full object-cover', className)}
+        alt={t('photoAlt')}
+        fill
+        sizes="(min-width: 768px) 40vw, 90vw"
+        className={clsx('absolute inset-0 block object-cover', className)}
       />
     )
   }
@@ -508,7 +512,7 @@ const AsciiCanvasImpl = ({
     <canvas
       ref={canvasRef}
       role="img"
-      aria-label={ARIA_LABEL}
+      aria-label={t('asciiAlt')}
       className={clsx('font-mono absolute inset-0 block h-full w-full', className)}
     />
   )

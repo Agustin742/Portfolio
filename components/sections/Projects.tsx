@@ -1,13 +1,6 @@
 'use client'
 
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-  type RefObject,
-} from 'react'
+import { useEffect, useRef, useState, type RefObject } from 'react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import {
@@ -21,6 +14,7 @@ import { projects } from '@/data/projects/projects'
 import ProjectLinks from '@/components/commons/ProjectLinks'
 import {
   useGlitch,
+  useMediaQuery,
   usePageNavigate,
   useReducedMotion,
   useSectionCounter,
@@ -37,27 +31,6 @@ const IMAGE_SIZES = '(min-width: 860px) 64vw, 100vw'
 const STACK_SEPARATOR = ' · '
 // Breakpoint del layout sticky (mismo 860px del template, no default Tailwind).
 const DESKTOP_QUERY = '(min-width: 860px)'
-
-/**
- * Media query reactivo y SSR-safe vía `useSyncExternalStore` (mismo patrón que
- * `HeroBanner`/`useReducedMotion`). Devuelve `false` en el servidor y en el
- * primer render de hidratación, así ninguna card recibe `inert` hasta saber si
- * estamos en desktop (evita mismatch y deja las cards accesibles en mobile).
- */
-function useMediaQuery(query: string): boolean {
-  const subscribe = useCallback(
-    (callback: () => void) => {
-      if (typeof window === 'undefined') return () => {}
-      const mql = window.matchMedia(query)
-      mql.addEventListener('change', callback)
-      return () => mql.removeEventListener('change', callback)
-    },
-    [query],
-  )
-  const getSnapshot = () => window.matchMedia(query).matches
-  const getServerSnapshot = () => false
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
-}
 
 const Projects = () => {
   const t = useTranslations('projects')

@@ -1,42 +1,17 @@
 'use client'
 
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import clsx from 'clsx'
-import { useMounted, useSectionCounter } from '@/hooks'
+import { useLocalClock, useMediaQuery, useSectionCounter } from '@/hooks'
 import { useScramble } from '@/hooks/useScramble'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { maskReveal, withReducedMotion, wordStagger } from '@/lib/motion-variants'
 
-const TIME_ZONE = 'America/Argentina/Buenos_Aires'
-const TIME_PLACEHOLDER = '--:--:--'
 const TITLE_WORDS = ['FULL', 'STACK', 'DEV'] as const
 const WORD_DELAYS = [0.05, 0.13, 0.21] as const
 const PARALLAX_FACTOR = 0.06
 const TICKER_SEPARATOR = '✱'
-
-/**
- * Media query reactivo y SSR-safe vía `useSyncExternalStore` (mismo patrón
- * sancionado que `useMounted`/`useReducedMotion`). Devuelve `false` en el
- * servidor y en el primer render de hidratación, así el parallax arranca
- * desactivado y no hay mismatch. El breakpoint 768px coincide con `md` de
- * Tailwind (única forma de gatear una animación JS por viewport).
- */
-function useMediaQuery(query: string): boolean {
-  const subscribe = useCallback(
-    (callback: () => void) => {
-      if (typeof window === 'undefined') return () => {}
-      const mql = window.matchMedia(query)
-      mql.addEventListener('change', callback)
-      return () => mql.removeEventListener('change', callback)
-    },
-    [query],
-  )
-  const getSnapshot = () => window.matchMedia(query).matches
-  const getServerSnapshot = () => false
-  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
-}
 
 interface InfoRowProps {
   label: string
@@ -66,7 +41,6 @@ function InfoRow({ label, children, valueClassName }: InfoRowProps) {
 const HeroBanner = () => {
   const t = useTranslations('hero')
   const locale = useLocale()
-  const mounted = useMounted()
   const reduced = useReducedMotion()
 
   const roleLabel = `${t('role.prefix')} ${t('role.highlight')}`.toUpperCase()
@@ -82,22 +56,9 @@ const HeroBanner = () => {
   // --- Counter [00] -> [01] al entrar en viewport ---
   const { ref: counterRef, text: counterText } = useSectionCounter(1)
 
-  // --- Reloj en vivo (hydration-safe: placeholder hasta montar) ---
-  const [time, setTime] = useState(TIME_PLACEHOLDER)
-
-  useEffect(() => {
-    const formatter = new Intl.DateTimeFormat(locale, {
-      timeZone: TIME_ZONE,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    })
-    const update = () => setTime(formatter.format(new Date()))
-    update()
-    const id = setInterval(update, 1000)
-    return () => clearInterval(id)
-  }, [locale])
+  // --- Reloj en vivo (hydration-safe: `useLocalClock` devuelve el placeholder
+  // '--:--:--' en SSR y en el primer render hasta el primer tick del efecto) ---
+  const time = useLocalClock(locale)
 
   const maskVariants = reduced ? withReducedMotion(maskReveal) : maskReveal
   const wordVariants = reduced ? withReducedMotion(wordStagger) : wordStagger
@@ -127,7 +88,7 @@ const HeroBanner = () => {
         <div className="flex flex-1 flex-col justify-center md:justify-between md:px-[clamp(20px,4vw,48px)]">
           {/* Eyebrow con counter */}
           <div className="mb-6 mt-6 flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
-            <motion.span ref={counterRef} className="text-accent">
+            <motion.span ref={counterRef} aria-hidden="true" className="text-accent">
               {counterText}
             </motion.span>
             <span aria-hidden className="text-border">
@@ -191,7 +152,7 @@ const HeroBanner = () => {
           <InfoRow label={t('labels.location')}>{t('location')}</InfoRow>
           <InfoRow label={t('labels.stack')}>{t('stack')}</InfoRow>
           <InfoRow label={t('localTime')} valueClassName="text-accent">
-            {mounted ? time : TIME_PLACEHOLDER}
+            {time}
           </InfoRow>
 
           {/* Fila de disponibilidad destacada */}

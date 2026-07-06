@@ -261,7 +261,7 @@ const StackSection = () => {
             </ul>
 
             {/* Hint: flecha accent + texto faint. */}
-            <p className="mt-[clamp(22px,3vw,32px)] flex items-start gap-2 text-[10.5px] leading-[1.75] tracking-wider text-faint">
+            <p className="mt-[clamp(22px,3vw,32px)] flex items-start gap-2 text-[10.5px] leading-[1.75] tracking-wider text-muted">
               <span aria-hidden="true" className="text-accent">
                 →
               </span>
