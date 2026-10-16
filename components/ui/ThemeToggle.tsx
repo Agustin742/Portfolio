@@ -1,11 +1,13 @@
 'use client'
 
 import { useTheme } from 'next-themes'
+import { useTranslations } from 'next-intl'
 import { FiSun, FiMoon } from 'react-icons/fi'
 import { useMounted } from '@/hooks'
 
 const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme()
+  const t = useTranslations('nav')
   const mounted = useMounted()
 
   // Placeholder del mismo tamaño que el ícono para evitar layout shift en SSR.
@@ -23,7 +25,7 @@ const ThemeToggle = () => {
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-pressed={isDark}
-      aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+      aria-label={isDark ? t('activateLightMode') : t('activateDarkMode')}
       data-cursor
       className="flex items-center justify-center text-muted transition-colors duration-300 ease-signature hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
     >

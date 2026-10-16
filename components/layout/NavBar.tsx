@@ -61,17 +61,18 @@ function NavLink({ href, label, onNavigate, ref }: NavLinkProps) {
 
 interface CvButtonProps {
   href: string
+  label: string
   onNavigate?: () => void
 }
 
-function CvButton({ href, onNavigate }: CvButtonProps) {
+function CvButton({ href, label, onNavigate }: CvButtonProps) {
   return (
     <a
       href={href}
       download
       onClick={onNavigate}
       data-cursor
-      aria-label="Descargar CV"
+      aria-label={label}
       className="group inline-flex items-center gap-1.5 border-[1.5px] border-accent bg-accent px-3 py-1.5 font-mono text-[12px] font-bold text-bg transition duration-300 ease-signature hover:-translate-y-0.5 hover:border-accent-hi hover:bg-accent-hi focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
     >
       CV
@@ -154,7 +155,7 @@ export default function NavBar() {
         {t('skipToContent')}
       </a>
 
-      <nav aria-label="Navegación principal" id="nav-menu">
+      <nav aria-label={t('primaryNavigation')} id="nav-menu">
         <div className="flex items-center justify-between gap-6">
           {/* Logo */}
           <a
@@ -178,7 +179,7 @@ export default function NavBar() {
           <div className="hidden items-center gap-4 md:flex">
             <ThemeToggle />
             <LanguageToggle />
-            <CvButton href={cvHref} />
+            <CvButton href={cvHref} label={t('downloadCV')} />
           </div>
 
           {/* Hamburger mobile */}
@@ -189,7 +190,7 @@ export default function NavBar() {
               size={22}
               rounded
               color="var(--color-text)"
-              label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+              label={isOpen ? t('closeMenu') : t('openMenu')}
             />
           </div>
         </div>
@@ -212,7 +213,7 @@ export default function NavBar() {
             <div className="flex items-center gap-4">
               <ThemeToggle />
               <LanguageToggle />
-              <CvButton href={cvHref} onNavigate={closeMenu} />
+              <CvButton href={cvHref} label={t('downloadCV')} onNavigate={closeMenu} />
             </div>
           </div>
         )}

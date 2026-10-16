@@ -6,9 +6,18 @@
     "expForm": "Exp. y Formación",
     "contact": "Contacto",
     "education": "Educación",
-    "skipToContent": "Saltar al contenido principal"
+    "skipToContent": "Saltar al contenido principal",
+    "primaryNavigation": "Navegación principal",
+    "downloadCV": "Descargar CV",
+    "closeMenu": "Cerrar menú",
+    "openMenu": "Abrir menú",
+    "activateLightMode": "Activar modo claro",
+    "activateDarkMode": "Activar modo oscuro",
+    "changeLanguage": "Cambiar idioma"
   },
   "hero": {
+    "ariaLabel": "Hero — Presentación",
+    "developerAriaLabel": "Desarrollador, con acento visual",
     "greeting": "Soy Agustin Tabarcache",
     "role": {
       "prefix": "Desarrollador",
@@ -48,6 +57,7 @@
       "toAscii": "Ver ASCII"
     },
     "photoAlt": "Foto de Agustín Tabarcache",
+    "photoTag": "// FOTO",
     "asciiAlt": "Retrato de Agustín Tabarcache renderizado en caracteres ASCII que reaccionan al movimiento del mouse",
     "cards": {
       "whoAmI": {
@@ -202,11 +212,25 @@
     "categoryAria": "{name}, {count} tecnologías",
     "techAria": "{name} — {category}, {role}"
   },
+  "metadata": {
+    "description": "Portfolio de Agustín Tabarcache, desarrollador Full Stack. Proyectos, experiencia y formación en desarrollo web."
+  },
   "education": {
     "sectionLabel": "FORMACIÓN & CERTIFICACIONES",
     "title": "APRENDIZAJE",
     "ariaSection": "Formación y certificaciones",
-    "ariaList": "Lista de estudios y certificaciones"
+    "ariaList": "Lista de estudios y certificaciones",
+    "items": {
+      "utn": "Tecnicatura Universitaria en Programación",
+      "integratec": "Arquitecto de Software",
+      "british-b2": "Inglés B2",
+      "educacionit": "Desarrollador Full Stack",
+      "utn-data-ia": "Ciencia de Datos e IA",
+      "udemy-sql": "SQL y Bases de Datos Relacionales",
+      "coursera-git": "Git para Control de Versiones",
+      "pescar": "Habilidades Blandas",
+      "udemy-python": "Python & Algorithms"
+    }
   },
   "contact": {
     "sectionLabel": "CONTACTO",

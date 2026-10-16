@@ -1,7 +1,7 @@
 'use client'
 
 import { useTransition } from 'react'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { usePathname, useRouter } from '@/i18n/navigation'
 import clsx from 'clsx'
 
@@ -14,6 +14,7 @@ const LOCALES: ReadonlyArray<{ code: Locale; label: string }> = [
 
 export default function LanguageToggle() {
   const locale = useLocale()
+  const t = useTranslations('nav')
   const pathname = usePathname()
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
@@ -28,7 +29,7 @@ export default function LanguageToggle() {
   return (
     <div
       role="group"
-      aria-label="Cambiar idioma"
+      aria-label={t('changeLanguage')}
       className="inline-flex border-[1.5px] border-border font-mono text-[12px] leading-none"
     >
       {LOCALES.map(({ code, label }, index) => {

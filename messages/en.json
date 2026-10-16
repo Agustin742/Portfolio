@@ -6,9 +6,18 @@
     "expForm": "Exp. and Formation",
     "education": "Education",
     "contact": "Contact",
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "primaryNavigation": "Primary navigation",
+    "downloadCV": "Download CV",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "activateLightMode": "Activate light mode",
+    "activateDarkMode": "Activate dark mode",
+    "changeLanguage": "Change language"
   },
   "hero": {
+    "ariaLabel": "Hero — Introduction",
+    "developerAriaLabel": "Developer, with visual emphasis",
     "greeting": "I'm Agustin Tabarcache",
     "role": {
       "prefix": "FullStack",
@@ -48,6 +57,7 @@
       "toAscii": "View ASCII"
     },
     "photoAlt": "Photo of Agustín Tabarcache",
+    "photoTag": "// PHOTO",
     "asciiAlt": "Portrait of Agustín Tabarcache rendered in ASCII characters that react to mouse movement",
     "cards": {
       "whoAmI": {
@@ -202,11 +212,25 @@
     "categoryAria": "{name}, {count} technologies",
     "techAria": "{name} — {category}, {role}"
   },
+  "metadata": {
+    "description": "Portfolio of Agustín Tabarcache, a Full Stack developer. Projects, experience, and education in web development."
+  },
   "education": {
     "sectionLabel": "EDUCATION & CERTIFICATIONS",
     "title": "LEARNING",
     "ariaSection": "Education and certifications",
-    "ariaList": "List of studies and certifications"
+    "ariaList": "List of studies and certifications",
+    "items": {
+      "utn": "University Technician Degree in Programming",
+      "integratec": "Software Architect",
+      "british-b2": "English B2",
+      "educacionit": "Full Stack Developer",
+      "utn-data-ia": "Data Science and AI",
+      "udemy-sql": "SQL and Relational Databases",
+      "coursera-git": "Git for Version Control",
+      "pescar": "Soft Skills",
+      "udemy-python": "Python & Algorithms"
+    }
   },
   "contact": {
     "sectionLabel": "CONTACT",

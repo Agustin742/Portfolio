@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { Space_Grotesk, Space_Mono, Instrument_Serif } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, setRequestLocale } from 'next-intl/server'
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import '../globals.css'
 import Navbar from '@/components/layout/NavBar'
 import BackgroundCanvas from '@/components/ui/BackgroundCanvas'
@@ -34,10 +34,18 @@ const instrumentSerif = Instrument_Serif({
   variable: '--font-instrument-serif',
 })
 
-export const metadata: Metadata = {
-  title: 'Agustín Tabarcache — Full Stack Developer',
-  description:
-    'Portfolio de Agustín Tabarcache, desarrollador Full Stack. Proyectos, experiencia y formación en desarrollo web.',
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+
+  return {
+    title: 'Agustín Tabarcache — Full Stack Developer',
+    description: t('description'),
+  }
 }
 
 export function generateStaticParams() {

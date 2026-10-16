@@ -159,7 +159,7 @@ const EducationSection = () => {
           {education.map((item, index) => (
             <EducationRow
               key={item.id}
-              item={item}
+              item={{ ...item, title: t(`items.${item.id}`) }}
               index={index}
               reduced={reduced}
             />

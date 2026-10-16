@@ -190,7 +190,7 @@ const AboutMe = () => {
                     sizes={PHOTO_SIZES}
                     className="object-cover object-top"
                   />
-                  <FaceTag variant="photo">{'// FOTO'}</FaceTag>
+                  <FaceTag variant="photo">{t('photoTag')}</FaceTag>
                 </div>
               </div>
 

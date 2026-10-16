@@ -80,7 +80,7 @@ const HeroBanner = () => {
   return (
     <section
       id="hero"
-      aria-label="Hero — Presentación"
+      aria-label={t('ariaLabel')}
       className="relative flex min-h-[calc(100dvh-var(--header-h))] w-full scroll-mt-(--header-h) flex-col overflow-hidden md:w-screen"
     >
       <div className="flex flex-1 flex-col gap-10 py-8 md:flex-row md:gap-0 md:py-0">
@@ -113,7 +113,7 @@ const HeroBanner = () => {
                     transition={{ delay: WORD_DELAYS[index] }}
                     onMouseEnter={isDev ? triggerDev : undefined}
                     data-cursor={isDev ? true : undefined}
-                    aria-label={isDev ? 'Developer, con acento visual' : undefined}
+                    aria-label={isDev ? t('developerAriaLabel') : undefined}
                     className={clsx(
                       'block',
                       isDev && 'w-fit bg-accent px-[0.08em] text-bg',
